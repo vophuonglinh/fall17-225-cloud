@@ -504,7 +504,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTile: {fileID: 595494551}
-  lastDirection: 
   tilePrefabs:
   - {fileID: 1175170429034448, guid: 8707aa2af7d41bc409c0fd423174bbec, type: 2}
   - {fileID: 1268222933803264, guid: 029ead0fe39a94a45b722352afb08799, type: 2}
