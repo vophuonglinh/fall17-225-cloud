@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class TileController : MonoBehaviour {
 
 	public GameObject currentTile;
-	public string lastDirection;
 	public GameObject[] tilePrefabs;
-	public bool nextTileStraight;
 
 	private static TileController instance;
 
@@ -15,10 +12,13 @@ public class TileController : MonoBehaviour {
 	private Stack<GameObject> topTiles = new Stack<GameObject>();
 	private Stack<GameObject> rightTiles = new Stack<GameObject>();
 
+	private int minSegmentLength;
+	private List<char> tileHistory;
 
+
+    //Instance so that TileScript can access inside TileScript
 	public static TileController Instance
 	{
-
 		get 
 		{ 
 			if (instance == null) {
@@ -28,33 +28,48 @@ public class TileController : MonoBehaviour {
 		}
 	}
 
-	// Use this for initialization
 	void Start () {
-		nextTileStraight = false;
-		CreateTiles (80);
-		for (int i = 0; i < 40; i++) {
-			SpawnTile ();
+		minSegmentLength = 5;
+		tileHistory = new List<char> (minSegmentLength);
+		for (int i = 0; i < minSegmentLength; i++) 
+		{
+            tileHistory.Add('t'); //initialize tile history with 't' for top tile
 		}
+		CreateTiles (minSegmentLength, 't');
+		for (int i = 0; i < minSegmentLength; i++) {
+            SpawnTile ("top");
+        }
 	}
 
-	public void CreateTiles(int amount)
+	public void CreateTiles(int amount, char type)
 	{
-		for (int i = 0; i<amount; i++)
-		{
-			leftTiles.Push(Instantiate(tilePrefabs[0]));
-			topTiles.Push (Instantiate (tilePrefabs [2]));
-			rightTiles.Push (Instantiate (tilePrefabs [1]));
-
-			leftTiles.Peek().name = "LeftTile";
-			leftTiles.Peek().SetActive (false);           //ensure they don't overlap each other!
-
-			topTiles.Peek ().name = "TopTile";
-			topTiles.Peek().SetActive (false);
-
-			rightTiles.Peek ().name = "RightTile";
-			rightTiles.Peek().SetActive (false);
-
-		}
+        if (type == 'l')
+        {
+            for (int i = 0; i < amount; i++)
+            {
+			    leftTiles.Push(Instantiate(tilePrefabs[0]));
+                leftTiles.Peek().name = "LeftTile";
+                leftTiles.Peek().SetActive(false);
+            }
+        }
+        else if (type == 't')
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                topTiles.Push(Instantiate(tilePrefabs[2]));
+                topTiles.Peek().name = "TopTile";
+                topTiles.Peek().SetActive(false);
+            }
+        }
+        else if (type == 'r')
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                rightTiles.Push(Instantiate(tilePrefabs[1]));
+                rightTiles.Peek().name = "RightTile";
+                rightTiles.Peek().SetActive(false);
+            }
+        }
 	}
 
 	public Stack<GameObject> LeftTiles
@@ -77,71 +92,119 @@ public class TileController : MonoBehaviour {
 		
 	}
 
-	public void SpawnTile()
+	public void SpawnTile(string preferredDirection="")
 	{
-		if (leftTiles.Count == 0 || topTiles.Count == 0 || rightTiles.Count == 0) 
+        checkEmpty();
+        string direction = "top";
+		bool foundTurn = false;
+		int childIndex = 1;
+        char lastMove = tileHistory[0];
+
+		for (int i = 0; i < minSegmentLength; i++) 
 		{
-			CreateTiles (10); 
+			if (tileHistory [i] != lastMove) 
+			{
+				foundTurn = true;
+			}
 		}
-		int randomDirectionIndex = Random.Range (0, tilePrefabs.Length);
-		int childIndex;
-		string direction = "top";
-		string randomDirectionTilePrefab = tilePrefabs [randomDirectionIndex].name;
-		if (nextTileStraight == true) 
-		{
-			randomDirectionTilePrefab = "TopTile1";
-			nextTileStraight = false;
+
+		if (foundTurn) {
+            if (lastMove == 't')
+            {
+                childIndex = 1;
+                direction = "top";
+            }
+            else if (lastMove == 'l')
+            {
+                childIndex = 0;
+                direction = "left";
+            }
+            else if (lastMove == 'r'){
+                childIndex = 2;
+                direction = "right";
+            }
+
 		}
-		else if (lastDirection != "top" && randomDirectionTilePrefab != "TopTile1") 
-		{
-			randomDirectionTilePrefab = "TopTile1";
-			nextTileStraight = true;
+
+        else
+        {
+			int randomDirectionIndex = Random.Range (0, tilePrefabs.Length); 
+			string randomDirectionTilePrefab = tilePrefabs [randomDirectionIndex].name;
+
+			switch (randomDirectionTilePrefab) {
+				case "LeftTile1":
+					childIndex = 0;
+					direction = "left";
+					break;
+				case "RightTile1":
+					childIndex = 2;
+					direction = "right";
+					break;
+				case "TopTile1":
+					childIndex = 1;
+					direction = "top";
+					break;
+				default:
+					childIndex = 1;
+					break;
+			}
 		}
-		switch(randomDirectionTilePrefab) 
-		{
-		case "LeftTile1":
-			childIndex = 0;
-			direction = "left";
-			break;
-		case "RightTile1":
-			childIndex = 2;
-			direction = "right";
-			break;
-		case "TopTile1":
-			childIndex = 1;
-			direction = "top";
-			break;
-		default:
-			childIndex = 1;
-			break;
-		}
-			
-		if (direction == "left") 
-		{
-			GameObject temp = leftTiles.Pop ();
-			temp.SetActive (true);
-			temp.transform.position = currentTile.transform.GetChild (0).transform.GetChild (childIndex).position;
-			currentTile = temp;
-			lastDirection = "left";
-		}
-		else if (direction == "top")
-		{
-			GameObject temp = topTiles.Pop ();
-			temp.SetActive (true);
-			temp.transform.position = currentTile.transform.GetChild (0).transform.GetChild (childIndex).position;
-			currentTile = temp;
-			lastDirection = "top";
-		}
-		else if (direction == "right")
-		{
-			GameObject temp = rightTiles.Pop ();
-			temp.SetActive (true);
-			temp.transform.position = currentTile.transform.GetChild (0).transform.GetChild (childIndex).position;
-			currentTile = temp;
-			lastDirection = "right";
-		}
-		//currentTile = (GameObject)Instantiate (tilePrefabs[randomDirectionIndex], currentTile.transform.GetChild (0).transform.GetChild (childIndex).position, Quaternion.identity);
+        if (preferredDirection.Length != 0)
+        {
+            if (preferredDirection == "top")
+            {
+                direction = "top";
+                childIndex = 1;
+            }
+        }
+
+        RecycleTile(direction, childIndex);
 	}
 
+    public void RecycleTile(string direction, int childIndex)
+    {
+        if (direction == "left")
+        {
+            tileHistory.Insert(0, 'l');
+            tileHistory.RemoveAt(tileHistory.Count - 1);
+            GameObject temp = leftTiles.Pop();
+            temp.SetActive(true);
+            temp.transform.position = currentTile.transform.GetChild(0).transform.GetChild(childIndex).position;
+            currentTile = temp;
+        }
+        else if (direction == "top")
+        {
+            tileHistory.Insert(0, 't');
+            tileHistory.RemoveAt(tileHistory.Count - 1);
+            GameObject temp = topTiles.Pop();
+            temp.SetActive(true);
+            temp.transform.position = currentTile.transform.GetChild(0).transform.GetChild(childIndex).position;
+            currentTile = temp;
+        }
+        else if (direction == "right")
+        {
+            tileHistory.Insert(0, 'r');
+            tileHistory.RemoveAt(tileHistory.Count - 1);
+            GameObject temp = rightTiles.Pop();
+            temp.SetActive(true);
+            temp.transform.position = currentTile.transform.GetChild(0).transform.GetChild(childIndex).position;
+            currentTile = temp;
+        }
+    }
 
+    void checkEmpty() {
+        if (leftTiles.Count == 0)
+        {
+            CreateTiles(10, 'l');
+        }
+        if (rightTiles.Count == 0)
+        {
+            CreateTiles(10, 'r');
+
+        }
+        if (topTiles.Count == 0)
+        {
+            CreateTiles(10, 't');
+        }
+    }
 }

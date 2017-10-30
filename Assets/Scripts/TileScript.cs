@@ -1,12 +1,10 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //recycle tiles 20:20
 public class TileScript : MonoBehaviour {
 
 	private float delay = 6;
-	// Use this for initialization
 	void Start () {
 		
 	}
