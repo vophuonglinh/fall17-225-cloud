@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Fire
   - Cloud
+  - Boost
+  - CurrentTile
+  - NotCurrent
   layers:
   - Default
   - TransparentFX

@@ -7,8 +7,9 @@ public class TileController : MonoBehaviour {
 	public GameObject[] tilePrefabs;
 
 	private static TileController instance;
-
-	private Stack<GameObject> leftTiles = new Stack<GameObject>();
+    private const string tagCur = "CurrentTile";
+    private const string tagNotCur = "NotCurrent";
+    private Stack<GameObject> leftTiles = new Stack<GameObject>();
 	private Stack<GameObject> topTiles = new Stack<GameObject>();
 	private Stack<GameObject> rightTiles = new Stack<GameObject>();
 
@@ -171,6 +172,7 @@ public class TileController : MonoBehaviour {
             temp.SetActive(true);
             temp.transform.position = currentTile.transform.GetChild(0).transform.GetChild(childIndex).position;
             currentTile = temp;
+            temp.gameObject.tag = tagCur;
         }
         else if (direction == "top")
         {
@@ -180,6 +182,7 @@ public class TileController : MonoBehaviour {
             temp.SetActive(true);
             temp.transform.position = currentTile.transform.GetChild(0).transform.GetChild(childIndex).position;
             currentTile = temp;
+            temp.gameObject.tag = tagCur;
         }
         else if (direction == "right")
         {
@@ -189,6 +192,7 @@ public class TileController : MonoBehaviour {
             temp.SetActive(true);
             temp.transform.position = currentTile.transform.GetChild(0).transform.GetChild(childIndex).position;
             currentTile = temp;
+            temp.gameObject.tag = tagCur;
         }
     }
 
