@@ -27,20 +27,17 @@ public class PlayerController : MonoBehaviour {
 
     void Start(){
 		rb = GetComponent<Rigidbody> ();
-<<<<<<< HEAD
         count = 0;
         SetCountText();
         GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
 		gamecontroller = gameControllerObject.GetComponent <GameController>();
 		Debug.Log ("Start!");
 
-=======
-
 		// GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
 		// gamecontroller = gameControllerObject.GetComponent <GameController>();
 		// Debug.Log ("Start!");
 //Linh: I commented out 29:31
->>>>>>> 2162b6922e6841224fe2e2ca31923cd53aa6c3d4
+
 	}
 
 
@@ -76,11 +73,11 @@ public class PlayerController : MonoBehaviour {
 
 	void FixedUpdate()
 	{
-		// float moveHorizontal = Input.GetAxis ("Horizontal");
-		// float moveVertical = Input.GetAxis ("Vertical");
-		//
-		// Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
-		// rb.AddForce (movement * speed);
+		 //float moveHorizontal = Input.GetAxis ("Horizontal");
+		 //float moveVertical = Input.GetAxis ("Vertical");
+		
+		 //Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
+		 //rb.AddForce (movement * speed);
 	}
 
 	void Swipe() {
@@ -102,7 +99,7 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-<<<<<<< HEAD
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Boost"))
@@ -117,7 +114,7 @@ public class PlayerController : MonoBehaviour {
     {
         countText.text = "Count: " + count.ToString();
     }
-=======
+
 	// collision with the clouds
 
 // Linh: I commented out 98:103 + 106:107
@@ -132,7 +129,7 @@ public class PlayerController : MonoBehaviour {
 	// 		//Destroy(gameObject);
 		// }
 	// }
->>>>>>> 2162b6922e6841224fe2e2ca31923cd53aa6c3d4
+
 
 
 }
