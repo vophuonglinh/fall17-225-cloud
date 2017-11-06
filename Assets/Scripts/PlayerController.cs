@@ -73,12 +73,12 @@ public class PlayerController : MonoBehaviour {
 
 	void FixedUpdate()
 	{
-		 //float moveHorizontal = Input.GetAxis ("Horizontal");
-		 //float moveVertical = Input.GetAxis ("Vertical");
-		
-		 //Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
-		 //rb.AddForce (movement * speed);
-	}
+        //float moveHorizontal = Input.GetAxis("Horizontal");
+        //float moveVertical = Input.GetAxis("Vertical");
+
+        //Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        //rb.AddForce(movement * speed);
+    }
 
 	void Swipe() {
 		Vector2 distance = endPos - startPos;
