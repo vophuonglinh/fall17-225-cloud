@@ -2,20 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour {
 
 	private Rigidbody rb;
 	public float speed;
-
 	bool isStarted = false;		// test if game has started
-
 	// variables for swipe input
 	public float maxTime;
 	public float minSwipeDist;
-
 	float startTime;
 	float endTime;
-
 	Vector3 startPos;
 	Vector3 endPos;
 	float swipeDist;
@@ -24,6 +21,7 @@ public class PlayerController : MonoBehaviour {
 	public GameController gamecontroller;
     private int count;
     public Text countText;
+    public Text highScore;
 
     void Start(){
 		rb = GetComponent<Rigidbody> ();
@@ -31,6 +29,9 @@ public class PlayerController : MonoBehaviour {
         SetCountText();
         GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
 		gamecontroller = gameControllerObject.GetComponent <GameController>();
+       
+        highScore.text = PlayerPrefs.GetInt("HightScore", 0).ToString();
+        Debug.Log(PlayerPrefs.GetInt("HightScore", 0));
 		Debug.Log ("Start!");
 
 		// GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
@@ -105,9 +106,12 @@ public class PlayerController : MonoBehaviour {
         if (other.gameObject.CompareTag("Boost"))
         {
             other.gameObject.SetActive(false);
-            Debug.Log("count");
             count += 1;
             SetCountText();
+        }
+        if (count > PlayerPrefs.GetInt("HighScore", 0)) {
+            PlayerPrefs.SetInt("HighScore", count);
+            highScore.text = count.ToString();
         }
     }
     void SetCountText()
