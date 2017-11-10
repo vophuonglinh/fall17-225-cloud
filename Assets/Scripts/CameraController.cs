@@ -19,7 +19,10 @@ public class CameraController : MonoBehaviour
         transform.position = player.transform.position;// + offset;
         Vector3 velocity = player.GetComponent<Rigidbody>().velocity;
         Quaternion cameraRotation = transform.rotation;
-        cameraRotation.SetLookRotation(velocity);
+        if (velocity != Vector3.zero)
+        {
+            cameraRotation.SetLookRotation(velocity);
+        }
         transform.rotation = cameraRotation;
     }
 }
