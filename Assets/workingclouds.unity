@@ -1332,6 +1332,14 @@ Prefab:
       propertyPath: CollisionModule.collisionMessages
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4225601518259110, guid: 8707aa2af7d41bc409c0fd423174bbec, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -106
+      objectReference: {fileID: 0}
+    - target: {fileID: 4827171027657564, guid: 8707aa2af7d41bc409c0fd423174bbec, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 105
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8707aa2af7d41bc409c0fd423174bbec, type: 2}
   m_IsPrefabParent: 0
