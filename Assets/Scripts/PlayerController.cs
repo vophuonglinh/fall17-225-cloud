@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    /*
 
     void Update()
     {
@@ -79,14 +80,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+*/
+
 
     void FixedUpdate()
     {
-        //float moveHorizontal = Input.GetAxis("Horizontal");
-        //float moveVertical = Input.GetAxis("Vertical");
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
-        //Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        //rb.AddForce(movement * speed);
+        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        rb.AddForce(movement * speed);
     }
 
     void Swipe()
@@ -140,17 +143,17 @@ public class PlayerController : MonoBehaviour
     // collision with the clouds
 
     // Linh: I commented out 98:103 + 106:107
-    // void onTriggerEnter(Collider other) {
-    // void OnParticleCollision(GameObject other){
-    // 	if (other.gameObject.CompareTag("Cloud")) {
-    // 		Debug.Log ("collided!");
-    // 		gamecontroller.GameOver();
-    // 		gamecontroller.DeleteAll ();
-    // 		Debug.Log ("Game Over!");
-    // 		//Destroy(other.gameObject);
-    // 		//Destroy(gameObject);
-    // }
-    // }
+
+    void OnParticleCollision(GameObject other){
+        if (other.gameObject.CompareTag("Cloud")) {
+            Debug.Log ("collided!");
+            gamecontroller.GameOver();
+            gamecontroller.DeleteAll ();
+            Debug.Log ("Game Over!");
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+     }
+     }
 
 
 
