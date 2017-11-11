@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using CnControls;
+
 public class PlayerController : MonoBehaviour
 {
 
@@ -35,15 +37,7 @@ public class PlayerController : MonoBehaviour
         highScore.text = PlayerPrefs.GetInt("HightScore", 0).ToString();
         Debug.Log(PlayerPrefs.GetInt("HightScore", 0));
         Debug.Log("Start!");
-
-        // GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
-        // gamecontroller = gameControllerObject.GetComponent <GameController>();
-        // Debug.Log ("Start!");
-        //Linh: I commented out 29:31
-
-    }
-
-    /*
+      }
 
     void Update()
     {
@@ -80,9 +74,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-*/
 
 
+/*
     void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
@@ -91,6 +85,7 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rb.AddForce(movement * speed);
     }
+*/
 
     void Swipe()
     {
@@ -106,17 +101,36 @@ public class PlayerController : MonoBehaviour
                 Move("Right");
             }
         }
+        else if (Mathf.Abs(distance.x) < Mathf.Abs(distance.y))
+        {
+          if (distance.y > 0)
+          {
+            Move("Up");
+          }
+          else
+          {
+            Move("Down");
+          }
+        }
     }
 
     void Move(string dir)
     {
         if (dir == "Left")
         {
-            rb.AddForce(new Vector3(rb.velocity.magnitude * -1, 0.0f, 0.0f) * speed);
+            rb.AddForce(new Vector3(rb.velocity.magnitude * -1f, 0.0f, 0.0f) * speed);
         }
         else if (dir == "Right")
         {
-            rb.AddForce(new Vector3(rb.velocity.magnitude, 0.0f, 0.0f) * speed);
+            rb.AddForce(new Vector3(rb.velocity.magnitude * 1f, 0.0f, 0.0f) * speed);
+        }
+        else if (dir == "Up")
+        {
+          rb.AddForce(new Vector3(rb.velocity.magnitude * 0.0f, 5.0f, 0.0f) * speed);
+        }
+        else if (dir == "Down")
+        {
+          rb.AddForce(new Vector3(rb.velocity.magnitude * 0.0f, -5.0f, 0.0f) * speed);
         }
     }
 
@@ -135,6 +149,7 @@ public class PlayerController : MonoBehaviour
             highScore.text = count.ToString();
         }
     }
+
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
@@ -142,7 +157,6 @@ public class PlayerController : MonoBehaviour
 
     // collision with the clouds
 
-    // Linh: I commented out 98:103 + 106:107
 
     void OnParticleCollision(GameObject other){
         if (other.gameObject.CompareTag("Cloud")) {
@@ -152,9 +166,8 @@ public class PlayerController : MonoBehaviour
             Debug.Log ("Game Over!");
             Destroy(other.gameObject);
             Destroy(gameObject);
-     }
-     }
-
+        }
+    }
 
 
 }

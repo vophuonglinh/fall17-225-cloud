@@ -7,7 +7,7 @@ public class Boost : MonoBehaviour
     public float boostLife = 15;
     private const float coef = 0.5f;
     private const float delay = 6f;
-    public GameObject boost;
+    // public GameObject boost;
     public static Boost instance;
     // Use this for initialization
     void Start()
@@ -25,7 +25,7 @@ public class Boost : MonoBehaviour
 
             StartCoroutine(Recycle());
             Debug.Log("TRASH1");
-            boost.SetActive(false);
+            // boost.SetActive(false);
             //gameObject.active = false;
         }
     }
