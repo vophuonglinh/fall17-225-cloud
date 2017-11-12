@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using CnControls;
+//using CnControls;     // Leqi: commented out for laptop testing
 
 public class PlayerController : MonoBehaviour
 {
@@ -37,10 +37,11 @@ public class PlayerController : MonoBehaviour
         highScore.text = PlayerPrefs.GetInt("HightScore", 0).ToString();
         Debug.Log(PlayerPrefs.GetInt("HightScore", 0));
         Debug.Log("Start!");
-      }
+    }
 
     void Update()
     {
+        /* // Leqi: commented out for laptop testing
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -72,11 +73,12 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        */
     }
 
 
+    // Leqi: uncommented out for laptop testing
 
-/*
     void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
@@ -85,7 +87,7 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rb.AddForce(movement * speed);
     }
-*/
+
 
     void Swipe()
     {
@@ -103,14 +105,14 @@ public class PlayerController : MonoBehaviour
         }
         else if (Mathf.Abs(distance.x) < Mathf.Abs(distance.y))
         {
-          if (distance.y > 0)
-          {
-            Move("Up");
-          }
-          else
-          {
-            Move("Down");
-          }
+            if (distance.y > 0)
+            {
+                Move("Up");
+            }
+            else
+            {
+                Move("Down");
+            }
         }
     }
 
@@ -126,17 +128,26 @@ public class PlayerController : MonoBehaviour
         }
         else if (dir == "Up")
         {
-          rb.AddForce(new Vector3(rb.velocity.magnitude * 0.0f, 5.0f, 0.0f) * speed);
+            rb.AddForce(new Vector3(rb.velocity.magnitude * 0.0f, 5.0f, 0.0f) * speed);
         }
         else if (dir == "Down")
         {
-          rb.AddForce(new Vector3(rb.velocity.magnitude * 0.0f, -5.0f, 0.0f) * speed);
+            rb.AddForce(new Vector3(rb.velocity.magnitude * 0.0f, -5.0f, 0.0f) * speed);
         }
     }
 
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            Debug.Log("collided ground!");
+            gamecontroller.GameOver();
+            gamecontroller.DeleteAll();
+            Debug.Log("Game Over!");
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
         if (other.gameObject.CompareTag("Boost"))
         {
             other.gameObject.SetActive(false);
@@ -148,6 +159,7 @@ public class PlayerController : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", count);
             highScore.text = count.ToString();
         }
+
     }
 
     void SetCountText()
@@ -155,19 +167,21 @@ public class PlayerController : MonoBehaviour
         countText.text = "Count: " + count.ToString();
     }
 
-    // collision with the clouds
-
-
-    void OnParticleCollision(GameObject other){
-        if (other.gameObject.CompareTag("Cloud")) {
-            Debug.Log ("collided!");
+    // collision that ends the game
+    void OnParticleCollision(GameObject other)
+    {
+        // cloud collision
+        if (other.gameObject.CompareTag("Cloud"))
+        {
+            Debug.Log("collided cloud!");
             gamecontroller.GameOver();
-            gamecontroller.DeleteAll ();
-            Debug.Log ("Game Over!");
+            gamecontroller.DeleteAll();
+            Debug.Log("Game Over!");
             Destroy(other.gameObject);
             Destroy(gameObject);
+            // ground collision
         }
     }
-
-
 }
+
+   
