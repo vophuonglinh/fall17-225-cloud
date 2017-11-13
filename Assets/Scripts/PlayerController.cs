@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-//using CnControls;     // Leqi: commented out for laptop testing
+
+
 
 public class PlayerController : MonoBehaviour
 {
 
     private Rigidbody rb;
     public float speed;
-    bool isStarted = false;     // test if game has started
+    private bool isStarted = false;     // test if game has started
                                 // variables for swipe input
     public float maxTime;
     public float minSwipeDist;
@@ -39,9 +40,10 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Start!");
     }
 
+
     void Update()
     {
-        /* // Leqi: commented out for laptop testing
+
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -73,11 +75,11 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        */
+
     }
 
 
-    // Leqi: uncommented out for laptop testing
+
 
     void FixedUpdate()
     {
@@ -136,7 +138,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+/*
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Ground"))
@@ -160,8 +162,9 @@ public class PlayerController : MonoBehaviour
             highScore.text = count.ToString();
         }
 
-    }
 
+    }
+*/
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
@@ -183,5 +186,3 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
-
-   
