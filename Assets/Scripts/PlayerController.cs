@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-/*
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Ground"))
@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour
 
 
     }
-*/
+
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
