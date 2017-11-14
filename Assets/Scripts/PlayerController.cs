@@ -152,7 +152,6 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Boost"))
         {
-            other.gameObject.SetActive(false);
             count += 1;
             SetCountText();
         }

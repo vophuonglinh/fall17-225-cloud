@@ -24,9 +24,7 @@ public class Boost : MonoBehaviour
         {
 
             StartCoroutine(Recycle());
-            Debug.Log("TRASH1");
-            // boost.SetActive(false);
-            //gameObject.active = false;
+            //gameObject.SetActive(false);
         }
     }
 
@@ -34,9 +32,16 @@ public class Boost : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("TRASH2");
-            //GetComponentInChildren<ParticleSystem>().Play();
+            Debug.Log("----------------------------------> BOOST HIT PLAYER WHEEE: " + GetComponentInChildren<ParticleSystem>());
+            //Way two
+            // get boost explosion prefab ParticleSystem
+            // position it at boost position
+            // let it animate
+            MeshRenderer m = GetComponent<MeshRenderer>();
+            m.enabled = false;
+            GetComponentInChildren<ParticleSystem>().Play();
             StartCoroutine(Recycle());
+            //gameObject.SetActive(false);
         }
     }
 
@@ -52,11 +57,10 @@ public class Boost : MonoBehaviour
 
     IEnumerator Recycle()
     {
-        //		yield return new WaitForSeconds(fallDelay);
         //GetComponent<Rigidbody>.isKinematic = false;
         yield return new WaitForSeconds(delay);
         BoostManager.Instance.boosts.Push(gameObject);
-        //Debug.Log("TRASH");
+        Debug.Log("TRASH");
     }
 
 }
