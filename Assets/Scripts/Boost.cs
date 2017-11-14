@@ -35,6 +35,7 @@ public class Boost : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("TRASH2");
+            //GetComponentInChildren<ParticleSystem>().Play();
             StartCoroutine(Recycle());
         }
     }
