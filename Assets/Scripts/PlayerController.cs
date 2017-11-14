@@ -172,6 +172,7 @@ public class PlayerController : MonoBehaviour
     // collision that ends the game
     void OnParticleCollision(GameObject other)
     {
+Debug.Log("-----------------> YARRRRR");
         // cloud collision
         if (other.gameObject.CompareTag("Cloud"))
         {
@@ -181,7 +182,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Game Over!");
             Destroy(other.gameObject);
             Destroy(gameObject);
-            // ground collision
         }
     }
 }

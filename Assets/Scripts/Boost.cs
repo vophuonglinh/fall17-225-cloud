@@ -60,7 +60,6 @@ public class Boost : MonoBehaviour
         //GetComponent<Rigidbody>.isKinematic = false;
         yield return new WaitForSeconds(delay);
         BoostManager.Instance.boosts.Push(gameObject);
-        Debug.Log("TRASH");
     }
 
 }
