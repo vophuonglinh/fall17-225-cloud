@@ -113,7 +113,8 @@ public class BoostManager : MonoBehaviour
     public Vector3 randomPositionOverTile(GameObject tile, int scatter)
     {
         float x = tile.transform.GetChild(0).position.x + Random.Range(-scatter, scatter) * scatter;
-        float y = Y_POSITION;
+        //float y = Y_POSITION;
+        float y= tile.transform.GetChild(0).position.y + Random.Range(scatter, 2*scatter) * scatter;
         float z = tile.transform.GetChild(0).position.z + Random.Range(-scatter, scatter) * scatter;
         return new Vector3(x, y, z);
     }

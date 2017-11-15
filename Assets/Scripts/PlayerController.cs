@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-//using CnControls;     // Leqi: commented out for laptop testing
+
+
 
 public class PlayerController : MonoBehaviour
 {
 
     private Rigidbody rb;
     public float speed;
-    bool isStarted = false;     // test if game has started
+    private bool isStarted = false;     // test if game has started
                                 // variables for swipe input
     public float maxTime;
     public float minSwipeDist;
@@ -39,9 +40,10 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Start!");
     }
 
+
     void Update()
     {
-        /* // Leqi: commented out for laptop testing
+
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -73,11 +75,11 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        */
+
     }
 
 
-    // Leqi: uncommented out for laptop testing
+
 
     void FixedUpdate()
     {
@@ -150,7 +152,6 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Boost"))
         {
-            other.gameObject.SetActive(false);
             count += 1;
             SetCountText();
         }
@@ -159,6 +160,7 @@ public class PlayerController : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", count);
             highScore.text = count.ToString();
         }
+
 
     }
 
@@ -170,6 +172,7 @@ public class PlayerController : MonoBehaviour
     // collision that ends the game
     void OnParticleCollision(GameObject other)
     {
+Debug.Log("-----------------> YARRRRR");
         // cloud collision
         if (other.gameObject.CompareTag("Cloud"))
         {
@@ -179,9 +182,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Game Over!");
             Destroy(other.gameObject);
             Destroy(gameObject);
-            // ground collision
         }
     }
 }
-
-   
