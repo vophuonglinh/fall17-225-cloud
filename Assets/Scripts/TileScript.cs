@@ -5,25 +5,44 @@ using UnityEngine;
 public class TileScript : MonoBehaviour {
 
 	private float delay = 6;
+    private GameObject player;
+    private float cloudHeight;
 	void Start () {
-		
-	}
+        player = GameObject.FindGameObjectWithTag("Player");
+        GameObject cloud = GameObject.FindGameObjectWithTag("Cloud");
+        float cloudHeight = cloud.transform.lossyScale.y;
+        string message = "Cloud height is ";
+        message = string.Format("{0} {1}", message, cloudHeight.ToString());
+        Debug.Log(message);
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+        Vector3 playerPosition = gameObject.transform.position;
+        Vector3 tilePosition = gameObject.transform.position;
+        //compare these positions and if player is in the x,z position range of the tile, then recycle
+        Vector3 tileWidth = gameObject.transform.lossyScale;
+
+    }
 		
 	void OnTriggerExit(Collider other)
 	{
+        //TODO: ELENA: rewrite to instead use x and z position to detect recycle
+        Debug.Log("on trigger exit happens");
 		if (other.tag == "Player") {
-			TileController.Instance.SpawnTile ();
+            Debug.Log("on trigger exit happens");
+            TileController.Instance.SpawnTile ();
 			StartCoroutine (Recycle());
 		}
 	}
 
+
+
 	IEnumerator Recycle()
 	{
+        Debug.Log("RECYCLING TILE");
 //		yield return new WaitForSeconds(fallDelay);
 		//GetComponent<Rigidbody>.isKinematic = false;
 		yield return new WaitForSeconds(delay);
