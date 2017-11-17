@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641252, b: 0.574817, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -11658,6 +11658,8 @@ GameObject:
   - component: {fileID: 2054463774}
   - component: {fileID: 2054463778}
   - component: {fileID: 2054463779}
+  - component: {fileID: 2054463781}
+  - component: {fileID: 2054463780}
   m_Layer: 0
   m_Name: PlayerSphere
   m_TagString: Player
@@ -11761,3 +11763,34 @@ MonoBehaviour:
   gamecontroller: {fileID: 1069688320}
   countText: {fileID: 1446110751}
   highScore: {fileID: 688690367}
+--- !u!114 &2054463780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2054463773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e24198b2f26f44a86e107b2902d0a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IgnoreIfOverGui: 0
+  IgnoreIfStartedOverGui: 0
+  RequiredTapCount: 0
+  RequiredTapInterval: 0
+  OnFingerTap:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Lean.Touch.LeanFingerTap+LeanFingerEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &2054463781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2054463773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6931a39f772da3544a6ad43ec1a49f01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
