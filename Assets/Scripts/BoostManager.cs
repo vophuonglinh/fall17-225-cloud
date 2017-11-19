@@ -8,7 +8,7 @@ public class BoostManager : MonoBehaviour
     private GameObject[] curTiles;
     // for recycling boosts that died out
     public Stack<GameObject> boosts = new Stack<GameObject>();
-    private const int POOL_SIZE = 50;
+    private const int POOL_SIZE = 15;
     private const int SPAWN_CHANCE = 4;
     private const int SCALE = 6;
     private const int Y_POSITION = 20;
@@ -41,24 +41,15 @@ public class BoostManager : MonoBehaviour
         {
             // yield return new WaitForSeconds(3);
             curTiles = GameObject.FindGameObjectsWithTag(TAG_FOR_CURRENT);
-            //currentTile = GameObject.FindWithTag("CurrentTile");
             //loop over the array with objects that have the currenttile tag
             int i = 0;
             Debug.Log("NUmber of CurrentTile matches:" + curTiles.Length);
             foreach (GameObject curTile in curTiles)
             {
-                //// spread the boosts out
-                //if (i % 2 == 0) {
-                //    i++;
-                //    continue;
-                //}
                 spawnBoosts(curTile);
                 curTile.gameObject.tag = TAG_FOR_NONCURRENT;
                 i++;
-                //TODO for further boosts, need longer life.
-                //TODO recylce the boosts when it dies out or just get hit.
             }
-            //CreatePool(POOL_SIZE);
             yield return new WaitForSeconds(3);
         }
     }
@@ -76,7 +67,6 @@ public class BoostManager : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             boosts.Push(Instantiate(boostPrefab));
-            //boosts.Peek().SetActive(false);
         }
     }
 
@@ -88,17 +78,12 @@ public class BoostManager : MonoBehaviour
         {
             CreatePool(POOL_SIZE);
         }
-        //generate a bigger span if make multiple boosts
         Vector3 position = randomPositionOverTile(tile, SCALE);
         GameObject temp = boosts.Pop();
         temp.SetActive(true);
-
-        //Boost.instance.boostLife += position.z * 1f;
-        //Boost.Instance.life = Boost.Instance.life + position.z * 0.5f;
-        //test
-        //Debug.Log(Boost.instance.boostLife);
         temp.transform.position = position;
-        //temp.SetActive(true);
+        MeshRenderer m = temp.GetComponent<MeshRenderer>();
+        m.enabled = true;
     }
 
     //getter for boosts stack
