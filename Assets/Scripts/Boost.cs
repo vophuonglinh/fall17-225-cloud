@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Boost : MonoBehaviour
 {
-    public float boostLife = 15;
+    public float boostLife = 20f;
     private const float coef = 0.5f;
-    private const float delay = 6f;
+    private const float delay = 5f;
     // public GameObject boost;
     public static Boost instance;
     // Use this for initialization
@@ -59,7 +59,9 @@ public class Boost : MonoBehaviour
     {
         //GetComponent<Rigidbody>.isKinematic = false;
         yield return new WaitForSeconds(delay);
+        //gameObject.SetActive(false);
         BoostManager.Instance.boosts.Push(gameObject);
+        Debug.Log("Recycling");
     }
 
 }
