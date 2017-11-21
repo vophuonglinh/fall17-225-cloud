@@ -34,18 +34,12 @@ public class TileScript : MonoBehaviour {
 		if (other.tag == "Player") {
             Debug.Log("on trigger exit happens");
             TileController.Instance.SpawnTile ();
-			StartCoroutine (Recycle());
+            Recycle();
 		}
 	}
 
-
-
-	IEnumerator Recycle()
+	void Recycle()
 	{
-        Debug.Log("RECYCLING TILE");
-//		yield return new WaitForSeconds(fallDelay);
-		//GetComponent<Rigidbody>.isKinematic = false;
-		yield return new WaitForSeconds(delay);
 		switch (gameObject.name)
 		{
 		case "LeftTile":
@@ -61,5 +55,5 @@ public class TileScript : MonoBehaviour {
 			//Debug.Log("pushed right tile back to stack");
 			break;
 		}
-	}
+    }
 }

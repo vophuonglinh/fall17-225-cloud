@@ -32,17 +32,15 @@ public class TileController : MonoBehaviour {
 	void Start () {
 		minSegmentLength = 5;
 		tileHistory = new List<char> (minSegmentLength);
-		for (int i = 0; i < minSegmentLength; i++) 
-		{
+		for (int i = 0; i < minSegmentLength; i++) {
             tileHistory.Add('t'); //initialize tile history with 't' for top tile
 		}
-		CreateTiles (minSegmentLength, 't');
-		for (int i = 0; i < minSegmentLength; i++) {
+        for (int i = 0; i < minSegmentLength; i++) {
             SpawnTile ("top");
         }
 	}
 
-	public void CreateTiles(int amount, char type)
+    private void CreateTiles(int amount, char type)
 	{
         if (type == 'l')
         {
@@ -95,13 +93,13 @@ public class TileController : MonoBehaviour {
 
 	public void SpawnTile(string preferredDirection="")
 	{
-        checkEmpty();
+        RefillTilePool();
         string direction = "top";
 		bool foundTurn = false;
 		int childIndex = 1;
         char lastMove = tileHistory[0];
 
-		for (int i = 0; i < minSegmentLength; i++) 
+        for (int i = 0; i < minSegmentLength; i++) 
 		{
 			if (tileHistory [i] != lastMove) 
 			{
@@ -109,7 +107,7 @@ public class TileController : MonoBehaviour {
 			}
 		}
 
-		if (foundTurn) {
+        if (foundTurn) {
             if (lastMove == 't')
             {
                 childIndex = 1;
@@ -126,7 +124,6 @@ public class TileController : MonoBehaviour {
             }
 
 		}
-
         else
         {
 			int randomDirectionIndex = Random.Range (0, tilePrefabs.Length); 
@@ -160,7 +157,7 @@ public class TileController : MonoBehaviour {
         }
 
         RecycleTile(direction, childIndex);
-	}
+    }
 
     public void RecycleTile(string direction, int childIndex)
     {
@@ -196,19 +193,11 @@ public class TileController : MonoBehaviour {
         }
     }
 
-    void checkEmpty() {
-        if (leftTiles.Count == 0)
-        {
-            CreateTiles(10, 'l');
-        }
-        if (rightTiles.Count == 0)
-        {
-            CreateTiles(10, 'r');
-
-        }
-        if (topTiles.Count == 0)
-        {
-            CreateTiles(10, 't');
-        }
+    void RefillTilePool()
+    {
+        int poolSize = 10;
+        CreateTiles(poolSize - leftTiles.Count, 'l');
+        CreateTiles(poolSize - rightTiles.Count, 'r');
+        CreateTiles(poolSize - topTiles.Count, 't');
     }
 }
