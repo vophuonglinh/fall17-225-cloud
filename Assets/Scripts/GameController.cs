@@ -98,7 +98,11 @@ public class GameController : MonoBehaviour
 		gameOver = true;
 	} 
 
-	public void DeleteAll(){ 		foreach (GameObject o in Object.FindObjectsOfType<GameObject>()) { 			Destroy(o); 		} 	}
+	public void DeleteAll(){
+		foreach (GameObject o in Object.FindObjectsOfType<GameObject>()) {
+			Destroy(o);
+		}
+	}
 }
 
 
