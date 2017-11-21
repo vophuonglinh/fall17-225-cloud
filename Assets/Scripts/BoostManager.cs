@@ -10,7 +10,7 @@ public class BoostManager : MonoBehaviour
     public Stack<GameObject> boosts = new Stack<GameObject>();
     private const int POOL_SIZE = 15;
     private const int SPAWN_CHANCE = 4;
-    private const int SCALE = 6;
+    private const int BOOST_SPREADING_SCALE = 6;
     private const int Y_POSITION = 20;
     private const string TAG_FOR_NONCURRENT = "NotCurrent";
     private const string TAG_FOR_CURRENT = "CurrentTile";
@@ -37,6 +37,7 @@ public class BoostManager : MonoBehaviour
 
     IEnumerator generate()
     {
+        //TODO if we can change it to be based on current player position
         while (true)
         {
             // yield return new WaitForSeconds(3);
@@ -50,7 +51,7 @@ public class BoostManager : MonoBehaviour
                 curTile.gameObject.tag = TAG_FOR_NONCURRENT;
                 i++;
             }
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(6);
         }
     }
 
@@ -78,7 +79,7 @@ public class BoostManager : MonoBehaviour
         {
             CreatePool(POOL_SIZE);
         }
-        Vector3 position = randomPositionOverTile(tile, SCALE);
+        Vector3 position = randomPositionOverTile(tile, BOOST_SPREADING_SCALE);
         GameObject temp = boosts.Pop();
         temp.SetActive(true);
         temp.transform.position = position;

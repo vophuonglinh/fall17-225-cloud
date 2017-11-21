@@ -77,6 +77,10 @@ public class PlayerController : MonoBehaviour
         {
             count += 1;
             SetCountText();
+            transform.GetChild(0).position = other.transform.position;
+            GetComponentInChildren<ParticleSystem>().Play();
+            other.gameObject.SetActive(false);
+            
         }
         if (count > PlayerPrefs.GetInt("HighScore", 0))
         {
