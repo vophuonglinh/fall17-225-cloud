@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-/*
+
     void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rb.AddForce(movement * speed);
     }
-*/
+
 
     void OnTriggerEnter(Collider other)
     {
@@ -77,6 +77,10 @@ public class PlayerController : MonoBehaviour
         {
             count += 1;
             SetCountText();
+            transform.GetChild(0).position = other.transform.position;
+            GetComponentInChildren<ParticleSystem>().Play();
+            other.gameObject.SetActive(false);
+            
         }
         if (count > PlayerPrefs.GetInt("HighScore", 0))
         {

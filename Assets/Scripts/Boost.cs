@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Boost : MonoBehaviour
 {
-    public float boostLife = 15;
-    private const float coef = 0.5f;
-    private const float delay = 6f;
+    public float boostLife = 10000;
+    private const float coef = 0.0005f;
+    private const float delay = 30f;
     // public GameObject boost;
     public static Boost instance;
     // Use this for initialization
+
     void Start()
     {
         instance = this;
@@ -22,26 +23,21 @@ public class Boost : MonoBehaviour
         boostLife -= coef * Time.deltaTime;
         if (boostLife <= 0)
         {
-
-            StartCoroutine(Recycle());
+            //Debug.Log("wrong");
+            //StartCoroutine(Recycle());
             //gameObject.SetActive(false);
+            BoostManager.Instance.boosts.Push(gameObject);
         }
     }
+
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             Debug.Log("----------------------------------> BOOST HIT PLAYER WHEEE: " + GetComponentInChildren<ParticleSystem>());
-            //Way two
-            // get boost explosion prefab ParticleSystem
-            // position it at boost position
-            // let it animate
-            MeshRenderer m = GetComponent<MeshRenderer>();
-            m.enabled = false;
-            GetComponentInChildren<ParticleSystem>().Play();
-            StartCoroutine(Recycle());
-            //gameObject.SetActive(false);
+            BoostManager.Instance.boosts.Push(gameObject);
+            //StartCoroutine(Recycle());
         }
     }
 
@@ -59,7 +55,9 @@ public class Boost : MonoBehaviour
     {
         //GetComponent<Rigidbody>.isKinematic = false;
         yield return new WaitForSeconds(delay);
+        //gameObject.SetActive(false);
         BoostManager.Instance.boosts.Push(gameObject);
+        Debug.Log("Recycling");
     }
 
 }
