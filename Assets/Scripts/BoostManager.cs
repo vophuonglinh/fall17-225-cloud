@@ -11,7 +11,6 @@ public class BoostManager : MonoBehaviour
     private const int POOL_SIZE = 15;
     private const int SPAWN_CHANCE = 4;
     private const int BOOST_SPREADING_SCALE = 6;
-    private const int Y_POSITION = 20;
     private const string TAG_FOR_NONCURRENT = "NotCurrent";
     private const string TAG_FOR_CURRENT = "CurrentTile";
     private static BoostManager instance;
@@ -83,8 +82,6 @@ public class BoostManager : MonoBehaviour
         GameObject temp = boosts.Pop();
         temp.SetActive(true);
         temp.transform.position = position;
-        MeshRenderer m = temp.GetComponent<MeshRenderer>();
-        m.enabled = true;
     }
 
     //getter for boosts stack
@@ -99,7 +96,6 @@ public class BoostManager : MonoBehaviour
     public Vector3 randomPositionOverTile(GameObject tile, int scatter)
     {
         float x = tile.transform.GetChild(0).position.x + Random.Range(-scatter, scatter) * scatter;
-        //float y = Y_POSITION;
         float y= tile.transform.GetChild(0).position.y + Random.Range(scatter, 2*scatter) * scatter;
         float z = tile.transform.GetChild(0).position.z + Random.Range(-scatter, scatter) * scatter;
         return new Vector3(x, y, z);
