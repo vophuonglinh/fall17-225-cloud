@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void endGame(){
-        Destroy(gameObject);
+        //Destroy(gameObject);
         gamecontroller.GameOver();
 
     }
