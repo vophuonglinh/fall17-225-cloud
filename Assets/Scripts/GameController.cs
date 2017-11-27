@@ -23,7 +23,8 @@ public class GameController : MonoBehaviour
 		restart = false;
         Canvas = GetComponent<Canvas>();
 
-        GameOverPanel = GetComponent<CanvasGroup>();
+        GameObject GameOverPanelObject = GameObject.FindWithTag("GameOverPanel");
+        GameOverPanel = GameOverPanelObject.GetComponent<CanvasGroup>();
        
       
 

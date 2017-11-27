@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657832, g: 0.49641222, b: 0.57481664, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 97314358}
   m_Layer: 5
   m_Name: RestartText
-  m_TagString: GameController
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10940,7 +10940,7 @@ GameObject:
   - component: {fileID: 1060064942}
   m_Layer: 5
   m_Name: Restart
-  m_TagString: GameController
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14784,7 +14784,7 @@ GameObject:
   - component: {fileID: 1298863704}
   m_Layer: 5
   m_Name: GameOverPanel
-  m_TagString: GameController
+  m_TagString: GameOverPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18422,7 +18422,7 @@ GameObject:
   - component: {fileID: 1651004601}
   m_Layer: 5
   m_Name: gameOverText
-  m_TagString: GameController
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
