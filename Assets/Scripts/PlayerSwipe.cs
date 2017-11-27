@@ -27,50 +27,38 @@ namespace Lean.Touch
       {           // check for horizontal swipes
           if (distance.x < 0)
           {
-              Turn("Left");
+              HorizontalTurn(-90.0f);
           }
           else if (distance.x > 0)
           {
-              Turn("Right");
+              HorizontalTurn(90.0f);
           }
       }
       else if (Mathf.Abs(distance.x) < Mathf.Abs(distance.y))
-      {
-				Debug.Log("Vertical Swipe");
+      {						// check for vertical swipes
           if (distance.y > 0)
           {
-              Turn("Up");
+              VerticalTurn(10);
           }
           else
           {
-              Turn("Down");
+              VerticalTurn(-10);
           }
       }
     }
 
-		void Turn(string dir)
-    {
+		private void HorizontalTurn(float angle)
+		{
 			var rb = GetComponent<Rigidbody>();
-			float angle = 90.0f;
-			Vector3 axis = Vector3.up;
-        if (dir == "Left")
-        {
-						transform.RotateAround(rb.position, Vector3.up, -90.0f);
-						rb.velocity = Quaternion.Euler(0, -90, 0) * rb.velocity;
-        }
-        else if (dir == "Right")
-        {
-						transform.RotateAround(rb.position, Vector3.up, 90.0f);
-						rb.velocity = Quaternion.Euler(0, 90, 0) * rb.velocity;
-        }
-        else if (dir == "Up")
-        {
-            transform.Translate(Vector3.up * 10, Space.World);
-        }
-        else if (dir == "Down")
-        {
-            transform.Translate(Vector3.down * 10, Space.World);
-        }
-    }
+
+			transform.RotateAround(rb.position, Vector3.up, angle);
+			rb.velocity = Quaternion.Euler(0, -90, 0) * rb.velocity;
+		}
+
+		private void VerticalTurn(int step)
+		{
+			transform.Translate(Vector3.up * step, Space.World);
+		}
+
 	}
 }

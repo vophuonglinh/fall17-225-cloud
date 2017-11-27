@@ -6,8 +6,10 @@ namespace Lean.Touch
 	// This script calls the OnFingerTap event when a finger taps the screen
 	public class LeanFingerTap : MonoBehaviour
 	{
+
 		// Event signature
 		[System.Serializable] public class LeanFingerEvent : UnityEvent<LeanFinger> {}
+
 
 		[Tooltip("If the finger is over the GUI, ignore it?")]
 		public bool IgnoreIfOverGui;
@@ -61,14 +63,18 @@ namespace Lean.Touch
 			// Call event
 			OnFingerTap.Invoke(finger);
 			if (finger.LastScreenPosition.x < Screen.width/2)
-				{
-					transform.Translate(Vector3.left * 10, Space.Self);
-				}
+			{
+				HorizontalMove(Vector3.left);
+			}
 			else
 			{
-				  transform.Translate(Vector3.right * 10, Space.Self);
+				HorizontalMove(Vector3.right);
 			}
+		}
 
+		private void HorizontalMove(Vector3 dir)
+		{
+			transform.Translate(dir * 10, Space.Self);
 		}
 	}
 }
