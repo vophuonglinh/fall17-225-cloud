@@ -67,11 +67,8 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             Debug.Log("collided ground!");
-            gamecontroller.GameOver();
-            gamecontroller.DeleteAll();
+            endGame();   
             Debug.Log("Game Over!");
-            Destroy(other.gameObject);
-            Destroy(gameObject);
         }
         if (other.gameObject.CompareTag("Boost"))
         {
@@ -99,16 +96,20 @@ public class PlayerController : MonoBehaviour
     // collision that ends the game
     void OnParticleCollision(GameObject other)
     {
-Debug.Log("-----------------> YARRRRR");
         // cloud collision
         if (other.gameObject.CompareTag("Cloud"))
         {
             Debug.Log("collided cloud!");
-            gamecontroller.GameOver();
-            gamecontroller.DeleteAll();
+            endGame();
             Debug.Log("Game Over!");
-            Destroy(other.gameObject);
-            Destroy(gameObject);
+            //Destroy(other.gameObject);
+            //Destroy(gameObject);
         }
+    }
+
+    void endGame(){
+        Destroy(gameObject);
+        gamecontroller.GameOver();
+
     }
 }
