@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     public float speed;
     private bool isStarted = false;     // test if game has started
-
+    private int inCloudTime = 0;
+    private const int ALLOWED_IN_CLOUD_TIME = 150;
     public GameController gamecontroller;
     private int count;
     public Text countText;
@@ -93,18 +94,18 @@ public class PlayerController : MonoBehaviour
     void OnParticleCollision(GameObject other)
     {
         // cloud collision
+        inCloudTime++;
         if (other.gameObject.CompareTag("Cloud"))
         {
             Debug.Log("collided cloud!");
-            endGame();
-            Debug.Log("Game Over!");
-            //Destroy(other.gameObject);
-            //Destroy(gameObject);
+            if (inCloudTime >= ALLOWED_IN_CLOUD_TIME) {
+                endGame();
+                Debug.Log("Game Over!");
+            }
         }
     }
 
     void endGame(){
-        //Destroy(gameObject);
         gamecontroller.GameOver();
 
     }
