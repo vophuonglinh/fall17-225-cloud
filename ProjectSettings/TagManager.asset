@@ -12,6 +12,7 @@ TagManager:
   - Ground
   - GameOverPanel
   - Restart
+  - Obstacle
   layers:
   - Default
   - TransparentFX

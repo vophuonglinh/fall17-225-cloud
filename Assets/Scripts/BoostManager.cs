@@ -5,11 +5,15 @@ using UnityEngine;
 public class BoostManager : MonoBehaviour
 {
     public GameObject boostPrefab;
+    public GameObject obstaclePrefab;
     private GameObject[] curTiles;
     // for recycling boosts that died out
     public Stack<GameObject> boosts = new Stack<GameObject>();
-    private const int POOL_SIZE = 18;
-    private const int SPAWN_CHANCE = 4;
+    public Stack<GameObject> obstacles = new Stack<GameObject>();
+    private const int POOL_SIZE_BOOSTS = 18;
+    private const int POOL_SIZE_OBSTACLES= 6;
+    //private const int SPAWN_CHANCE = 4;
+    private const int OBSTACLE_SPAWN_CHANCE = 2;
     private const int BOOST_SPREADING_SCALE = 7;
     private const string TAG_FOR_NONCURRENT = "NotCurrent";
     private const string TAG_FOR_CURRENT = "CurrentTile";
@@ -30,13 +34,13 @@ public class BoostManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        CreatePool(POOL_SIZE);
+        CreatePool(POOL_SIZE_BOOSTS,true);
+        CreatePool(POOL_SIZE_OBSTACLES,false);
         StartCoroutine(generate());
     }
 
     IEnumerator generate()
     {
-        //TODO if we can change it to be based on current player position
         while (true)
         {
             // yield return new WaitForSeconds(3);
@@ -45,8 +49,11 @@ public class BoostManager : MonoBehaviour
             int i = 0;
             foreach (GameObject curTile in curTiles)
             {
-                spawnBoosts(curTile);
+                spawnBoostsorObstacles(curTile,true);
                 curTile.gameObject.tag = TAG_FOR_NONCURRENT;
+                if (i % OBSTACLE_SPAWN_CHANCE == 0) {
+                    spawnBoostsorObstacles(curTile, false);
+                }
                 i++;
             }
             yield return new WaitForSeconds(4);
@@ -61,35 +68,38 @@ public class BoostManager : MonoBehaviour
     }
 
     //generate a stack of boosts
-    private void CreatePool(int amount)
+    private void CreatePool(int amount,bool isBoost)
     {
         for (int i = 0; i < amount; i++)
         {
-            boosts.Push(Instantiate(boostPrefab));
+            if (isBoost)
+            {
+                boosts.Push(Instantiate(boostPrefab));
+            }
+            else {
+                obstacles.Push(Instantiate(obstaclePrefab));
+            }
+            
         }
     }
 
 
     //spawn boosts using the position, and pop the boost out of the stack
-    public void spawnBoosts(GameObject tile)
+    public void spawnBoostsorObstacles(GameObject tile, bool isBoost)
     {
-        if (boosts.Count == 0)
+        if (boosts.Count == 0 && isBoost)
         {
-            CreatePool(POOL_SIZE);
+            CreatePool(POOL_SIZE_BOOSTS, isBoost);
+        }
+
+        else if (obstacles.Count == 0 && !isBoost) {
+            CreatePool(POOL_SIZE_OBSTACLES, isBoost);
         }
         Vector3 position = randomPositionOverTile(tile, BOOST_SPREADING_SCALE);
-        GameObject temp = boosts.Pop();
+        GameObject temp = isBoost ? boosts.Pop() : obstacles.Pop();
         temp.transform.position = position;
         temp.SetActive(true);
     }
-
-    //getter for boosts stack
-    public Stack<GameObject> Boosts
-    {
-        get { return boosts; }
-        set { boosts = value; }
-    }
-
 
     //make a random position according to the position of the current tile, and based on the scale needed
     public Vector3 randomPositionOverTile(GameObject tile, int scatter)

@@ -16,8 +16,10 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem sparkleEffect;
     public GameController gamecontroller;
     private int count;
+    private int life = 3;
     public Text countText;
     public Text highScore;
+    public Text lifeText;
     private const int ALLOWED_IN_CLOUD_TIME = 500;
     private const int SPARKLE_POS_OFFSET_X = 50;
     void Start()
@@ -49,6 +51,10 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        if (life <= 0)
+        {
+            endGame();
+        }
     }
 
 
@@ -79,6 +85,15 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
 
         }
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            life -= 1;
+            SetLifeText();
+            transform.GetChild(0).position = other.transform.position;
+            GetComponentInChildren<ParticleSystem>().Play();
+            other.gameObject.SetActive(false);
+        }
+
         if (count > PlayerPrefs.GetInt("HighScore", 0))
         {
             PlayerPrefs.SetInt("HighScore", count);
@@ -89,6 +104,11 @@ public class PlayerController : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
+    }
+
+    void SetLifeText()
+    {
+        lifeText.text = "Life: " + life.ToString();
     }
 
     // collision that ends the game
