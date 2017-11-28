@@ -13,12 +13,12 @@ public class PlayerController : MonoBehaviour
     public float speed;
     private bool isStarted = false;     // test if game has started
     private int inCloudTime = 0;
-    private const int ALLOWED_IN_CLOUD_TIME = 150;
+    public ParticleSystem sparkleEffect;
     public GameController gamecontroller;
     private int count;
     public Text countText;
     public Text highScore;
-
+    private const int ALLOWED_IN_CLOUD_TIME = 150;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -97,6 +97,8 @@ public class PlayerController : MonoBehaviour
         inCloudTime++;
         if (other.gameObject.CompareTag("Cloud"))
         {
+            sparkleEffect.transform.position = gameObject.transform.position;
+            sparkleEffect.Play();
             Debug.Log("collided cloud!");
             if (inCloudTime >= ALLOWED_IN_CLOUD_TIME) {
                 endGame();

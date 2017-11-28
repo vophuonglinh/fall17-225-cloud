@@ -18585,7 +18585,7 @@ ParticleSystem:
   serializedVersion: 5
   lengthInSec: 1
   simulationSpeed: 1
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
@@ -18635,7 +18635,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1900480965
+  randomSeed: -1049682947
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -18787,8 +18787,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 5.5
-      minScalar: 2
+      scalar: 1.2
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -19031,7 +19031,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 200000
+    maxNumParticles: 350
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -19079,7 +19079,7 @@ ParticleSystem:
     serializedVersion: 5
     enabled: 1
     type: 4
-    angle: 49.842945
+    angle: 41.55561
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -21846,7 +21846,7 @@ Transform:
   m_GameObject: {fileID: 1716990572}
   m_LocalRotation: {x: -0.115564235, y: -0.28378314, z: -0.3494908, w: 0.88541985}
   m_LocalPosition: {x: -8.72, y: 62.78, z: 24.68}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
@@ -25360,10 +25360,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  sparkleEffect: {fileID: 1716990574}
   gamecontroller: {fileID: 1069688320}
   countText: {fileID: 1446110751}
   highScore: {fileID: 688690367}
-  sparkleEffect: {fileID: 1716990574}
 --- !u!114 &2054463780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25384,6 +25384,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: Lean.Touch.LeanFingerTap+LeanFingerEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+    m_CallsDirty: 1
 --- !u!114 &2054463781
 MonoBehaviour:
   m_ObjectHideFlags: 0
