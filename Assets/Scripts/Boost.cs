@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Boost : MonoBehaviour
 {
-    public float boostLife = 30;
-    private const float coef = 0.6f;
+    private float boostLife = 30;
+    private const float coef = 3.2f;
     private const float delay = 30f;
     // public GameObject boost;
     public static Boost instance;
@@ -14,7 +14,7 @@ public class Boost : MonoBehaviour
     void Start()
     {
         instance = this;
-        boostLife += gameObject.transform.position.y*0.2f + Mathf.Abs(gameObject.transform.position.x)*0.2f;
+        boostLife = boostLife + Mathf.Abs(gameObject.transform.position.z)*0.06f;
     }
 
     // Update is called once per frame
@@ -22,10 +22,10 @@ public class Boost : MonoBehaviour
     {
         transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
         boostLife -= coef * Time.deltaTime;
+        //boostLife -= 0.01 * Time.deltaTime;
 
-        if (boostLife < 0)
+        if (boostLife < 0f)
         {
-            Debug.Log("wrong");
             gameObject.SetActive(false);
             Recycle();
             BoostManager.Instance.boosts.Push(gameObject);
@@ -42,16 +42,10 @@ public class Boost : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
 
     }
-    public float life
-    {
-        get { return boostLife; }
-        set { boostLife = value; }
-    }
-
     //IEnumerator Recycle()
     //{
     //    //GetComponent<Rigidbody>.isKinematic = false;
@@ -61,6 +55,7 @@ public class Boost : MonoBehaviour
     //}
 
     void Recycle() {
+        boostLife = 30;
         BoostManager.Instance.boosts.Push(gameObject);
         Debug.Log("Recycling");
     }

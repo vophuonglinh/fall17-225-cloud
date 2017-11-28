@@ -78,10 +78,8 @@ public class TileController : MonoBehaviour
 
         temp.SetActive(true);
         temp.transform.position = currentTile.transform.GetChild(0).transform.GetChild(childIndex).position;
-
-
-        currentTile = temp;
         temp.gameObject.tag = tagCur;
+        currentTile = temp;
     }
 
     public void checkHideCloud()

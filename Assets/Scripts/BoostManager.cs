@@ -8,7 +8,7 @@ public class BoostManager : MonoBehaviour
     private GameObject[] curTiles;
     // for recycling boosts that died out
     public Stack<GameObject> boosts = new Stack<GameObject>();
-    private const int POOL_SIZE = 15;
+    private const int POOL_SIZE = 18;
     private const int SPAWN_CHANCE = 4;
     private const int BOOST_SPREADING_SCALE = 7;
     private const string TAG_FOR_NONCURRENT = "NotCurrent";
@@ -49,7 +49,7 @@ public class BoostManager : MonoBehaviour
                 curTile.gameObject.tag = TAG_FOR_NONCURRENT;
                 i++;
             }
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(4);
         }
     }
 
