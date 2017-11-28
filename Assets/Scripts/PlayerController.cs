@@ -12,14 +12,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     public float speed;
     private bool isStarted = false;     // test if game has started
-    private float inCloudTime = 0;
-    private const float ALLOWED_INCLOUD_TIME = 550;                       
+
     public GameController gamecontroller;
     private int count;
     public Text countText;
     public Text highScore;
-    public ParticleSystem sparkleEffect;
-    //public ParticleSystem boostCollideEffect;
 
     void Start()
     {
@@ -30,6 +27,8 @@ public class PlayerController : MonoBehaviour
         gamecontroller = gameControllerObject.GetComponent<GameController>();
 
         highScore.text = PlayerPrefs.GetInt("HightScore", 0).ToString();
+        Debug.Log(PlayerPrefs.GetInt("HightScore", 0));
+        Debug.Log("Start!");
     }
 
 
@@ -49,8 +48,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
-
 
 
     void FixedUpdate()
@@ -76,7 +73,7 @@ public class PlayerController : MonoBehaviour
             count += 1;
             SetCountText();
             transform.GetChild(0).position = other.transform.position;
-            GetComponentsInChildren<ParticleSystem>()[0].Play();
+            GetComponentInChildren<ParticleSystem>().Play();
             other.gameObject.SetActive(false);
 
         }
@@ -85,8 +82,6 @@ public class PlayerController : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", count);
             highScore.text = count.ToString();
         }
-
-
     }
 
     void SetCountText()
@@ -100,27 +95,13 @@ public class PlayerController : MonoBehaviour
         // cloud collision
         if (other.gameObject.CompareTag("Cloud"))
         {
-            inCloudTime++;
-            //sparkleEffect.transform.position = other.transform.position;
-            sparkleEffect.Play();
             Debug.Log("collided cloud!");
-            if (inCloudTime >= ALLOWED_INCLOUD_TIME) {
-                endGame();
-                Debug.Log("Game Over!");
-                //Destroy(other.gameObject);
-                //Destroy(gameObject);
-            }
-           
+            endGame();
+            Debug.Log("Game Over!");
+            //Destroy(other.gameObject);
+            //Destroy(gameObject);
         }
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Cloud")) {
-            inCloudTime = 0;
-            Debug.Log("-----------------Exit Cloud:"+ inCloudTime);
-        }
-    }
-
 
     void endGame(){
         //Destroy(gameObject);
