@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             Debug.Log("collided ground!");
-            endGame();   
+            endGame();
             Debug.Log("Game Over!");
         }
         if (other.gameObject.CompareTag("Boost"))
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
             transform.GetChild(0).position = other.transform.position;
             GetComponentsInChildren<ParticleSystem>()[0].Play();
             other.gameObject.SetActive(false);
-            
+
         }
         if (count > PlayerPrefs.GetInt("HighScore", 0))
         {
@@ -120,6 +120,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("-----------------Exit Cloud:"+ inCloudTime);
         }
     }
+
 
     void endGame(){
         //Destroy(gameObject);

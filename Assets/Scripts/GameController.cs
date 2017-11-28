@@ -11,20 +11,21 @@ public class GameController : MonoBehaviour
     //public GUIText scoreText;
 
 	private bool gameOver;
-	private bool restart;
-
 
     public CanvasGroup GameOverPanel;
+    public Button RestartButton;
 	//private int score;
 
 	void Start ()
 	{
 		gameOver = false;
-		restart = false;
         Canvas = GetComponent<Canvas>();
 
         GameObject GameOverPanelObject = GameObject.FindWithTag("GameOverPanel");
         GameOverPanel = GameOverPanelObject.GetComponent<CanvasGroup>();
+
+        RestartButton = GameObject.FindWithTag("Restart").GetComponent<Button>();
+        RestartButton.onClick.AddListener(RestartGame);
        
       
 
@@ -36,16 +37,7 @@ public class GameController : MonoBehaviour
 
 	void Update ()
 	{
-        
-		/*
-		if (restart)
-		{
-			if (Input.GetKeyDown (KeyCode.R))
-			{
-				Application.LoadLevel (Application.loadedLevel);
-			}
-		}
-*/
+        	
 	}
 
 
@@ -72,10 +64,9 @@ public class GameController : MonoBehaviour
 
 
     public void RestartGame() {
-        restart = true;
+        Application.LoadLevel(Application.loadedLevel);
         
     }
-
 
 }
 
