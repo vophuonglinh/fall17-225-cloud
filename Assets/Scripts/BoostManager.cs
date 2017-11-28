@@ -43,7 +43,6 @@ public class BoostManager : MonoBehaviour
             curTiles = GameObject.FindGameObjectsWithTag(TAG_FOR_CURRENT);
             //loop over the array with objects that have the currenttile tag
             int i = 0;
-            Debug.Log("NUmber of CurrentTile matches:" + curTiles.Length);
             foreach (GameObject curTile in curTiles)
             {
                 spawnBoosts(curTile);
@@ -80,8 +79,8 @@ public class BoostManager : MonoBehaviour
         }
         Vector3 position = randomPositionOverTile(tile, BOOST_SPREADING_SCALE);
         GameObject temp = boosts.Pop();
-        temp.SetActive(true);
         temp.transform.position = position;
+        temp.SetActive(true);
     }
 
     //getter for boosts stack

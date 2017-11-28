@@ -2764,7 +2764,7 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
+    enabled: 1
     collisionShape0: {fileID: 0}
     collisionShape1: {fileID: 0}
     collisionShape2: {fileID: 0}
@@ -2774,7 +2774,7 @@ ParticleSystem:
     inside: 1
     outside: 0
     enter: 0
-    exit: 0
+    exit: 2
     radiusScale: 1
   SubModule:
     serializedVersion: 2
@@ -5845,7 +5845,7 @@ ParticleSystem:
     type: 1
     collisionMode: 0
     colliderForce: 0
-    multiplyColliderForceByParticleSize: 0
+    multiplyColliderForceByParticleSize: 1
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
     plane0: {fileID: 0}
@@ -5990,7 +5990,7 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
+    enabled: 1
     collisionShape0: {fileID: 0}
     collisionShape1: {fileID: 0}
     collisionShape2: {fileID: 0}
@@ -6000,7 +6000,7 @@ ParticleSystem:
     inside: 1
     outside: 0
     enter: 0
-    exit: 0
+    exit: 2
     radiusScale: 1
   SubModule:
     serializedVersion: 2

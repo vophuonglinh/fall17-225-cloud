@@ -37,7 +37,6 @@ public class Boost : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("----------------------------------> BOOST HIT PLAYER WHEEE: " + GetComponentInChildren<ParticleSystem>());
             BoostManager.Instance.boosts.Push(gameObject);
             //StartCoroutine(Recycle());
         }

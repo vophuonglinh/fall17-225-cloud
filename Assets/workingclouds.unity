@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657832, g: 0.49641222, b: 0.57481664, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -11407,6 +11407,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1955079546750544, guid: 391b3ab39baa07d4f923662b4eb4e249, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 391b3ab39baa07d4f923662b4eb4e249, type: 2}
   m_IsPrefabParent: 0
@@ -15206,7 +15210,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -763002523
+  randomSeed: -556664054
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -18508,12 +18512,12 @@ GameObject:
   - component: {fileID: 1716990574}
   - component: {fileID: 1716990573}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Sparkle Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!199 &1716990573
 ParticleSystemRenderer:
   serializedVersion: 4
@@ -18575,7 +18579,7 @@ ParticleSystem:
   serializedVersion: 5
   lengthInSec: 5
   simulationSpeed: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -18625,7 +18629,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 31015621
+  randomSeed: -1443442839
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -19021,7 +19025,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 2000
+    maxNumParticles: 20000
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -21835,8 +21839,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1716990572}
   m_LocalRotation: {x: -0.115564235, y: -0.28378314, z: -0.3494908, w: 0.88541985}
-  m_LocalPosition: {x: -29.41, y: 30.22, z: 20.95}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -8.72, y: 62.78, z: 24.68}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
@@ -25353,6 +25357,7 @@ MonoBehaviour:
   gamecontroller: {fileID: 1069688320}
   countText: {fileID: 1446110751}
   highScore: {fileID: 688690367}
+  sparkleEffect: {fileID: 1716990574}
 --- !u!114 &2054463780
 MonoBehaviour:
   m_ObjectHideFlags: 0
