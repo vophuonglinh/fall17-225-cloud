@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Boost : MonoBehaviour
 {
-    private float boostLife = 30;
+    public float boostLife = 30;
     private const float coef = 0.6f;
     private const float delay = 30f;
     // public GameObject boost;

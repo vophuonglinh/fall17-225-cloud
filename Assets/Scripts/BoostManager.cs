@@ -49,7 +49,7 @@ public class BoostManager : MonoBehaviour
                 curTile.gameObject.tag = TAG_FOR_NONCURRENT;
                 i++;
             }
-            yield return new WaitForSeconds(6);
+            yield return new WaitForSeconds(2);
         }
     }
 
