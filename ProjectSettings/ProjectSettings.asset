@@ -602,9 +602,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 5bf71202-6194-4fbb-9b0e-d2b6d2c6f0bb
-  projectName: FlightSimulator (1)
-  organizationId: vophuonglinh
+  cloudProjectId: 65d0330c-cca0-4607-ba5b-c7e81ef4a89a
+  projectName: ElenaTrial1
+  organizationId: esmith12_unity
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

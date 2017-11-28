@@ -2,46 +2,37 @@
 using UnityEngine;
 
 //recycle tiles 20:20
-public class TileScript : MonoBehaviour {
+public class TileScript : MonoBehaviour
+{
 
-	private float delay = 6;
+    private float delay = 6;
     private float cloudHeight;
-	void Start () {
-        
-    }
-	
-	// Update is called once per frame
-	void Update () {
+    void Start()
+    {
 
     }
-		
-	void OnTriggerExit(Collider other)
-	{
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    void OnTriggerExit(Collider other)
+    {
         //Debug.Log("on trigger exit happens");
-		if (other.tag == "Player") {
+        if (other.tag == "Player")
+        {
             //Debug.Log("on trigger exit happens");
-            TileController.Instance.SpawnTile ();
+            TileController.Instance.SpawnTile();
             Recycle();
-		}
-	}
+        }
+    }
 
-	void Recycle()
-	{
-		TileController.Instance.checkHideCloud();
-        switch (gameObject.name)
-		{
-		case "LeftTile":
-			TileController.Instance.LeftTiles.Push(gameObject);  // add it back to the tile stack to recycle it
-			//Debug.Log("pushed left tile back to stack");
-			break;
-		case "TopTile":
-			TileController.Instance.TopTiles.Push(gameObject);
-			//Debug.Log("pushed top tile back to stack");
-			break;
-		case "RightTile":
-			TileController.Instance.RightTiles.Push(gameObject);
-			//Debug.Log("pushed right tile back to stack");
-			break;
-		}
-	}
+    void Recycle()
+    {
+        TileController.Instance.checkHideCloud();
+        TileController.Instance.TopTiles.Push(gameObject);
+        //Debug.Log("pushed top tile back to stack");
+    }
 }
