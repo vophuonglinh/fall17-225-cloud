@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour
     private int count;
     public Text countText;
     public Text highScore;
-    private const int ALLOWED_IN_CLOUD_TIME = 150;
+    private const int ALLOWED_IN_CLOUD_TIME = 500;
+    private const int SPARKLE_POS_OFFSET_X = 50;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -97,7 +98,10 @@ public class PlayerController : MonoBehaviour
         inCloudTime++;
         if (other.gameObject.CompareTag("Cloud"))
         {
-            sparkleEffect.transform.position = gameObject.transform.position;
+            //TODO the + or - 50 should be based on the direction of swipe
+            Vector3 sparklePosition = new Vector3(gameObject.transform.position.x - SPARKLE_POS_OFFSET_X, 
+                gameObject.transform.position.y,gameObject.transform.position.z);
+            sparkleEffect.transform.position = sparklePosition;
             sparkleEffect.Play();
             Debug.Log("collided cloud!");
             if (inCloudTime >= ALLOWED_IN_CLOUD_TIME) {
