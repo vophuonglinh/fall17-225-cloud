@@ -27,38 +27,29 @@ namespace Lean.Touch
       {           // check for horizontal swipes
           if (distance.x < 0)
           {
-              HorizontalTurn(-90.0f);
+              Move(Vector3.left);
           }
           else if (distance.x > 0)
           {
-              HorizontalTurn(90.0f);
+              Move(Vector3.right);
           }
       }
       else if (Mathf.Abs(distance.x) < Mathf.Abs(distance.y))
       {						// check for vertical swipes
           if (distance.y > 0)
           {
-              VerticalTurn(10);
+              Move(Vector3.up);
           }
           else
           {
-              VerticalTurn(-10);
+              Move(Vector3.down);
           }
       }
     }
 
-		private void HorizontalTurn(float angle)
+		private void Move(Vector3 axis)
 		{
-			var rb = GetComponent<Rigidbody>();
-
-			transform.RotateAround(rb.position, Vector3.up, angle);
-			rb.velocity = Quaternion.Euler(0, -90, 0) * rb.velocity;
+			transform.Translate(axis * 10, Space.World);
 		}
-
-		private void VerticalTurn(int step)
-		{
-			transform.Translate(Vector3.up * step, Space.World);
-		}
-
 	}
 }
