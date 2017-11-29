@@ -6,7 +6,6 @@ namespace Lean.Touch
 	[RequireComponent(typeof(Rigidbody))]
 	public class PlayerSwipe : MonoBehaviour
 	{
-
 		protected virtual void OnEnable()
 		{
 			// Hook into the events we need
@@ -49,7 +48,9 @@ namespace Lean.Touch
 
 		private void Move(Vector3 axis)
 		{
-			transform.Translate(axis * 10, Space.World);
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.AddForce(axis * 30);
+            //transform.Translate(axis * 10, Space.World);
 		}
 	}
 }
