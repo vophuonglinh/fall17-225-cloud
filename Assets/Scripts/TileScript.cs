@@ -31,7 +31,6 @@ public class TileScript : MonoBehaviour
 
     void Recycle()
     {
-        TileController.Instance.checkHideCloud();
         TileController.Instance.TopTiles.Push(gameObject);
         //Debug.Log("pushed top tile back to stack");
     }

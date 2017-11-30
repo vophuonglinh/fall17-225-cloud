@@ -82,34 +82,7 @@ public class TileController : MonoBehaviour
         currentTile = temp;
     }
 
-    public void checkHideCloud()
-    {
-        GameObject[] clouds = GameObject.FindGameObjectsWithTag("Cloud");
-        Vector3 tilePos = currentTile.transform.position;
-        foreach (GameObject cloud in clouds)
-        {
-            Vector3 cloudPos = cloud.transform.position;
-
-            var xDiff = Mathf.Abs(cloudPos.x - tilePos.x);
-            var zDiff = Mathf.Abs(cloudPos.z - tilePos.z);
-            //Debug.Log(string.Format("{0}, {1}", "xDiff ", xDiff.ToString()));
-            //Debug.Log(string.Format("{0}, {1}", "zDiff ", zDiff.ToString()));
-
-            //Debug.Log(string.Format("{0}, {1}", "cloud Pos ", cloudPos.ToString()));
-            //Debug.Log(string.Format("{0}, {1}", "tile Pos ", tilePos.ToString()));
-
-
-            if (xDiff < 70 && zDiff < 70)
-            {
-                //Debug.Log(string.Format("{0}, {1}", "xDiff hit ", xDiff.ToString()));
-                //Debug.Log(string.Format("{0}, {1}", "zDiff hit ", zDiff.ToString()));
-
-                cloud.transform.Rotate(new Vector3(45, 0, 45));
-                cloud.SetActive(false);
-
-            }
-        }
-    }
+  
 
     void RefillTilePool()
     {
