@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -22003,7 +22003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TapThreshold: 0.5
   SwipeThreshold: 50
-  ReferenceDpi: 200
+  ReferenceDpi: 1000000
   GuiLayers:
     serializedVersion: 2
     m_Bits: 4294967291
@@ -25382,7 +25382,6 @@ GameObject:
   - component: {fileID: 2054463774}
   - component: {fileID: 2054463778}
   - component: {fileID: 2054463779}
-  - component: {fileID: 2054463781}
   m_Layer: 0
   m_Name: PlayerSphere
   m_TagString: Player
@@ -25483,22 +25482,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
+  translateFactor: 30
   sparkleEffect: {fileID: 1716990574}
   gamecontroller: {fileID: 1069688320}
   countText: {fileID: 1446110751}
   highScore: {fileID: 688690367}
   lifeText: {fileID: 501822293}
---- !u!114 &2054463781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2054463773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6931a39f772da3544a6ad43ec1a49f01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  IgnoreGuiFingers: 0
+  RequiredFingerCount: 1
+  RequiredSelectable: {fileID: 0}
+  Camera: {fileID: 0}
 --- !u!1 &2106773131
 GameObject:
   m_ObjectHideFlags: 0
