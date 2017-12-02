@@ -15,6 +15,7 @@ public class BoostManager : MonoBehaviour
     //private const int SPAWN_CHANCE = 4;
     private const int OBSTACLE_SPAWN_CHANCE = 2;
     private const int BOOST_SPREADING_SCALE = 7;
+    private const int BOOST_GENERATE_DELAY = 1;
     private const string TAG_FOR_NONCURRENT = "NotCurrent";
     private const string TAG_FOR_CURRENT = "CurrentTile";
     private static BoostManager instance;
@@ -43,7 +44,6 @@ public class BoostManager : MonoBehaviour
     {
         while (true)
         {
-            // yield return new WaitForSeconds(3);
             curTiles = GameObject.FindGameObjectsWithTag(TAG_FOR_CURRENT);
             //loop over the array with objects that have the currenttile tag
             int i = 0;
@@ -56,7 +56,7 @@ public class BoostManager : MonoBehaviour
                 }
                 i++;
             }
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(BOOST_GENERATE_DELAY);
         }
     }
 
