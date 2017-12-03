@@ -142,7 +142,7 @@ namespace Lean.Touch
             if (other.gameObject.CompareTag("Ground"))
             {
                 Debug.Log("collided ground!");
-                endGame();
+                gamecontroller.GameOver();
                 Debug.Log("Game Over!");
             }
             if (other.gameObject.CompareTag("Boost"))
@@ -158,6 +158,9 @@ namespace Lean.Touch
             {
                 life -= 1;
                 SetLifeText();
+                if (life <= 0) {
+                    gamecontroller.GameOver();
+                }
                 transform.GetChild(0).position = other.transform.position;
                 GetComponentInChildren<ParticleSystem>().Play();
                 other.gameObject.SetActive(false);
