@@ -12,12 +12,13 @@ namespace Lean.Touch
 
         private Rigidbody rb;
         public float speed;
-        public float translateFactor = 20;
-        private bool isStarted = false;     // test if game has started
+        private bool isStarted = false;
+
         private int collisionCnt = 1000;
         private int inCloudTime = 0;
         public ParticleSystem sparkleEffect;
         public GameController gamecontroller;
+
         private int count;
         private int lastCount;
         private int life = 3;
@@ -127,6 +128,7 @@ namespace Lean.Touch
             // Perform the translation
             Translate(scaledDelta);
         }
+
         private void LateUpdate()
         {
             Debug.Log("------------------------------"+collisionCnt);
@@ -207,6 +209,7 @@ namespace Lean.Touch
         {
             Debug.Log("-----------works");
         }
+
         void OnParticleTrigger(ParticleSystem other)
         {
             //if (other.gameObject.CompareTag("Cloud") && other == ParticleSystemTriggerEventType.Exit) {
@@ -235,13 +238,13 @@ namespace Lean.Touch
             if (LeanTouch.GetCamera(ref Camera) == true)
             {
                 // Screen position of the transform
-                var screenPosition = Camera.WorldToScreenPoint(transform.position);
+                var screenPos = Camera.WorldToScreenPoint(transform.position);
 
                 // Add the deltaPosition
-                screenPosition += (Vector3)scaledDelta;
+                screenPos += (Vector3)scaledDelta;
 
                 // Convert back to world space
-                transform.position = Camera.ScreenToWorldPoint(screenPosition);
+                transform.position = Camera.ScreenToWorldPoint(screenPos);
             }
         }
     }
