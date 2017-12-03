@@ -29,13 +29,6 @@ public class Boost : MonoBehaviour
         transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
         boostLife -= COEF_DECREASE_TIME * Time.deltaTime;
 
-        /*
-        if (boostLife < 0f)
-        {
-            processUselessBoosts();
-        }
-
-    */
 
         //check if player's Z position is greater than boost's position, push onto stack
         float playerPosZ = player.transform.position.z;
@@ -74,8 +67,7 @@ public class Boost : MonoBehaviour
         else
         {
             BoostManager.Instance.obstacles.Push(gameObject);
-        }
-        
+        }        
     }
 
     void FixedUpdate()
