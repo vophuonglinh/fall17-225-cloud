@@ -25,7 +25,9 @@ namespace Lean.Touch
         public Text countText;
         public Text highScore;
         public Text lifeText;
-        private const int ALLOWED_IN_CLOUD_TIME = 500;
+        public Text Timer;
+
+        private const int ALLOWED_IN_CLOUD_TIME = 20;
         private const int SPARKLE_POS_OFFSET_X = 10;
         List<ParticleSystem.Particle> exit = new List<ParticleSystem.Particle>();
 
@@ -59,7 +61,8 @@ namespace Lean.Touch
 
             highScore.text = PlayerPrefs.GetInt("HightScore", 0).ToString();
             Debug.Log(PlayerPrefs.GetInt("HightScore", 0));
-            Debug.Log("Start!");
+
+            Timer.enabled = false;
 
             if (RequiredSelectable == null)
             {
@@ -183,27 +186,57 @@ namespace Lean.Touch
             lifeText.text = "Life: " + life.ToString();
         }
 
+        void SetTimer()
+        {
+            Timer.enabled = true;
+            Timer.text = (ALLOWED_IN_CLOUD_TIME - inCloudTime).ToString() + " s left!";
+        }
+
         // collision that ends the game
         void OnParticleCollision(GameObject other)
         {
-            // cloud collision
-            inCloudTime++;
-            collisionCnt++;
             if (other.gameObject.CompareTag("Cloud"))
             {
+                inCloudTime++;
+                collisionCnt++;
+
+                ParticleSystem ps;
+                ps = other.GetComponent<ParticleSystem>();
+
+                List<ParticleSystem.Particle> enter = new List<ParticleSystem.Particle>();
+                List<ParticleSystem.Particle> exit = new List<ParticleSystem.Particle>();
+
+
                 //TODO the + or - 50 should be based on the direction of swipe
                 Vector3 sparklePosition = gameObject.transform.position.x<0?new Vector3(gameObject.transform.position.x - SPARKLE_POS_OFFSET_X,
                     gameObject.transform.position.y, gameObject.transform.position.z+35): new Vector3(gameObject.transform.position.x + SPARKLE_POS_OFFSET_X,
                     gameObject.transform.position.y, gameObject.transform.position.z+35);
+                
                 TextMesh warning = GetComponentInChildren<TextMesh>();
                 warning.color = Color.red;
+
+                SetTimer();
                 sparkleEffect.transform.position = sparklePosition;
                 sparkleEffect.Play();
                 if (inCloudTime >= ALLOWED_IN_CLOUD_TIME)
                 {
-                    endGame();
+                    gamecontroller.GameOver();
                     Debug.Log("Game Over!");
                 }
+
+                /*
+
+                int numEnter = ps.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, enter);
+                int numExit = ps.GetTriggerParticles(ParticleSystemTriggerEventType.Exit, exit);
+
+                if (numEnter == numExit)
+                {
+                    Debug.Log("exit particle system");
+                    inCloudTime = 10;
+                    Timer.enabled = false;
+                }
+                */
+
             }
         }
 
@@ -213,11 +246,28 @@ namespace Lean.Touch
             Debug.Log("-----------works");
         }
 
-        void OnParticleTrigger(ParticleSystem other)
+        /*
+        void OnParticleTrigger()
         {
-            //if (other.gameObject.CompareTag("Cloud") && other == ParticleSystemTriggerEventType.Exit) {
+            ParticleSystem ps;
 
-            //}
+            List<ParticleSystem.Particle> enter = new List<ParticleSystem.Particle>();
+            List<ParticleSystem.Particle> exit = new List<ParticleSystem.Particle>();
+
+            ps =  other.GetComponent<ParticleSystem>();
+
+            int numEnter = ps.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, enter);
+            int numExit = ps.GetTriggerParticles(ParticleSystemTriggerEventType.Exit, exit);
+
+            if (numEnter == numExit){
+                inCloudTime = 10;
+                Timer.enabled = false;
+            }
+
+            
+            if (other.gameObject.CompareTag("Cloud") && other == ParticleSystemTriggerEventType.Exit) {
+
+            }
             int numExit = other.GetTriggerParticles(ParticleSystemTriggerEventType.Exit, exit);
             if (numExit != 0)
             {
@@ -226,7 +276,10 @@ namespace Lean.Touch
             else {
                 Debug.Log("---------------WORKS");
             }
+
         }
+
+    */
 
 
         void endGame()
