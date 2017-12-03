@@ -20,10 +20,8 @@ public class TileScript : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        //Debug.Log("on trigger exit happens");
         if (other.tag == "Player")
         {
-            //Debug.Log("on trigger exit happens");
             TileController.Instance.SpawnTile();
             Recycle();
         }
@@ -32,6 +30,5 @@ public class TileScript : MonoBehaviour
     void Recycle()
     {
         TileController.Instance.TopTiles.Push(gameObject);
-        //Debug.Log("pushed top tile back to stack");
     }
 }

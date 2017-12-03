@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class TileController : MonoBehaviour
 {
-
     public GameObject currentTile;
     public GameObject[] tilePrefabs;
 
@@ -11,6 +10,7 @@ public class TileController : MonoBehaviour
     private const string tagCur = "CurrentTile";
     private const string tagNotCur = "NotCurrent";
     private Stack<GameObject> topTiles = new Stack<GameObject>();
+    private const int poolSize = 15;
 
     //Instance so that TileScript can access inside TileScript
     public static TileController Instance
@@ -27,17 +27,18 @@ public class TileController : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < poolSize; i++)
         {
             SpawnTile();
         }
+        Debug.Log("tileStack size after start " + topTiles.Count.ToString());
     }
 
     private void CreateTiles(int amount)
     {
-
         for (int i = 0; i < amount; i++)
         {
+            Debug.Log("creating a new tile");
             topTiles.Push(Instantiate(tilePrefabs[2]));
             topTiles.Peek().name = "TopTile";
             topTiles.Peek().SetActive(false);
@@ -61,32 +62,26 @@ public class TileController : MonoBehaviour
     public void SpawnTile()
     {
         RefillTilePool();
-
-
-        int childIndex = 1;
-        string direction = "top";
-
-        RecycleTile(direction, childIndex);
+        RecycleTile();
     }
 
-    public void RecycleTile(string direction, int childIndex)
+    public void RecycleTile()
     {
         GameObject temp;
 
         temp = topTiles.Pop();
 
-
         temp.SetActive(true);
-        temp.transform.position = currentTile.transform.GetChild(0).transform.GetChild(childIndex).position;
+        temp.transform.position = currentTile.transform.GetChild(0).transform.GetChild(1).position;
         temp.gameObject.tag = tagCur;
         currentTile = temp;
     }
 
-  
-
     void RefillTilePool()
     {
-        int poolSize = 10;
-        CreateTiles(poolSize - topTiles.Count);
+        if (topTiles.Count < poolSize)
+        {
+            CreateTiles(poolSize - topTiles.Count);
+        }
     }
 }

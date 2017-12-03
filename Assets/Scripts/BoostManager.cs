@@ -15,6 +15,7 @@ public class BoostManager : MonoBehaviour
     //private const int SPAWN_CHANCE = 4;
     private const int OBSTACLE_SPAWN_CHANCE = 2;
     private const int BOOST_SPREADING_SCALE = 7;
+    private const int BOOST_GENERATE_DELAY = 1;
     private const string TAG_FOR_NONCURRENT = "NotCurrent";
     private const string TAG_FOR_CURRENT = "CurrentTile";
     private static BoostManager instance;
@@ -34,8 +35,8 @@ public class BoostManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        CreatePool(POOL_SIZE_BOOSTS,true);
-        CreatePool(POOL_SIZE_OBSTACLES,false);
+        CreatePool(POOL_SIZE_BOOSTS, true);
+        CreatePool(POOL_SIZE_OBSTACLES, false);
         StartCoroutine(generate());
     }
 
@@ -43,20 +44,19 @@ public class BoostManager : MonoBehaviour
     {
         while (true)
         {
-            // yield return new WaitForSeconds(3);
             curTiles = GameObject.FindGameObjectsWithTag(TAG_FOR_CURRENT);
             //loop over the array with objects that have the currenttile tag
             int i = 0;
             foreach (GameObject curTile in curTiles)
             {
-                spawnBoostsorObstacles(curTile,true);
+                spawnBoostsOrObstacles(curTile,true);
                 curTile.gameObject.tag = TAG_FOR_NONCURRENT;
                 if (i % OBSTACLE_SPAWN_CHANCE == 0) {
-                    spawnBoostsorObstacles(curTile, false);
+                    spawnBoostsOrObstacles(curTile, false);
                 }
                 i++;
             }
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(BOOST_GENERATE_DELAY);
         }
     }
 
@@ -65,10 +65,11 @@ public class BoostManager : MonoBehaviour
     void Update()
     {
 
+
     }
 
     //generate a stack of boosts
-    private void CreatePool(int amount,bool isBoost)
+    private void CreatePool(int amount, bool isBoost)
     {
         for (int i = 0; i < amount; i++)
         {
@@ -85,7 +86,7 @@ public class BoostManager : MonoBehaviour
 
 
     //spawn boosts using the position, and pop the boost out of the stack
-    public void spawnBoostsorObstacles(GameObject tile, bool isBoost)
+    public void spawnBoostsOrObstacles(GameObject tile, bool isBoost)
     {
         if (boosts.Count == 0 && isBoost)
         {
@@ -99,6 +100,7 @@ public class BoostManager : MonoBehaviour
         GameObject temp = isBoost ? boosts.Pop() : obstacles.Pop();
         temp.transform.position = position;
         temp.SetActive(true);
+
     }
 
     //make a random position according to the position of the current tile, and based on the scale needed
