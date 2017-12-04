@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4632428269608380}
   - component: {fileID: 198167703180882560}
   - component: {fileID: 199482776881529848}
+  - component: {fileID: 65131702871062776}
   m_Layer: 0
   m_Name: CloudGroupLeft
   m_TagString: Cloud
@@ -85,6 +86,7 @@ GameObject:
   - component: {fileID: 4634350786979948}
   - component: {fileID: 198245005490539578}
   - component: {fileID: 199515189080759034}
+  - component: {fileID: 65743383863348666}
   m_Layer: 0
   m_Name: CloudGroupRight
   m_TagString: Cloud
@@ -135,6 +137,7 @@ GameObject:
   - component: {fileID: 4740109461182850}
   - component: {fileID: 198264650767255942}
   - component: {fileID: 199983107583242354}
+  - component: {fileID: 65644321379880020}
   m_Layer: 0
   m_Name: CloudGroupTop
   m_TagString: Cloud
@@ -292,6 +295,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1832744938339198}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65131702871062776
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1169607978239516}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 200, y: 100, z: 240}
+  m_Center: {x: 0, y: 0, z: 20}
 --- !u!65 &65359117976093768
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -304,6 +319,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65644321379880020
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1938390135850846}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 200, y: 15, z: 237.19539}
+  m_Center: {x: 0.19718933, y: 0, z: 23.083153}
+--- !u!65 &65743383863348666
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1787487896632520}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 199.20358, y: 100, z: 244.84229}
+  m_Center: {x: 0.019439697, y: 0.15957642, z: 25.508305}
 --- !u!65 &65886178668994168
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -386,7 +425,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 980041372
+  randomSeed: 368470095
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3612,7 +3651,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -984619217
+  randomSeed: 2044441901
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6838,7 +6877,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1263554295
+  randomSeed: 1688075432
   InitialModule:
     serializedVersion: 3
     enabled: 1

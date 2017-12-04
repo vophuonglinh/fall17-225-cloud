@@ -27,7 +27,9 @@ namespace Lean.Touch
         public Text lifeText;
         public Text Timer;
 
-        private const int ALLOWED_IN_CLOUD_TIME = 20;
+        private int cloudcollisioncount = 0;
+
+        private const int ALLOWED_IN_CLOUD_TIME = 10;
         private const int SPARKLE_POS_OFFSET_X = 10;
         List<ParticleSystem.Particle> exit = new List<ParticleSystem.Particle>();
 
@@ -53,6 +55,8 @@ namespace Lean.Touch
         void Start()
         {
             rb = GetComponent<Rigidbody>();
+             
+
             count = 0;
             lastCount = count;
             SetCountText();
@@ -87,6 +91,8 @@ namespace Lean.Touch
                 warning.color = Color.green;
             }
 
+            checkOutOfCloud();
+          
             if (!isStarted)
             {
                 if (Input.anyKey || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -174,6 +180,11 @@ namespace Lean.Touch
                 PlayerPrefs.SetInt("HighScore", count);
                 highScore.text = count.ToString();
             }
+
+            if (other.gameObject.CompareTag("Cloud")){
+                cloudcollisioncount++;
+                Debug.Log(cloudcollisioncount.ToString());
+            }
         }
 
         void SetCountText()
@@ -192,6 +203,12 @@ namespace Lean.Touch
             Timer.text = (ALLOWED_IN_CLOUD_TIME - inCloudTime).ToString() + " s left!";
         }
 
+        void HideTimer(){
+
+            inCloudTime = 0;
+            Timer.enabled = false;
+        }
+
         // collision that ends the game
         void OnParticleCollision(GameObject other)
         {
@@ -199,13 +216,6 @@ namespace Lean.Touch
             {
                 inCloudTime++;
                 collisionCnt++;
-
-                ParticleSystem ps;
-                ps = other.GetComponent<ParticleSystem>();
-
-                List<ParticleSystem.Particle> enter = new List<ParticleSystem.Particle>();
-                List<ParticleSystem.Particle> exit = new List<ParticleSystem.Particle>();
-
 
                 //TODO the + or - 50 should be based on the direction of swipe
                 Vector3 sparklePosition = gameObject.transform.position.x<0?new Vector3(gameObject.transform.position.x - SPARKLE_POS_OFFSET_X,
@@ -226,10 +236,7 @@ namespace Lean.Touch
 
                 /*
 
-                int numEnter = ps.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, enter);
-                int numExit = ps.GetTriggerParticles(ParticleSystemTriggerEventType.Exit, exit);
-
-                if (numEnter == numExit)
+               
                 {
                     Debug.Log("exit particle system");
                     inCloudTime = 10;
@@ -240,11 +247,6 @@ namespace Lean.Touch
             }
         }
 
-        //Methods I found might check if it is colliding with something.
-        void OnCollisionStay()
-        {
-            Debug.Log("-----------works");
-        }
 
         /*
         void OnParticleTrigger()
@@ -280,13 +282,26 @@ namespace Lean.Touch
         }
 
     */
-
-
-        void endGame()
+        void OnTriggerExit(Collider other)
         {
-            gamecontroller.GameOver();
+            if (other.gameObject.CompareTag("Cloud")){
+                cloudcollisioncount--;
+                Debug.Log(cloudcollisioncount.ToString());
+            }
 
         }
+
+        void checkOutOfCloud()
+        {
+            if ((cloudcollisioncount == 0))
+            {
+                Debug.Log("leave cloud");
+                if (Timer.enabled ==true){
+                    HideTimer();
+                }
+            }
+        }
+
 
         protected virtual void Translate(Vector2 scaledDelta)
         {

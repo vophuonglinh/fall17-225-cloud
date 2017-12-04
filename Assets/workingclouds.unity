@@ -3938,6 +3938,7 @@ GameObject:
   - component: {fileID: 532672205}
   - component: {fileID: 532672207}
   - component: {fileID: 532672206}
+  - component: {fileID: 532672208}
   m_Layer: 0
   m_Name: CloudGroupRight
   m_TagString: Cloud
@@ -4072,7 +4073,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 503120055
+  randomSeed: 1425171232
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7239,6 +7240,18 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+--- !u!65 &532672208
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 532672204}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 220, y: 100, z: 236.8895}
+  m_Center: {x: 0.03992462, y: 0.252182, z: 22.47454}
 --- !u!1 &579713909
 GameObject:
   m_ObjectHideFlags: 0
@@ -7762,6 +7775,7 @@ GameObject:
   - component: {fileID: 999828825}
   - component: {fileID: 999828827}
   - component: {fileID: 999828826}
+  - component: {fileID: 999828828}
   m_Layer: 0
   m_Name: CloudGroupTop
   m_TagString: Cloud
@@ -7896,7 +7910,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1286808768
+  randomSeed: 1815371830
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11063,6 +11077,18 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+--- !u!65 &999828828
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 999828824}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 220, y: 15, z: 240.96474}
+  m_Center: {x: -0.08734131, y: 0, z: 22.28872}
 --- !u!1001 &1006717180
 Prefab:
   m_ObjectHideFlags: 0
@@ -22226,6 +22252,7 @@ GameObject:
   - component: {fileID: 2050684972}
   - component: {fileID: 2050684974}
   - component: {fileID: 2050684973}
+  - component: {fileID: 2050684975}
   m_Layer: 0
   m_Name: CloudGroupLeft
   m_TagString: Cloud
@@ -22360,7 +22387,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 48998281
+  randomSeed: -1326197356
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -25527,6 +25554,18 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+--- !u!65 &2050684975
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2050684971}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 200, y: 100, z: 236.88948}
+  m_Center: {x: 0.006713867, y: 0.252182, z: 22.47454}
 --- !u!1 &2054463773
 GameObject:
   m_ObjectHideFlags: 0
