@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Boost : MonoBehaviour
 {
-    private float boostLife;
-    private const int BOOST_INITIAL_LIFE = 50;
-    private const float COEF_DECREASE_TIME= 3.2f;
-    private const float COEF_DISTANCE = 3.2f;
     //private const float delay = 30f;
     // public GameObject boost;
     public static Boost instance;
@@ -16,10 +12,7 @@ public class Boost : MonoBehaviour
 
     void Start()
     {
-        boostLife = BOOST_INITIAL_LIFE;
         instance = this;
-        boostLife = boostLife + Mathf.Abs(gameObject.transform.position.z)*COEF_DISTANCE;
-
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -27,17 +20,12 @@ public class Boost : MonoBehaviour
     void Update()
     {
         transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
-        boostLife -= COEF_DECREASE_TIME * Time.deltaTime;
-
-
         //check if player's Z position is greater than boost's position, push onto stack
         float playerPosZ = player.transform.position.z;
         float boostPosZ = transform.position.z;
         if ((playerPosZ - boostPosZ) > 50.0)
         {
-            gameObject.SetActive(false);
-            Recycle();
-            BoostManager.Instance.boosts.Push(gameObject);
+            processUselessObjects();
         }
         
     }
@@ -47,26 +35,27 @@ public class Boost : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            processUselessBoosts();
+            processUselessObjects();
         }
     }
 
-    void processUselessBoosts() {
+    void processUselessObjects() {
         gameObject.SetActive(false);
         Recycle();
-        BoostManager.Instance.boosts.Push(gameObject);
     }
 
     void Recycle()
     {
-        boostLife = BOOST_INITIAL_LIFE;
-        if (gameObject.tag == "boost")
+        if (gameObject.tag == "Boost")
         {
             BoostManager.Instance.boosts.Push(gameObject);
         }
-        else
+        else if (gameObject.tag == "Obstacle")
         {
             BoostManager.Instance.obstacles.Push(gameObject);
+        }
+        else {
+            BoostManager.Instance.lightnings.Push(gameObject);
         }        
     }
 

@@ -15,6 +15,7 @@ namespace Lean.Touch
         private bool isStarted = false;
         private int inCloudTime = 0;
         public ParticleSystem sparkleEffect;
+        public ParticleSystem blastEffect;
         public GameController gamecontroller;
         private int count;
         private int lastCount;
@@ -25,7 +26,7 @@ namespace Lean.Touch
         public Text Timer;
 
         private int cloudcollisioncount = 0;
-
+        
         private const int ALLOWED_IN_CLOUD_TIME = 10;
         private const int SPARKLE_POS_OFFSET_X = 10;
         List<ParticleSystem.Particle> exit = new List<ParticleSystem.Particle>();
@@ -138,7 +139,7 @@ namespace Lean.Touch
                 count += 1;
                 SetCountText();
                 transform.GetChild(0).position = other.transform.position;
-                GetComponentInChildren<ParticleSystem>().Play();
+                blastEffect.Play();
                 other.gameObject.SetActive(false);
 
             }
@@ -151,7 +152,7 @@ namespace Lean.Touch
                     gamecontroller.GameOver();
                 }
                 transform.GetChild(0).position = other.transform.position;
-                GetComponentInChildren<ParticleSystem>().Play();
+                blastEffect.Play();
                 other.gameObject.SetActive(false);
             }
 
@@ -199,8 +200,8 @@ namespace Lean.Touch
                 inCloudTime++;
                 //TODO the + or - 50 should be based on the direction of swipe
                 Vector3 sparklePosition = gameObject.transform.position.x < 0 ? new Vector3(gameObject.transform.position.x - SPARKLE_POS_OFFSET_X,
-                    gameObject.transform.position.y, gameObject.transform.position.z + 35) : new Vector3(gameObject.transform.position.x + SPARKLE_POS_OFFSET_X,
-                    gameObject.transform.position.y, gameObject.transform.position.z + 35);
+                    gameObject.transform.position.y, gameObject.transform.position.z + 40) : new Vector3(gameObject.transform.position.x + SPARKLE_POS_OFFSET_X,
+                    gameObject.transform.position.y, gameObject.transform.position.z + 40);
                 SetTimer();
                 sparkleEffect.transform.position = sparklePosition;
                 sparkleEffect.Play();
@@ -208,6 +209,14 @@ namespace Lean.Touch
                 {
                     gamecontroller.GameOver();
                     Debug.Log("Game Over!");
+                }
+            }
+            if (other.gameObject.CompareTag("Lightning")) {
+                life -= 1;
+                SetLifeText();
+                if (life <= 0)
+                {
+                    gamecontroller.GameOver();
                 }
             }
         }

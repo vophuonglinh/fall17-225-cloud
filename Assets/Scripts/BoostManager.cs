@@ -6,16 +6,23 @@ public class BoostManager : MonoBehaviour
 {
     public GameObject boostPrefab;
     public GameObject obstaclePrefab;
+    public GameObject lightningPrefab;
     private GameObject[] curTiles;
     // for recycling boosts that died out
     public Stack<GameObject> boosts = new Stack<GameObject>();
     public Stack<GameObject> obstacles = new Stack<GameObject>();
+    public Stack<GameObject> lightnings = new Stack<GameObject>();
     private const int POOL_SIZE_BOOSTS = 18;
     private const int POOL_SIZE_OBSTACLES= 6;
+    private const int POOL_SIZE_LIGHTNINGS = 10;
+    private const int BOOST_NUM = 0;
+    private const int OBSTACLE_NUM = 1;
+    private const int LIGHTNING_NUM = 2;
     //private const int SPAWN_CHANCE = 4;
     private const int OBSTACLE_SPAWN_CHANCE = 2;
     private const int BOOST_SPREADING_SCALE = 7;
     private const int BOOST_GENERATE_DELAY = 1;
+    private const int LIGHTNING_SPAWN_CHANCE = 8;
     private const string TAG_FOR_NONCURRENT = "NotCurrent";
     private const string TAG_FOR_CURRENT = "CurrentTile";
     private static BoostManager instance;
@@ -35,8 +42,9 @@ public class BoostManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        CreatePool(POOL_SIZE_BOOSTS, true);
-        CreatePool(POOL_SIZE_OBSTACLES, false);
+        CreatePool(POOL_SIZE_BOOSTS, BOOST_NUM);
+        CreatePool(POOL_SIZE_OBSTACLES, OBSTACLE_NUM);
+        CreatePool(POOL_SIZE_OBSTACLES, LIGHTNING_NUM);
         StartCoroutine(generate());
     }
 
@@ -49,10 +57,16 @@ public class BoostManager : MonoBehaviour
             int i = 0;
             foreach (GameObject curTile in curTiles)
             {
-                spawnBoostsOrObstacles(curTile,true);
+                spawnBoostsOrObstacles(curTile,BOOST_NUM);
                 curTile.gameObject.tag = TAG_FOR_NONCURRENT;
                 if (i % OBSTACLE_SPAWN_CHANCE == 0) {
-                    spawnBoostsOrObstacles(curTile, false);
+                    spawnBoostsOrObstacles(curTile, OBSTACLE_NUM);
+                }
+//if (i % LIGHTNING_SPAWN_CHANCE == 0) Turn down lightning for testing
+                if (i == -1)
+                {
+                    spawnBoostsOrObstacles(curTile, LIGHTNING_NUM);
+                    i = 8;
                 }
                 i++;
             }
@@ -69,16 +83,20 @@ public class BoostManager : MonoBehaviour
     }
 
     //generate a stack of boosts
-    private void CreatePool(int amount, bool isBoost)
+    private void CreatePool(int amount, int objectNum)
     {
         for (int i = 0; i < amount; i++)
         {
-            if (isBoost)
+            if (objectNum == BOOST_NUM)
             {
                 boosts.Push(Instantiate(boostPrefab));
             }
-            else {
+            else if (objectNum == OBSTACLE_NUM)
+            {
                 obstacles.Push(Instantiate(obstaclePrefab));
+            }
+            else if (objectNum == LIGHTNING_NUM) {
+                lightnings.Push(Instantiate(lightningPrefab));
             }
             
         }
@@ -86,28 +104,48 @@ public class BoostManager : MonoBehaviour
 
 
     //spawn boosts using the position, and pop the boost out of the stack
-    public void spawnBoostsOrObstacles(GameObject tile, bool isBoost)
+    public void spawnBoostsOrObstacles(GameObject tile, int objectNum)
     {
-        if (boosts.Count == 0 && isBoost)
+        if (boosts.Count == 0 && objectNum ==BOOST_NUM)
         {
-            CreatePool(POOL_SIZE_BOOSTS, isBoost);
+            CreatePool(POOL_SIZE_BOOSTS, BOOST_NUM);
         }
 
-        else if (obstacles.Count == 0 && !isBoost) {
-            CreatePool(POOL_SIZE_OBSTACLES, isBoost);
+        else if (obstacles.Count == 0 && objectNum == OBSTACLE_NUM) {
+            CreatePool(POOL_SIZE_OBSTACLES, OBSTACLE_NUM);
         }
-        Vector3 position = randomPositionOverTile(tile, BOOST_SPREADING_SCALE);
-        GameObject temp = isBoost ? boosts.Pop() : obstacles.Pop();
+        else if (obstacles.Count == 0 && objectNum == LIGHTNING_NUM)
+        {
+            CreatePool(POOL_SIZE_LIGHTNINGS, LIGHTNING_NUM);
+        }
+        Vector3 position = randomPositionOverTile(tile, BOOST_SPREADING_SCALE, objectNum);
+        GameObject temp = getRightObject(objectNum);
         temp.transform.position = position;
         temp.SetActive(true);
 
     }
 
+    private GameObject getRightObject(int objectNum) {
+        if (objectNum == BOOST_NUM)
+        {
+            return boosts.Pop();
+        }
+
+        else if (objectNum == OBSTACLE_NUM)
+        {
+            return obstacles.Pop();
+        }
+        else
+        {
+            return lightnings.Pop();
+        }
+    }
+
     //make a random position according to the position of the current tile, and based on the scale needed
-    public Vector3 randomPositionOverTile(GameObject tile, int scatter)
+    public Vector3 randomPositionOverTile(GameObject tile, int scatter, int objectNum)
     {
         float x = tile.transform.GetChild(0).position.x + Random.Range(-scatter, scatter) * scatter;
-        float y= tile.transform.GetChild(0).position.y + Random.Range(scatter, 4*scatter) * scatter;
+        float y= objectNum== LIGHTNING_NUM ? 40:tile.transform.GetChild(0).position.y + Random.Range(scatter, 4*scatter) * scatter;
         float z = tile.transform.GetChild(0).position.z + Random.Range(-scatter, scatter) * scatter;
         return new Vector3(x, y, z);
     }
