@@ -19,15 +19,7 @@ public class Boost : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
-        //check if player's Z position is greater than boost's position, push onto stack
-        float playerPosZ = player.transform.position.z;
-        float boostPosZ = transform.position.z;
-        if ((playerPosZ - boostPosZ) > 50.0)
-        {
-            processUselessObjects();
-        }
-        
+        transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);        
     }
 
 
@@ -61,6 +53,18 @@ public class Boost : MonoBehaviour
 
     void FixedUpdate()
     {
+
+    }
+
+    private void LateUpdate()
+    {
+        //check if player's Z position is greater than boost's position, push onto stack
+        float playerPosZ = player.transform.position.z;
+        float boostPosZ = transform.position.z;
+        if ((playerPosZ - boostPosZ) > 50.0)
+        {
+            processUselessObjects();
+        }
 
     }
 
