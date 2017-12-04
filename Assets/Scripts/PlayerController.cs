@@ -13,12 +13,9 @@ namespace Lean.Touch
         private Rigidbody rb;
         public float speed;
         private bool isStarted = false;
-
-        private int collisionCnt = 1000;
         private int inCloudTime = 0;
         public ParticleSystem sparkleEffect;
         public GameController gamecontroller;
-
         private int count;
         private int lastCount;
         private int life = 3;
@@ -55,29 +52,25 @@ namespace Lean.Touch
         void Start()
         {
             rb = GetComponent<Rigidbody>();
-             
-
             count = 0;
             lastCount = count;
             SetCountText();
             GameObject gameControllerObject = GameObject.FindWithTag("GameController");
             gamecontroller = gameControllerObject.GetComponent<GameController>();
-
             highScore.text = PlayerPrefs.GetInt("HightScore", 0).ToString();
             Debug.Log(PlayerPrefs.GetInt("HightScore", 0));
-
             Timer.enabled = false;
-
             if (RequiredSelectable == null)
             {
                 RequiredSelectable = GetComponent<LeanSelectable>();
             }
+            TextMesh warning = GetComponentInChildren<TextMesh>();
+            warning.color = Color.clear;
         }
 
 
         void Update()
         {
-            collisionCnt--;
             if (lastCount != count)
             {
                 //boost the player speed!
@@ -86,13 +79,7 @@ namespace Lean.Touch
                 Debug.Log(rb.velocity.magnitude);
                 lastCount = count;
             }
-            if (collisionCnt >= 1000 && collisionCnt <= 2000) {
-                TextMesh warning = GetComponentInChildren<TextMesh>();
-                warning.color = Color.green;
-            }
-
-            checkOutOfCloud();
-          
+            resetTimeOutofCloud(checkOutOfCloud());
             if (!isStarted)
             {
                 if (Input.anyKey || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -138,14 +125,6 @@ namespace Lean.Touch
             Translate(scaledDelta);
         }
 
-        private void LateUpdate()
-        {
-            Debug.Log("------------------------------"+collisionCnt);
-            collisionCnt = 2000;
-            Debug.Log("============================reset");
-        }
-
-
         void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Ground"))
@@ -167,7 +146,8 @@ namespace Lean.Touch
             {
                 life -= 1;
                 SetLifeText();
-                if (life <= 0) {
+                if (life <= 0)
+                {
                     gamecontroller.GameOver();
                 }
                 transform.GetChild(0).position = other.transform.position;
@@ -181,7 +161,8 @@ namespace Lean.Touch
                 highScore.text = count.ToString();
             }
 
-            if (other.gameObject.CompareTag("Cloud")){
+            if (other.gameObject.CompareTag("Cloud"))
+            {
                 cloudcollisioncount++;
                 Debug.Log(cloudcollisioncount.ToString());
             }
@@ -203,7 +184,8 @@ namespace Lean.Touch
             Timer.text = (ALLOWED_IN_CLOUD_TIME - inCloudTime).ToString() + " s left!";
         }
 
-        void HideTimer(){
+        void HideTimer()
+        {
 
             inCloudTime = 0;
             Timer.enabled = false;
@@ -215,16 +197,10 @@ namespace Lean.Touch
             if (other.gameObject.CompareTag("Cloud"))
             {
                 inCloudTime++;
-                collisionCnt++;
-
                 //TODO the + or - 50 should be based on the direction of swipe
-                Vector3 sparklePosition = gameObject.transform.position.x<0?new Vector3(gameObject.transform.position.x - SPARKLE_POS_OFFSET_X,
-                    gameObject.transform.position.y, gameObject.transform.position.z+35): new Vector3(gameObject.transform.position.x + SPARKLE_POS_OFFSET_X,
-                    gameObject.transform.position.y, gameObject.transform.position.z+35);
-                
-                TextMesh warning = GetComponentInChildren<TextMesh>();
-                warning.color = Color.red;
-
+                Vector3 sparklePosition = gameObject.transform.position.x < 0 ? new Vector3(gameObject.transform.position.x - SPARKLE_POS_OFFSET_X,
+                    gameObject.transform.position.y, gameObject.transform.position.z + 35) : new Vector3(gameObject.transform.position.x + SPARKLE_POS_OFFSET_X,
+                    gameObject.transform.position.y, gameObject.transform.position.z + 35);
                 SetTimer();
                 sparkleEffect.transform.position = sparklePosition;
                 sparkleEffect.Play();
@@ -233,70 +209,31 @@ namespace Lean.Touch
                     gamecontroller.GameOver();
                     Debug.Log("Game Over!");
                 }
-
-                /*
-
-               
-                {
-                    Debug.Log("exit particle system");
-                    inCloudTime = 10;
-                    Timer.enabled = false;
-                }
-                */
-
             }
         }
 
-
-        /*
-        void OnParticleTrigger()
-        {
-            ParticleSystem ps;
-
-            List<ParticleSystem.Particle> enter = new List<ParticleSystem.Particle>();
-            List<ParticleSystem.Particle> exit = new List<ParticleSystem.Particle>();
-
-            ps =  other.GetComponent<ParticleSystem>();
-
-            int numEnter = ps.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, enter);
-            int numExit = ps.GetTriggerParticles(ParticleSystemTriggerEventType.Exit, exit);
-
-            if (numEnter == numExit){
-                inCloudTime = 10;
-                Timer.enabled = false;
-            }
-
-            
-            if (other.gameObject.CompareTag("Cloud") && other == ParticleSystemTriggerEventType.Exit) {
-
-            }
-            int numExit = other.GetTriggerParticles(ParticleSystemTriggerEventType.Exit, exit);
-            if (numExit != 0)
-            {
-                Debug.Log("---------------WORKS");
-            }
-            else {
-                Debug.Log("---------------WORKS");
-            }
-
-        }
-
-    */
         void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.CompareTag("Cloud")){
+            if (other.gameObject.CompareTag("Cloud"))
+            {
                 cloudcollisioncount--;
                 Debug.Log(cloudcollisioncount.ToString());
             }
 
         }
 
-        void checkOutOfCloud()
+        bool checkOutOfCloud()
         {
             if ((cloudcollisioncount == 0))
+            { return true; }
+            else { return false; }
+        }
+        void resetTimeOutofCloud(bool outCloud)
+        {
+            if (outCloud)
             {
-                Debug.Log("leave cloud");
-                if (Timer.enabled ==true){
+                if (Timer.enabled == true)
+                {
                     HideTimer();
                 }
             }
