@@ -138,7 +138,8 @@ namespace Lean.Touch
             {
                 count += 1;
                 SetCountText();
-                transform.GetChild(0).position = other.transform.position;
+                
+                blastEffect.transform.position  = other.transform.position;
                 blastEffect.Play();
                 other.gameObject.SetActive(false);
 
@@ -151,7 +152,7 @@ namespace Lean.Touch
                 {
                     gamecontroller.GameOver();
                 }
-                transform.GetChild(0).position = other.transform.position;
+                blastEffect.transform.position = other.transform.position;
                 blastEffect.Play();
                 other.gameObject.SetActive(false);
             }

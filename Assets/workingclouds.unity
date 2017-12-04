@@ -15350,7 +15350,7 @@ GameObject:
   - component: {fileID: 1625759226}
   - component: {fileID: 1625759225}
   m_Layer: 0
-  m_Name: Particle System (1)
+  m_Name: Blast Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15364,7 +15364,7 @@ Transform:
   m_GameObject: {fileID: 1625759223}
   m_LocalRotation: {x: 0.46193978, y: 0.19134173, z: 0.19134173, w: 0.84462327}
   m_LocalPosition: {x: 3.9260154, y: 44.51, z: 11.586017}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 443733494}
   - {fileID: 2118481032}
@@ -15483,7 +15483,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -914952123
+  randomSeed: -234773713
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -25640,6 +25640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   sparkleEffect: {fileID: 1716990574}
+  blastEffect: {fileID: 1625759226}
   gamecontroller: {fileID: 1069688320}
   countText: {fileID: 1446110751}
   highScore: {fileID: 688690367}
