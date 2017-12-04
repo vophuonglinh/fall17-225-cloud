@@ -29,7 +29,6 @@ namespace Lean.Touch
         
         private const int ALLOWED_IN_CLOUD_TIME = 10;
         private const int SPARKLE_POS_OFFSET_X = 10;
-        List<ParticleSystem.Particle> exit = new List<ParticleSystem.Particle>();
 
         [Tooltip("Ignore fingers with StartedOverGui?")]
         public bool IgnoreGuiFingers = true;
@@ -201,8 +200,8 @@ namespace Lean.Touch
                 inCloudTime++;
                 //TODO the + or - 50 should be based on the direction of swipe
                 Vector3 sparklePosition = gameObject.transform.position.x < 0 ? new Vector3(gameObject.transform.position.x - SPARKLE_POS_OFFSET_X,
-                    gameObject.transform.position.y, gameObject.transform.position.z + 40) : new Vector3(gameObject.transform.position.x + SPARKLE_POS_OFFSET_X,
-                    gameObject.transform.position.y, gameObject.transform.position.z + 40);
+                    gameObject.transform.position.y, gameObject.transform.position.z + 30) : new Vector3(gameObject.transform.position.x + SPARKLE_POS_OFFSET_X,
+                    gameObject.transform.position.y, gameObject.transform.position.z + 30);
                 SetTimer();
                 sparkleEffect.transform.position = sparklePosition;
                 sparkleEffect.Play();

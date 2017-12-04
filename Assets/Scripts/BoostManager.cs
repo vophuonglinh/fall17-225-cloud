@@ -44,7 +44,7 @@ public class BoostManager : MonoBehaviour
     {
         CreatePool(POOL_SIZE_BOOSTS, BOOST_NUM);
         CreatePool(POOL_SIZE_OBSTACLES, OBSTACLE_NUM);
-        CreatePool(POOL_SIZE_OBSTACLES, LIGHTNING_NUM);
+        CreatePool(POOL_SIZE_LIGHTNINGS, LIGHTNING_NUM);
         StartCoroutine(generate());
     }
 
@@ -66,7 +66,6 @@ public class BoostManager : MonoBehaviour
                 if (i == -1)
                 {
                     spawnBoostsOrObstacles(curTile, LIGHTNING_NUM);
-                    i = 8;
                 }
                 i++;
             }
@@ -145,7 +144,7 @@ public class BoostManager : MonoBehaviour
     public Vector3 randomPositionOverTile(GameObject tile, int scatter, int objectNum)
     {
         float x = tile.transform.GetChild(0).position.x + Random.Range(-scatter, scatter) * scatter;
-        float y= objectNum== LIGHTNING_NUM ? 40:tile.transform.GetChild(0).position.y + Random.Range(scatter, 4*scatter) * scatter;
+        float y= objectNum == LIGHTNING_NUM ? 40:tile.transform.GetChild(0).position.y + Random.Range(scatter, 4*scatter) * scatter;
         float z = tile.transform.GetChild(0).position.z + Random.Range(-scatter, scatter) * scatter;
         return new Vector3(x, y, z);
     }
