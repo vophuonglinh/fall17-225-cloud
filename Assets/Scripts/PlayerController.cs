@@ -24,7 +24,7 @@ namespace Lean.Touch
         public Text highScore;
         public Text lifeText;
         public Text Timer;
-
+        ParticleSystem blast;
         private int cloudcollisioncount = 0;
         
         private const int ALLOWED_IN_CLOUD_TIME = 10;
@@ -58,6 +58,7 @@ namespace Lean.Touch
             GameObject gameControllerObject = GameObject.FindWithTag("GameController");
             gamecontroller = gameControllerObject.GetComponent<GameController>();
             highScore.text = PlayerPrefs.GetInt("HightScore", 0).ToString();
+            ParticleSystem blast = GetComponentInChildren<ParticleSystem>();
             Timer.enabled = false;
             if (RequiredSelectable == null)
             {
@@ -131,11 +132,8 @@ namespace Lean.Touch
             {
                 count += 1;
                 SetCountText();
-                ParticleSystem blast = GetComponentInChildren<ParticleSystem>();
                 blast.transform.position = other.transform.position;
                 blast.Play();
-                //blastEffect.transform.position = other.transform.position;
-                //blastEffect.Play();
                 other.gameObject.SetActive(false);
 
             }
@@ -147,11 +145,8 @@ namespace Lean.Touch
                 {
                     gamecontroller.GameOver();
                 }
-                ParticleSystem blast = GetComponentInChildren<ParticleSystem>();
                 blast.transform.position = other.transform.position;
                 blast.Play();
-                //blastEffect.transform.position = other.transform.position;
-                //blastEffect.Play();
                 other.gameObject.SetActive(false);
             }
 
@@ -208,14 +203,14 @@ namespace Lean.Touch
                     gamecontroller.GameOver();
                 }
             }
-            if (other.gameObject.CompareTag("Lightning")) {
-                life -= 1;
-                SetLifeText();
-                if (life <= 0)
-                {
-                    gamecontroller.GameOver();
-                }
-            }
+            //if (other.gameObject.CompareTag("Lightning")) {
+            //    life -= 1;
+            //    SetLifeText();
+            //    if (life <= 0)
+            //    {
+            //        gamecontroller.GameOver();
+            //    }
+            //}
         }
 
         void OnTriggerExit(Collider other)
