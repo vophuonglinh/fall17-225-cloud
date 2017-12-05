@@ -26,7 +26,7 @@ namespace Lean.Touch
         public Text Timer;
         ParticleSystem blast;
         private int cloudcollisioncount = 0;
-        
+
         private const int ALLOWED_IN_CLOUD_TIME = 10;
         private const int SPARKLE_POS_OFFSET_X = 10;
 
@@ -257,7 +257,8 @@ namespace Lean.Touch
                 screenPos += (Vector3)scaledDelta;
 
                 // Convert back to world space
-                transform.position = Camera.ScreenToWorldPoint(screenPos);
+                Vector3 worldPos = Camera.ScreenToWorldPoint(screenPos);
+                transform.position = new Vector3(Mathf.Clamp(worldPos.x, -120f, 100f), Mathf.Clamp(worldPos.y, 0, 190f), worldPos.z);
             }
         }
     }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657832, g: 0.49641222, b: 0.57481664, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -227,7 +227,6 @@ MonoBehaviour:
   Canvas: {fileID: 0}
   GameOverPanel: {fileID: 0}
   RestartButton: {fileID: 0}
-  savedTimeScale: 0
   Player: {fileID: 0}
   rb: {fileID: 0}
 --- !u!1 &194823431
@@ -11202,7 +11201,6 @@ MonoBehaviour:
   Canvas: {fileID: 0}
   GameOverPanel: {fileID: 0}
   RestartButton: {fileID: 0}
-  savedTimeScale: 0
   Player: {fileID: 0}
   rb: {fileID: 0}
 --- !u!1 &1069688318
@@ -11248,7 +11246,6 @@ MonoBehaviour:
   Canvas: {fileID: 1146354211}
   GameOverPanel: {fileID: 1298863705}
   RestartButton: {fileID: 1060064942}
-  savedTimeScale: 0
   Player: {fileID: 0}
   rb: {fileID: 2054463778}
 --- !u!1 &1122039104
@@ -11503,7 +11500,6 @@ MonoBehaviour:
   Canvas: {fileID: 0}
   GameOverPanel: {fileID: 0}
   RestartButton: {fileID: 0}
-  savedTimeScale: 0
   Player: {fileID: 0}
   rb: {fileID: 0}
 --- !u!1 &1146871093
@@ -15041,7 +15037,6 @@ MonoBehaviour:
   Canvas: {fileID: 0}
   GameOverPanel: {fileID: 0}
   RestartButton: {fileID: 0}
-  savedTimeScale: 0
   Player: {fileID: 0}
   rb: {fileID: 0}
 --- !u!222 &1298863704
@@ -18794,7 +18789,6 @@ MonoBehaviour:
   Canvas: {fileID: 0}
   GameOverPanel: {fileID: 0}
   RestartButton: {fileID: 0}
-  savedTimeScale: 0
   Player: {fileID: 0}
   rb: {fileID: 0}
 --- !u!1 &1716990572
@@ -25690,7 +25684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2106773132
 Transform:
   m_ObjectHideFlags: 0
