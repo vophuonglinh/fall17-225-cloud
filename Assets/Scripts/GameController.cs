@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
 
     public CanvasGroup GameOverPanel;
     public Button RestartButton;
+    public float savedTimeScale;
 	//private int score;
 
 	void Start ()
@@ -60,14 +61,30 @@ public class GameController : MonoBehaviour
 		gameOver = true;
         GameOverPanel.alpha = 1;
         GameOverPanel.interactable = true;
+
+        FreezeControl(true);
+        FreezePlayer(true);
 	} 
 
 
     public void RestartGame() {
+
         Application.LoadLevel(Application.loadedLevel);
-        
+        FreezeControl(false);
+        FreezePlayer(false);
     }
 
+    private void FreezeControl(bool isFrozen) {
+        // TODO: Leqi
+        // 
+    }
+
+    private void FreezePlayer(bool isFrozen)
+    {
+        // TODO: Leqi
+        // set Force of Player to 0,0,0
+        // or maybe rigidbody.isKinematic = false
+    }
 }
 
 
