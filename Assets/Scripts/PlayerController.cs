@@ -58,7 +58,6 @@ namespace Lean.Touch
             GameObject gameControllerObject = GameObject.FindWithTag("GameController");
             gamecontroller = gameControllerObject.GetComponent<GameController>();
             highScore.text = PlayerPrefs.GetInt("HightScore", 0).ToString();
-            Debug.Log(PlayerPrefs.GetInt("HightScore", 0));
             Timer.enabled = false;
             if (RequiredSelectable == null)
             {
@@ -76,7 +75,6 @@ namespace Lean.Touch
                 //boost the player speed!
                 float boost = 100f;
                 rb.AddForce(rb.velocity.normalized * boost * Time.deltaTime, ForceMode.Impulse);
-                Debug.Log(rb.velocity.magnitude);
                 lastCount = count;
             }
             resetTimeOutofCloud(checkOutOfCloud());
@@ -129,9 +127,7 @@ namespace Lean.Touch
         {
             if (other.gameObject.CompareTag("Ground"))
             {
-                Debug.Log("collided ground!");
                 gamecontroller.GameOver();
-                Debug.Log("Game Over!");
             }
             if (other.gameObject.CompareTag("Boost"))
             {
@@ -165,7 +161,6 @@ namespace Lean.Touch
             if (other.gameObject.CompareTag("Cloud"))
             {
                 cloudcollisioncount++;
-                Debug.Log(cloudcollisioncount.ToString());
             }
         }
 
@@ -208,7 +203,6 @@ namespace Lean.Touch
                 if (inCloudTime >= ALLOWED_IN_CLOUD_TIME)
                 {
                     gamecontroller.GameOver();
-                    Debug.Log("Game Over!");
                 }
             }
             if (other.gameObject.CompareTag("Lightning")) {
@@ -226,7 +220,6 @@ namespace Lean.Touch
             if (other.gameObject.CompareTag("Cloud"))
             {
                 cloudcollisioncount--;
-                Debug.Log(cloudcollisioncount.ToString());
             }
 
         }

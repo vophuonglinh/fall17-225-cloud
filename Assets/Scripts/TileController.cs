@@ -31,14 +31,12 @@ public class TileController : MonoBehaviour
         {
             SpawnTile();
         }
-        Debug.Log("tileStack size after start " + topTiles.Count.ToString());
     }
 
     private void CreateTiles(int amount)
     {
         for (int i = 0; i < amount; i++)
         {
-            Debug.Log("creating a new tile");
             topTiles.Push(Instantiate(tilePrefabs[2]));
             topTiles.Peek().name = "TopTile";
             topTiles.Peek().SetActive(false);
