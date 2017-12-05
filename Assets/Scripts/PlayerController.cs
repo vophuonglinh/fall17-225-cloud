@@ -58,7 +58,7 @@ namespace Lean.Touch
             GameObject gameControllerObject = GameObject.FindWithTag("GameController");
             gamecontroller = gameControllerObject.GetComponent<GameController>();
             highScore.text = PlayerPrefs.GetInt("HightScore", 0).ToString();
-            blast = GetComponentInChildren<ParticleSystem>();
+            //blast = GetComponentInChildren<ParticleSystem>();
             Timer.enabled = false;
             if (RequiredSelectable == null)
             {
@@ -132,6 +132,7 @@ namespace Lean.Touch
             {
                 count += 1;
                 SetCountText();
+                blast = GetComponentInChildren<ParticleSystem>();
                 blast.transform.position = other.transform.position;
                 blast.Play();
                 other.gameObject.SetActive(false);
@@ -145,6 +146,7 @@ namespace Lean.Touch
                 {
                     gamecontroller.GameOver();
                 }
+                blast = GetComponentInChildren<ParticleSystem>();
                 blast.transform.position = other.transform.position;
                 blast.Play();
                 other.gameObject.SetActive(false);
