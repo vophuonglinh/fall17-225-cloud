@@ -10,7 +10,7 @@ namespace Lean.Touch
     public class PlayerController : MonoBehaviour
     {
 
-        private Rigidbody rb;
+        public Rigidbody rb;
         public float speed;
         private bool isStarted = false;
         private int inCloudTime = 0;
@@ -77,6 +77,7 @@ namespace Lean.Touch
                 lastCount = count;
             }
             resetTimeOutofCloud(checkOutOfCloud());
+
             if (!isStarted)
             {
                 if (Input.anyKey || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)

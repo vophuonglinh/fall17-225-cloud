@@ -10,16 +10,15 @@ public class GameController : MonoBehaviour
 
     //public GUIText scoreText;
 
-	private bool gameOver;
-
     public CanvasGroup GameOverPanel;
     public Button RestartButton;
-    public float savedTimeScale;
+    public GameObject Player;
+    public Rigidbody rb;
+
 	//private int score;
 
 	void Start ()
 	{
-		gameOver = false;
         Canvas = GetComponent<Canvas>();
 
         GameObject GameOverPanelObject = GameObject.FindWithTag("GameOverPanel");
@@ -27,8 +26,9 @@ public class GameController : MonoBehaviour
 
         RestartButton = GameObject.FindWithTag("Restart").GetComponent<Button>();
         RestartButton.onClick.AddListener(RestartGame);
-       
-      
+
+        GameObject Player = GameObject.FindWithTag("Player");
+        Rigidbody rb = Player.GetComponent<Rigidbody>();
 
 		//score = 0;
 	
@@ -58,33 +58,17 @@ public class GameController : MonoBehaviour
 
 	public void GameOver ()
 	{
-		gameOver = true;
         GameOverPanel.alpha = 1;
         GameOverPanel.interactable = true;
-
-        FreezeControl(true);
-        FreezePlayer(true);
+        rb.isKinematic = true;
 	} 
 
 
     public void RestartGame() {
-
         Application.LoadLevel(Application.loadedLevel);
-        FreezeControl(false);
-        FreezePlayer(false);
     }
 
-    private void FreezeControl(bool isFrozen) {
-        // TODO: Leqi
-        // 
-    }
 
-    private void FreezePlayer(bool isFrozen)
-    {
-        // TODO: Leqi
-        // set Force of Player to 0,0,0
-        // or maybe rigidbody.isKinematic = false
-    }
 }
 
 

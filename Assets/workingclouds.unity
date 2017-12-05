@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657832, g: 0.49641222, b: 0.57481664, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -227,6 +227,9 @@ MonoBehaviour:
   Canvas: {fileID: 0}
   GameOverPanel: {fileID: 0}
   RestartButton: {fileID: 0}
+  savedTimeScale: 0
+  Player: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!1 &194823431
 GameObject:
   m_ObjectHideFlags: 0
@@ -3990,7 +3993,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1425171232
+  randomSeed: 815245664
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7827,7 +7830,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1815371830
+  randomSeed: 1028672589
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11199,6 +11202,9 @@ MonoBehaviour:
   Canvas: {fileID: 0}
   GameOverPanel: {fileID: 0}
   RestartButton: {fileID: 0}
+  savedTimeScale: 0
+  Player: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!1 &1069688318
 GameObject:
   m_ObjectHideFlags: 0
@@ -11239,9 +11245,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b0051cfc60b4489498e3f61ab50ed09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Canvas: {fileID: 0}
-  GameOverPanel: {fileID: 0}
-  RestartButton: {fileID: 0}
+  Canvas: {fileID: 1146354211}
+  GameOverPanel: {fileID: 1298863705}
+  RestartButton: {fileID: 1060064942}
+  savedTimeScale: 0
+  Player: {fileID: 0}
+  rb: {fileID: 2054463778}
 --- !u!1 &1122039104
 GameObject:
   m_ObjectHideFlags: 0
@@ -11494,6 +11503,9 @@ MonoBehaviour:
   Canvas: {fileID: 0}
   GameOverPanel: {fileID: 0}
   RestartButton: {fileID: 0}
+  savedTimeScale: 0
+  Player: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!1 &1146871093
 GameObject:
   m_ObjectHideFlags: 0
@@ -15029,6 +15041,9 @@ MonoBehaviour:
   Canvas: {fileID: 0}
   GameOverPanel: {fileID: 0}
   RestartButton: {fileID: 0}
+  savedTimeScale: 0
+  Player: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!222 &1298863704
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15487,7 +15502,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1523229502
+  randomSeed: 44600762
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -18779,6 +18794,9 @@ MonoBehaviour:
   Canvas: {fileID: 0}
   GameOverPanel: {fileID: 0}
   RestartButton: {fileID: 0}
+  savedTimeScale: 0
+  Player: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!1 &1716990572
 GameObject:
   m_ObjectHideFlags: 0
@@ -22352,7 +22370,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1326197356
+  randomSeed: -514375115
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -25643,6 +25661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c38571f76ad6bc44b19be32dd797b72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   speed: 30
   sparkleEffect: {fileID: 1716990574}
   gamecontroller: {fileID: 1069688320}
