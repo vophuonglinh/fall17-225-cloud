@@ -160,7 +160,18 @@ namespace Lean.Touch
 
             if (other.gameObject.CompareTag("Cloud"))
             {
+                inCloudTime++;
                 cloudcollisioncount++;
+                Vector3 sparklePosition = gameObject.transform.position.x < 0 ? new Vector3(gameObject.transform.position.x - SPARKLE_POS_OFFSET_X,
+                   gameObject.transform.position.y, gameObject.transform.position.z + 30) : new Vector3(gameObject.transform.position.x + SPARKLE_POS_OFFSET_X,
+                   gameObject.transform.position.y, gameObject.transform.position.z + 30);
+                SetTimer();
+                sparkleEffect.transform.position = sparklePosition;
+                sparkleEffect.Play();
+                if (inCloudTime >= ALLOWED_IN_CLOUD_TIME)
+                {
+                    gamecontroller.GameOver();
+                }
             }
         }
 
@@ -194,21 +205,6 @@ namespace Lean.Touch
         /*
         void OnParticleCollision(GameObject other)
         {
-            if (other.gameObject.CompareTag("Cloud"))
-            {
-                inCloudTime++;
-                //TODO the + or - 50 should be based on the direction of swipe
-                Vector3 sparklePosition = gameObject.transform.position.x < 0 ? new Vector3(gameObject.transform.position.x - SPARKLE_POS_OFFSET_X,
-                    gameObject.transform.position.y, gameObject.transform.position.z + 30) : new Vector3(gameObject.transform.position.x + SPARKLE_POS_OFFSET_X,
-                    gameObject.transform.position.y, gameObject.transform.position.z + 30);
-                SetTimer();
-                sparkleEffect.transform.position = sparklePosition;
-                sparkleEffect.Play();
-                if (inCloudTime >= ALLOWED_IN_CLOUD_TIME)
-                {
-                    gamecontroller.GameOver();
-                }
-            }
 
             //if (other.gameObject.CompareTag("Lightning")) {
             //    life -= 1;
