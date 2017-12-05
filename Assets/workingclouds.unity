@@ -11561,7 +11561,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4899637360667214, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1002250939564866, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
       propertyPath: m_IsActive
@@ -15367,14 +15367,14 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1625759223}
   m_LocalRotation: {x: 0.46193978, y: 0.19134173, z: 0.19134173, w: 0.84462327}
-  m_LocalPosition: {x: 3.9260154, y: 44.51, z: 11.586017}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 0.39260155, y: -0.5490002, z: 1.1586016}
+  m_LocalScale: {x: 0.5, y: 0.5000001, z: 0.5000002}
   m_Children:
   - {fileID: 443733494}
   - {fileID: 2118481032}
   - {fileID: 1173367953}
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_Father: {fileID: 2054463777}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &1625759225
 ParticleSystemRenderer:
@@ -15487,7 +15487,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -133834652
+  randomSeed: 1523229502
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -25613,6 +25613,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 2106773132}
+  - {fileID: 1625759224}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25644,7 +25645,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   sparkleEffect: {fileID: 1716990574}
-  blastEffect: {fileID: 1625759226}
   gamecontroller: {fileID: 1069688320}
   countText: {fileID: 1446110751}
   highScore: {fileID: 688690367}

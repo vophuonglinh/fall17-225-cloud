@@ -15,7 +15,7 @@ namespace Lean.Touch
         private bool isStarted = false;
         private int inCloudTime = 0;
         public ParticleSystem sparkleEffect;
-        public ParticleSystem blastEffect;
+        //public ParticleSystem blastEffect;
         public GameController gamecontroller;
         private int count;
         private int lastCount;
@@ -131,9 +131,11 @@ namespace Lean.Touch
             {
                 count += 1;
                 SetCountText();
-                
-                blastEffect.transform.position  = other.transform.position;
-                blastEffect.Play();
+                ParticleSystem blast = GetComponentInChildren<ParticleSystem>();
+                blast.transform.position = other.transform.position;
+                blast.Play();
+                //blastEffect.transform.position = other.transform.position;
+                //blastEffect.Play();
                 other.gameObject.SetActive(false);
 
             }
@@ -145,8 +147,11 @@ namespace Lean.Touch
                 {
                     gamecontroller.GameOver();
                 }
-                blastEffect.transform.position = other.transform.position;
-                blastEffect.Play();
+                ParticleSystem blast = GetComponentInChildren<ParticleSystem>();
+                blast.transform.position = other.transform.position;
+                blast.Play();
+                //blastEffect.transform.position = other.transform.position;
+                //blastEffect.Play();
                 other.gameObject.SetActive(false);
             }
 
