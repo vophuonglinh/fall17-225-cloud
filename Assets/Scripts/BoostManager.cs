@@ -14,7 +14,7 @@ public class BoostManager : MonoBehaviour
     public Stack<GameObject> lightnings = new Stack<GameObject>();
     private const int POOL_SIZE_BOOSTS = 5;
     private const int POOL_SIZE_OBSTACLES= 5;
-    private const int POOL_SIZE_LIGHTNINGS = 5;
+    private const int POOL_SIZE_LIGHTNINGS = 2;
     private const int BOOST_NUM = 0;
     private const int OBSTACLE_NUM = 1;
     private const int LIGHTNING_NUM = 2;

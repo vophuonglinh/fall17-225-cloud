@@ -58,7 +58,7 @@ public class Boost : MonoBehaviour
 
     private void LateUpdate()
     {
-        //check if player's Z position is greater than boost's position, push onto stack
+        //check if boost should be recycled
         float playerPosZ = player.transform.position.z;
         float boostPosZ = transform.position.z;
         if ((playerPosZ - boostPosZ) > 50.0)

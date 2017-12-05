@@ -58,7 +58,7 @@ namespace Lean.Touch
             GameObject gameControllerObject = GameObject.FindWithTag("GameController");
             gamecontroller = gameControllerObject.GetComponent<GameController>();
             highScore.text = PlayerPrefs.GetInt("HightScore", 0).ToString();
-            ParticleSystem blast = GetComponentInChildren<ParticleSystem>();
+            blast = GetComponentInChildren<ParticleSystem>();
             Timer.enabled = false;
             if (RequiredSelectable == null)
             {
@@ -186,6 +186,10 @@ namespace Lean.Touch
         }
 
         // collision that ends the game
+
+        //Here is the sparkle effects
+        //TODO: detect collision by invisible plane instead of ParticleCollision
+        /*
         void OnParticleCollision(GameObject other)
         {
             if (other.gameObject.CompareTag("Cloud"))
@@ -203,6 +207,7 @@ namespace Lean.Touch
                     gamecontroller.GameOver();
                 }
             }
+
             //if (other.gameObject.CompareTag("Lightning")) {
             //    life -= 1;
             //    SetLifeText();
@@ -212,6 +217,7 @@ namespace Lean.Touch
             //    }
             //}
         }
+        */
 
         void OnTriggerExit(Collider other)
         {
