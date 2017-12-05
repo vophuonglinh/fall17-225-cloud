@@ -10,7 +10,7 @@ public class TileController : MonoBehaviour
     private const string tagCur = "CurrentTile";
     private const string tagNotCur = "NotCurrent";
     private Stack<GameObject> topTiles = new Stack<GameObject>();
-    private const int poolSize = 15;
+    private const int poolSize = 10;
 
     //Instance so that TileScript can access inside TileScript
     public static TileController Instance
