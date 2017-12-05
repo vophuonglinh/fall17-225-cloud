@@ -19,10 +19,11 @@ public class BoostManager : MonoBehaviour
     private const int OBSTACLE_NUM = 1;
     private const int LIGHTNING_NUM = 2;
     //private const int SPAWN_CHANCE = 4;
-    private const int OBSTACLE_SPAWN_CHANCE = 2;
+    private const int OBSTACLE_SPAWN_CHANCE = 6;
+    private const int BOOST_SPAWN_CHANCE = 2;
     private const int BOOST_SPREADING_SCALE = 7;
-    private const int BOOST_GENERATE_DELAY = 4;
-    private const int LIGHTNING_SPAWN_CHANCE = 8;
+    private const int BOOST_GENERATE_DELAY = 1;
+    private const int LIGHTNING_SPAWN_CHANCE = 25;
     private const string TAG_FOR_NONCURRENT = "NotCurrent";
     private const string TAG_FOR_CURRENT = "CurrentTile";
     private static BoostManager instance;
@@ -57,13 +58,17 @@ public class BoostManager : MonoBehaviour
             int i = 0;
             foreach (GameObject curTile in curTiles)
             {
+                if (i % BOOST_SPAWN_CHANCE == 0) {
+                    spawnBoostsOrObstacles(curTile, BOOST_NUM);
+                    curTile.gameObject.tag = TAG_FOR_NONCURRENT;
+                }
                 spawnBoostsOrObstacles(curTile,BOOST_NUM);
                 curTile.gameObject.tag = TAG_FOR_NONCURRENT;
                 if (i % OBSTACLE_SPAWN_CHANCE == 0) {
                     spawnBoostsOrObstacles(curTile, OBSTACLE_NUM);
                 }
-//if (i % LIGHTNING_SPAWN_CHANCE == 0) Turn down lightning for testing
-                if (i == -1)
+                if (i % LIGHTNING_SPAWN_CHANCE == 3)
+                //if (i == -1)
                 {
                     spawnBoostsOrObstacles(curTile, LIGHTNING_NUM);
                 }
@@ -144,7 +149,7 @@ public class BoostManager : MonoBehaviour
     public Vector3 randomPositionOverTile(GameObject tile, int scatter, int objectNum)
     {
         float x = tile.transform.GetChild(0).position.x + Random.Range(-scatter, scatter) * scatter;
-        float y= objectNum == LIGHTNING_NUM ? 40:tile.transform.GetChild(0).position.y + Random.Range(scatter, 4*scatter) * scatter;
+        float y= objectNum == LIGHTNING_NUM ? 90:tile.transform.GetChild(0).position.y + Random.Range(scatter, 4*scatter) * scatter;
         float z = tile.transform.GetChild(0).position.z + Random.Range(-scatter, scatter) * scatter;
         return new Vector3(x, y, z);
     }

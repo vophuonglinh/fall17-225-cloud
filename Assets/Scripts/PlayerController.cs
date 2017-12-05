@@ -63,8 +63,6 @@ namespace Lean.Touch
             {
                 RequiredSelectable = GetComponent<LeanSelectable>();
             }
-            TextMesh warning = GetComponentInChildren<TextMesh>();
-            warning.color = Color.clear;
         }
 
 
