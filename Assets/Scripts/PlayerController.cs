@@ -10,11 +10,12 @@ namespace Lean.Touch
     public class PlayerController : MonoBehaviour
     {
 
-        public Rigidbody rb;
+        private Rigidbody rb;
         public float speed;
         private bool isStarted = false;
         private int inCloudTime = 0;
         public ParticleSystem sparkleEffect;
+
         //public ParticleSystem blastEffect;
         public GameController gamecontroller;
         private int count;
@@ -30,6 +31,7 @@ namespace Lean.Touch
         private const int ALLOWED_IN_CLOUD_TIME = 10;
         private const int SPARKLE_POS_OFFSET_X = 10;
 
+        // variables for player movement
         [Tooltip("Ignore fingers with StartedOverGui?")]
         public bool IgnoreGuiFingers = true;
 
@@ -72,8 +74,10 @@ namespace Lean.Touch
             if (lastCount != count)
             {
                 //boost the player speed!
-                float boost = 100f;
-                rb.AddForce(rb.velocity.normalized * boost * Time.deltaTime, ForceMode.Impulse);
+                float boost = 500f / rb.velocity.magnitude;
+                Debug.Log(boost.ToString());
+                rb.AddForce(rb.velocity.normalized * boost, ForceMode.Impulse);
+                Debug.Log(rb.velocity.magnitude.ToString());
                 lastCount = count;
             }
             resetTimeOutofCloud(checkOutOfCloud());
@@ -86,7 +90,6 @@ namespace Lean.Touch
                     isStarted = true;
                 }
             }
-
             else
             {
                 if (Input.GetKey(KeyCode.RightArrow))
@@ -260,7 +263,7 @@ namespace Lean.Touch
 
                 // Convert back to world space
                 Vector3 worldPos = Camera.ScreenToWorldPoint(screenPos);
-                transform.position = new Vector3(Mathf.Clamp(worldPos.x, -120f, 100f), Mathf.Clamp(worldPos.y, 0, 190f), worldPos.z);
+                transform.position = new Vector3(Mathf.Clamp(worldPos.x, -120f, 100f), Mathf.Clamp(worldPos.y, 0, 200f), worldPos.z);
             }
         }
     }
