@@ -7,13 +7,15 @@ public class BoostManager : MonoBehaviour
     public GameObject boostPrefab;
     public GameObject obstaclePrefab;
     public GameObject lightningPrefab;
+    public GameObject[] boostOptions;
+
     private GameObject[] curTiles;
     // for recycling boosts that died out
     public Stack<GameObject> boosts = new Stack<GameObject>();
     public Stack<GameObject> obstacles = new Stack<GameObject>();
     public Stack<GameObject> lightnings = new Stack<GameObject>();
-    private const int POOL_SIZE_BOOSTS = 5;
-    private const int POOL_SIZE_OBSTACLES= 5;
+    private const int POOL_SIZE_BOOSTS = 8;
+    private const int POOL_SIZE_OBSTACLES= 9;
     private const int POOL_SIZE_LIGHTNINGS = 2;
     private const int BOOST_NUM = 0;
     private const int OBSTACLE_NUM = 1;
@@ -89,11 +91,29 @@ public class BoostManager : MonoBehaviour
     //generate a stack of boosts
     private void CreatePool(int amount, int objectNum)
     {
+        /*
+        if (objectNum == BOOST_NUM)
+        {
+            int created = 0;
+            int i = 0;
+            while (created < amount)
+            {
+                boosts.Push(Instantiate(boostOptions[i]));
+                created += 1;
+                i += 1;
+                if (i == 7)
+                {
+                    i = 0;
+                }
+            }
+        }
+        */
+
         for (int i = 0; i < amount; i++)
         {
             if (objectNum == BOOST_NUM)
             {
-                boosts.Push(Instantiate(boostPrefab));
+                boosts.Push(Instantiate(boostOptions[i%7]));
             }
             else if (objectNum == OBSTACLE_NUM)
             {
