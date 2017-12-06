@@ -60,11 +60,9 @@ public class BoostManager : MonoBehaviour
             int i = 0;
             foreach (GameObject curTile in curTiles)
             {
-                if (i % BOOST_SPAWN_CHANCE == 0) {
-                    spawnBoostsOrObstacles(curTile, BOOST_NUM);
-                    curTile.gameObject.tag = TAG_FOR_NONCURRENT;
-                }
-                spawnBoostsOrObstacles(curTile,BOOST_NUM);
+                spawnBoostsOrObstacles(curTile, BOOST_NUM);
+                spawnBoostsOrObstacles(curTile, BOOST_NUM);
+                spawnBoostsOrObstacles(curTile, BOOST_NUM);
                 curTile.gameObject.tag = TAG_FOR_NONCURRENT;
                 if (i % OBSTACLE_SPAWN_CHANCE == 0) {
                     spawnBoostsOrObstacles(curTile, OBSTACLE_NUM);
@@ -91,29 +89,12 @@ public class BoostManager : MonoBehaviour
     //generate a stack of boosts
     private void CreatePool(int amount, int objectNum)
     {
-        /*
-        if (objectNum == BOOST_NUM)
-        {
-            int created = 0;
-            int i = 0;
-            while (created < amount)
-            {
-                boosts.Push(Instantiate(boostOptions[i]));
-                created += 1;
-                i += 1;
-                if (i == 7)
-                {
-                    i = 0;
-                }
-            }
-        }
-        */
 
         for (int i = 0; i < amount; i++)
         {
             if (objectNum == BOOST_NUM)
             {
-                boosts.Push(Instantiate(boostOptions[i%7]));
+                boosts.Push(Instantiate(boostOptions[i%boostOptions.Length]));
             }
             else if (objectNum == OBSTACLE_NUM)
             {
