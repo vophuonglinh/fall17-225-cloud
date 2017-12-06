@@ -129,6 +129,7 @@ namespace Lean.Touch
             {
                 gamecontroller.GameOver();
             }
+
             if (other.gameObject.CompareTag("Boost"))
             {
                 count += 1;
@@ -137,8 +138,8 @@ namespace Lean.Touch
                 blast.transform.position = other.transform.position;
                 blast.Play();
                 other.gameObject.SetActive(false);
-
             }
+
             if (other.gameObject.CompareTag("Obstacle"))
             {
                 life -= 1;
@@ -233,6 +234,7 @@ namespace Lean.Touch
             { return true; }
             else { return false; }
         }
+
         void resetTimeOutofCloud(bool outCloud)
         {
             if (outCloud)
