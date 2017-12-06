@@ -15,7 +15,7 @@ public class BoostManager : MonoBehaviour
     public Stack<GameObject> obstacles = new Stack<GameObject>();
     public Stack<GameObject> lightnings = new Stack<GameObject>();
     private const int POOL_SIZE_BOOSTS = 8;
-    private const int POOL_SIZE_OBSTACLES= 9;
+    private const int POOL_SIZE_OBSTACLES = 9;
     private const int POOL_SIZE_LIGHTNINGS = 2;
     private const int BOOST_NUM = 0;
     private const int OBSTACLE_NUM = 1;
@@ -64,7 +64,8 @@ public class BoostManager : MonoBehaviour
                 spawnBoostsOrObstacles(curTile, BOOST_NUM);
                 spawnBoostsOrObstacles(curTile, BOOST_NUM);
                 curTile.gameObject.tag = TAG_FOR_NONCURRENT;
-                if (i % OBSTACLE_SPAWN_CHANCE == 0) {
+                if (i % OBSTACLE_SPAWN_CHANCE == 0)
+                {
                     spawnBoostsOrObstacles(curTile, OBSTACLE_NUM);
                 }
                 if (i % LIGHTNING_SPAWN_CHANCE == 3)
@@ -89,21 +90,21 @@ public class BoostManager : MonoBehaviour
     //generate a stack of boosts
     private void CreatePool(int amount, int objectNum)
     {
-
         for (int i = 0; i < amount; i++)
         {
             if (objectNum == BOOST_NUM)
             {
-                boosts.Push(Instantiate(boostOptions[i%boostOptions.Length]));
+                boosts.Push(Instantiate(boostOptions[i % boostOptions.Length]));
             }
             else if (objectNum == OBSTACLE_NUM)
             {
                 obstacles.Push(Instantiate(obstaclePrefab));
             }
-            else if (objectNum == LIGHTNING_NUM) {
+            else if (objectNum == LIGHTNING_NUM)
+            {
                 lightnings.Push(Instantiate(lightningPrefab));
             }
-            
+
         }
     }
 
@@ -111,12 +112,13 @@ public class BoostManager : MonoBehaviour
     //spawn boosts using the position, and pop the boost out of the stack
     public void spawnBoostsOrObstacles(GameObject tile, int objectNum)
     {
-        if (boosts.Count == 0 && objectNum ==BOOST_NUM)
+        if (boosts.Count == 0 && objectNum == BOOST_NUM)
         {
             CreatePool(POOL_SIZE_BOOSTS, BOOST_NUM);
         }
 
-        else if (obstacles.Count == 0 && objectNum == OBSTACLE_NUM) {
+        else if (obstacles.Count == 0 && objectNum == OBSTACLE_NUM)
+        {
             CreatePool(POOL_SIZE_OBSTACLES, OBSTACLE_NUM);
         }
         else if (obstacles.Count == 0 && objectNum == LIGHTNING_NUM)
@@ -130,7 +132,8 @@ public class BoostManager : MonoBehaviour
 
     }
 
-    private GameObject getRightObject(int objectNum) {
+    private GameObject getRightObject(int objectNum)
+    {
         if (objectNum == BOOST_NUM)
         {
             return boosts.Pop();
@@ -150,7 +153,7 @@ public class BoostManager : MonoBehaviour
     public Vector3 randomPositionOverTile(GameObject tile, int scatter, int objectNum)
     {
         float x = tile.transform.GetChild(0).position.x + Random.Range(-scatter, scatter) * scatter;
-        float y= objectNum == LIGHTNING_NUM ? 90:tile.transform.GetChild(0).position.y + Random.Range(scatter, 4*scatter) * scatter;
+        float y = objectNum == LIGHTNING_NUM ? 90 : tile.transform.GetChild(0).position.y + Random.Range(scatter, 4 * scatter) * scatter;
         float z = tile.transform.GetChild(0).position.z + Random.Range(-scatter, scatter) * scatter;
         return new Vector3(x, y, z);
     }
