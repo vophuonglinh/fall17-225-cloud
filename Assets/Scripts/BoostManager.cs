@@ -25,7 +25,7 @@ public class BoostManager : MonoBehaviour
     private const int BOOST_SPAWN_CHANCE = 2;
     private const int BOOST_SPREADING_SCALE = 7;
     private const int BOOST_GENERATE_DELAY = 1;
-    private const int LIGHTNING_SPAWN_CHANCE = 25;
+    private const int LIGHTNING_SPAWN_CHANCE = 5;
     private const string TAG_FOR_NONCURRENT = "NotCurrent";
     private const string TAG_FOR_CURRENT = "CurrentTile";
     private static BoostManager instance;
@@ -68,8 +68,7 @@ public class BoostManager : MonoBehaviour
                 {
                     spawnBoostsOrObstacles(curTile, OBSTACLE_NUM);
                 }
-                if (i % LIGHTNING_SPAWN_CHANCE == 3)
-                //if (i == -1)
+                if (i % LIGHTNING_SPAWN_CHANCE == 2)
                 {
                     spawnBoostsOrObstacles(curTile, LIGHTNING_NUM);
                 }
