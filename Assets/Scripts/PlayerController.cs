@@ -166,6 +166,22 @@ namespace Lean.Touch
                 other.gameObject.SetActive(false);
             }
 
+            if (other.gameObject.CompareTag("Lightning"))
+            {
+                life -= 1;
+                SetLifeText();
+                Debug.Log("---------------working");
+                if (life <= 0)
+                {
+                    
+                    gamecontroller.GameOver();
+                }
+                blast = GetComponentInChildren<ParticleSystem>();
+                blast.transform.position = other.transform.position;
+                blast.Play();
+                other.gameObject.SetActive(false);
+            }
+
             if (count > PlayerPrefs.GetInt("HighScore", 0))
             {
                 PlayerPrefs.SetInt("HighScore", count);
@@ -230,20 +246,21 @@ namespace Lean.Touch
 
         //Here is the sparkle effects
         //TODO: detect collision by invisible plane instead of ParticleCollision
-        /*
+        
         void OnParticleCollision(GameObject other)
         {
 
-            //if (other.gameObject.CompareTag("Lightning")) {
-            //    life -= 1;
-            //    SetLifeText();
-            //    if (life <= 0)
-            //    {
-            //        gamecontroller.GameOver();
-            //    }
-            //}
+            if (other.gameObject.CompareTag("Lightning"))
+            {
+                life -= 1;
+                SetLifeText();
+                if (life <= 0)
+                {
+                    gamecontroller.GameOver();
+                }
+            }
         }
-        */
+        
 
         void OnTriggerExit(Collider other)
         {
