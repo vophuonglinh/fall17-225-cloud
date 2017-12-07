@@ -31,6 +31,10 @@ namespace Lean.Touch
         private const int ALLOWED_IN_CLOUD_TIME = 10;
         private const int SPARKLE_POS_OFFSET_X = 10;
 
+        private ArrayList collected;
+        private ArrayList notCollected;
+        private string[] colors;
+
         // variables for player movement
         [Tooltip("Ignore fingers with StartedOverGui?")]
         public bool IgnoreGuiFingers = true;
@@ -53,6 +57,9 @@ namespace Lean.Touch
 
         void Start()
         {
+            colors = new string[] { "R", "O", "Y", "G", "B", "P" };  //
+            collected = new ArrayList();
+            notCollected = new ArrayList { "R", "O", "Y", "G", "B", "P" };
             rb = GetComponent<Rigidbody>();
             count = 0;
             lastCount = count;
@@ -75,9 +82,9 @@ namespace Lean.Touch
             {
                 //boost the player speed!
                 float boost = 500f / rb.velocity.magnitude;
-                Debug.Log(boost.ToString());
+                //Debug.Log(boost.ToString());
                 rb.AddForce(rb.velocity.normalized * boost, ForceMode.Impulse);
-                Debug.Log(rb.velocity.magnitude.ToString());
+                //Debug.Log(rb.velocity.magnitude.ToString());
                 lastCount = count;
             }
             resetTimeOutofCloud(checkOutOfCloud());
@@ -135,6 +142,8 @@ namespace Lean.Touch
 
             if (other.gameObject.CompareTag("Boost"))
             {
+                Material boostMaterial = other.GetComponent<Renderer>().material;
+                LogBoost(boostMaterial.ToString());
                 count += 1;
                 SetCountText();
                 blast = GetComponentInChildren<ParticleSystem>();
@@ -177,6 +186,20 @@ namespace Lean.Touch
                 {
                     gamecontroller.GameOver();
                 }
+            }
+        }
+
+        void LogBoost(string colName)
+        {
+            string colLet = colName[0].ToString();
+            if (!collected.Contains(colLet))
+            {
+                collected.Add(colLet);
+            }
+            if (collected.Count == colors.Length)
+            {
+                Debug.Log("COMPLETE SET");
+                collected.Clear();
             }
         }
 
