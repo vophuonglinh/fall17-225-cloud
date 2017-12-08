@@ -33,7 +33,7 @@ namespace Lean.Touch
 
         private ArrayList collected;
         private ArrayList notCollected;
-        private string[] colors;
+        private Dictionary<string, Color> colors;
 
         // variables for player movement
         [Tooltip("Ignore fingers with StartedOverGui?")]
@@ -57,13 +57,21 @@ namespace Lean.Touch
 
         void Start()
         {
-            colors = new string[] { "R", "O", "Y", "G", "B", "P" };  //
+            ArrayList red = new ArrayList { "R", Color.red };
+            colors = new Dictionary<string, Color>();
+            colors.Add("R", Color.red);
+            colors.Add("O", new Color(255, 165, 0));
+            colors.Add("Y", Color.yellow);
+            colors.Add("G", Color.green);
+            colors.Add("B", Color.blue);
+            colors.Add("V", new Color(150, 0, 200));
+
             collected = new ArrayList();
             notCollected = new ArrayList { "R", "O", "Y", "G", "B", "P" };
             rb = GetComponent<Rigidbody>();
             count = 0;
             lastCount = count;
-            SetCountText();
+            SetCountText("R");
             GameObject gameControllerObject = GameObject.FindWithTag("GameController");
             gamecontroller = gameControllerObject.GetComponent<GameController>();
             highScore.text = PlayerPrefs.GetInt("HightScore", 0).ToString();
@@ -82,7 +90,6 @@ namespace Lean.Touch
             {
                 //boost the player speed!
                 float boost = 500f / rb.velocity.magnitude;
-                //Debug.Log(boost.ToString());
                 rb.AddForce(rb.velocity.normalized * boost, ForceMode.Impulse);
                 //Debug.Log(rb.velocity.magnitude.ToString());
                 lastCount = count;
@@ -145,7 +152,7 @@ namespace Lean.Touch
                 Material boostMaterial = other.GetComponent<Renderer>().material;
                 LogBoost(boostMaterial.ToString());
                 count += 1;
-                SetCountText();
+                SetCountText(boostMaterial.ToString()[0].ToString());
                 blast = GetComponentInChildren<ParticleSystem>();
                 blast.transform.position = other.transform.position;
                 blast.Play();
@@ -212,16 +219,17 @@ namespace Lean.Touch
             {
                 collected.Add(colLet);
             }
-            if (collected.Count == colors.Length)
+            if (collected.Count == colors.Count)
             {
-                Debug.Log("COMPLETE SET");
                 collected.Clear();
             }
         }
 
-        void SetCountText()
+        void SetCountText(string colorLet)
         {
             countText.text = "Count: " + count.ToString();
+            Color textCol = colors[colorLet];
+            countText.color = textCol;
         }
 
         void SetLifeText()
