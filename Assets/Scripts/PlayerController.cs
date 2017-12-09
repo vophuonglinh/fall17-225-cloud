@@ -15,6 +15,7 @@ namespace Lean.Touch
         private bool isStarted = false;
         private int inCloudTime = 0;
         public ParticleSystem sparkleEffect;
+        public GameObject rainbowPanel;
 
         //public ParticleSystem blastEffect;
         public GameController gamecontroller;
@@ -34,6 +35,14 @@ namespace Lean.Touch
         private ArrayList collected;
         private ArrayList notCollected;
         private Dictionary<string, Color> colors;
+
+        private GameObject redSq;
+        private GameObject orangeSq;
+        private GameObject yellowSq;
+        private GameObject greenSq;
+        private GameObject blueSq;
+        private GameObject violetSq;
+
 
         // variables for player movement
         [Tooltip("Ignore fingers with StartedOverGui?")]
@@ -66,6 +75,21 @@ namespace Lean.Touch
             colors.Add("B", Color.blue);
             colors.Add("V", new Color(150, 0, 200));
 
+            rainbowPanel.SetActive(true);
+            redSq = GameObject.FindGameObjectWithTag("Red");
+            orangeSq = GameObject.FindGameObjectWithTag("Orange");
+            yellowSq = GameObject.FindGameObjectWithTag("Yellow");
+            greenSq = GameObject.FindGameObjectWithTag("Green");
+            blueSq = GameObject.FindGameObjectWithTag("Blue");
+            violetSq = GameObject.FindGameObjectWithTag("Violet");
+            redSq.SetActive(false);
+            orangeSq.SetActive(false);
+            yellowSq.SetActive(false);
+            greenSq.SetActive(false);
+            blueSq.SetActive(false);
+            violetSq.SetActive(false);
+
+            rainbowPanel.SetActive(false);
             collected = new ArrayList();
             notCollected = new ArrayList { "R", "O", "Y", "G", "B", "P" };
             rb = GetComponent<Rigidbody>();
@@ -214,6 +238,8 @@ namespace Lean.Touch
 
         void LogBoost(string colName)
         {
+            UpdatePanel(colName[0].ToString());
+            Debug.Log(colName[0].ToString());
             string colLet = colName[0].ToString();
             if (!collected.Contains(colLet))
             {
@@ -222,7 +248,42 @@ namespace Lean.Touch
             if (collected.Count == colors.Count)
             {
                 collected.Clear();
+
+                redSq.SetActive(false);
+                orangeSq.SetActive(false);
+                yellowSq.SetActive(false);
+                greenSq.SetActive(false);
+                blueSq.SetActive(false);
+                violetSq.SetActive(false);
+                count += 20;
+                SetCountText(colName[0].ToString());
             }
+        }
+
+        void UpdatePanel(string col)
+        {
+            switch (col) {
+                case "R":
+                    //rainbowPanel.SetActive(true);
+                    redSq.SetActive(true);
+                    break;
+                case "O":
+                    orangeSq.SetActive(true);
+                    break;
+                case "Y":
+                    yellowSq.SetActive(true);
+                    break;
+                case "G":
+                    greenSq.SetActive(true);
+                    break;
+                case "B":
+                    blueSq.SetActive(true);
+                    break;
+                case "V":
+                    violetSq.SetActive(true);
+                    break;
+            }
+            
         }
 
         void SetCountText(string colorLet)
