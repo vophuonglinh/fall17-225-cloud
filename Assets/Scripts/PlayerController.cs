@@ -69,11 +69,11 @@ namespace Lean.Touch
             ArrayList red = new ArrayList { "R", Color.red };
             colors = new Dictionary<string, Color>();
             colors.Add("R", Color.red);
-            colors.Add("O", new Color(255, 165, 0));
+            colors.Add("O", new Color(255, 165, 0)); //orange
             colors.Add("Y", Color.yellow);
             colors.Add("G", Color.green);
             colors.Add("B", Color.blue);
-            colors.Add("V", new Color(150, 0, 200));
+            colors.Add("V", new Color(150, 0, 200)); //violet
 
             rainbowPanel.SetActive(true);
             redSq = GameObject.FindGameObjectWithTag("Red");
@@ -82,12 +82,8 @@ namespace Lean.Touch
             greenSq = GameObject.FindGameObjectWithTag("Green");
             blueSq = GameObject.FindGameObjectWithTag("Blue");
             violetSq = GameObject.FindGameObjectWithTag("Violet");
-            redSq.SetActive(false);
-            orangeSq.SetActive(false);
-            yellowSq.SetActive(false);
-            greenSq.SetActive(false);
-            blueSq.SetActive(false);
-            violetSq.SetActive(false);
+
+            ClearSquares();
 
             rainbowPanel.SetActive(false);
             collected = new ArrayList();
@@ -238,25 +234,21 @@ namespace Lean.Touch
 
         void LogBoost(string colName)
         {
-            UpdatePanel(colName[0].ToString());
-            Debug.Log(colName[0].ToString());
+            
+            //Debug.Log(colName[0].ToString());
             string colLet = colName[0].ToString();
             if (!collected.Contains(colLet))
             {
                 collected.Add(colLet);
+                UpdatePanel(colLet);
             }
             if (collected.Count == colors.Count)
             {
                 collected.Clear();
 
-                redSq.SetActive(false);
-                orangeSq.SetActive(false);
-                yellowSq.SetActive(false);
-                greenSq.SetActive(false);
-                blueSq.SetActive(false);
-                violetSq.SetActive(false);
+                ClearSquares();
                 count += 20;
-                SetCountText(colName[0].ToString());
+                SetCountText(colLet);
             }
         }
 
@@ -356,6 +348,16 @@ namespace Lean.Touch
                     HideTimer();
                 }
             }
+        }
+
+        void ClearSquares()
+        {
+            redSq.SetActive(false);
+            orangeSq.SetActive(false);
+            yellowSq.SetActive(false);
+            greenSq.SetActive(false);
+            blueSq.SetActive(false);
+            violetSq.SetActive(false);
         }
 
 
