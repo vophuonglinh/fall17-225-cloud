@@ -29,7 +29,7 @@ namespace Lean.Touch
         ParticleSystem blast;
         private int cloudcollisioncount = 0;
 
-        private const int ALLOWED_IN_CLOUD_TIME = 10;
+        private const int ALLOWED_IN_CLOUD_TIME = 5;
         private const int SPARKLE_POS_OFFSET_X = 10;
 
         private ArrayList collected;
@@ -95,6 +95,8 @@ namespace Lean.Touch
             GameObject gameControllerObject = GameObject.FindWithTag("GameController");
             gamecontroller = gameControllerObject.GetComponent<GameController>();
             highScore.text = PlayerPrefs.GetInt("HightScore", 0).ToString();
+
+
             //blast = GetComponentInChildren<ParticleSystem>();
             Timer.enabled = false;
             if (RequiredSelectable == null)
@@ -200,7 +202,7 @@ namespace Lean.Touch
                 Debug.Log("---------------working");
                 if (life <= 0)
                 {
-                    
+
                     gamecontroller.GameOver();
                 }
                 blast = GetComponentInChildren<ParticleSystem>();
@@ -234,7 +236,7 @@ namespace Lean.Touch
 
         void LogBoost(string colName)
         {
-            
+
             //Debug.Log(colName[0].ToString());
             string colLet = colName[0].ToString();
             if (!collected.Contains(colLet))
@@ -275,7 +277,7 @@ namespace Lean.Touch
                     violetSq.SetActive(true);
                     break;
             }
-            
+
         }
 
         void SetCountText(string colorLet)
@@ -307,7 +309,7 @@ namespace Lean.Touch
 
         //Here is the sparkle effects
         //TODO: detect collision by invisible plane instead of ParticleCollision
-        
+
         void OnParticleCollision(GameObject other)
         {
 
@@ -321,7 +323,7 @@ namespace Lean.Touch
                 }
             }
         }
-        
+
 
         void OnTriggerExit(Collider other)
         {
@@ -374,7 +376,7 @@ namespace Lean.Touch
 
                 // Convert back to world space
                 Vector3 worldPos = Camera.ScreenToWorldPoint(screenPos);
-                transform.position = new Vector3(Mathf.Clamp(worldPos.x, -120f, 100f), Mathf.Clamp(worldPos.y, 0, 200f), worldPos.z);
+                transform.position = new Vector3(Mathf.Clamp(worldPos.x, -60f, 125f), Mathf.Clamp(worldPos.y, 0, 200f), worldPos.z);
             }
         }
     }
