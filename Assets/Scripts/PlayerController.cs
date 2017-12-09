@@ -236,20 +236,24 @@ namespace Lean.Touch
 
         void LogBoost(string colName)
         {
-
-            //Debug.Log(colName[0].ToString());
             string colLet = colName[0].ToString();
             if (!collected.Contains(colLet))
             {
                 collected.Add(colLet);
                 UpdatePanel(colLet);
             }
-            if (collected.Count == colors.Count)
+            else //if collected contains letter, duplicate color, set ruined and should be cleared
+            {
+                Debug.Log("clearing squares and collection");
+                ClearSquares();
+                collected.Clear();
+            }
+            if (collected.Count == colors.Count)  //if set is complete
             {
                 collected.Clear();
 
                 ClearSquares();
-                count += 20;
+                count += 30;
                 SetCountText(colLet);
             }
         }
