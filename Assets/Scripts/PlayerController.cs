@@ -175,10 +175,7 @@ namespace Lean.Touch
                 LogBoost(boostMaterial.ToString());
                 count += 1;
                 SetCountText(boostMaterial.ToString()[0].ToString());
-                blast = GetComponentInChildren<ParticleSystem>();
-                blast.transform.position = other.transform.position;
-                blast.Play();
-                other.gameObject.SetActive(false);
+                Blast(other);
             }
 
             if (other.gameObject.CompareTag("Obstacle"))
@@ -189,10 +186,7 @@ namespace Lean.Touch
                 {
                     gamecontroller.GameOver();
                 }
-                blast = GetComponentInChildren<ParticleSystem>();
-                blast.transform.position = other.transform.position;
-                blast.Play();
-                other.gameObject.SetActive(false);
+                Blast(other);
             }
 
             if (other.gameObject.CompareTag("Lightning"))
@@ -205,10 +199,7 @@ namespace Lean.Touch
 
                     gamecontroller.GameOver();
                 }
-                blast = GetComponentInChildren<ParticleSystem>();
-                blast.transform.position = other.transform.position;
-                blast.Play();
-                other.gameObject.SetActive(false);
+                Blast(other);
             }
 
             if (count > PlayerPrefs.GetInt("HighScore", 0))
@@ -366,6 +357,13 @@ namespace Lean.Touch
             violetSq.SetActive(false);
         }
 
+        void Blast(Collider other)
+        {
+          blast = GetComponentInChildren<ParticleSystem>();
+          blast.transform.position = other.transform.position;
+          blast.Play();
+          other.gameObject.SetActive(false);
+        }
 
         protected virtual void Translate(Vector2 scaledDelta)
         {
