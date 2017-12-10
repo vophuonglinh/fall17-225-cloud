@@ -6,38 +6,32 @@ using System.Collections;
 
 public class GameController : MonoBehaviour
 {
-    public Canvas Canvas;
+  
 
     //public GUIText scoreText;
 
-    public CanvasGroup GameOverPanel;
-    public Button RestartButton;
     public GameObject Player;
     public Rigidbody rb;
+    public Button RestartButton;
+    public Text GameOverText;
+    //public Text RestartText;
 
 	//private int score;
 
 	void Start ()
 	{
-        Canvas = GetComponent<Canvas>();
-
-        GameObject GameOverPanelObject = GameObject.FindWithTag("GameOverPanel");
-        GameOverPanel = GameOverPanelObject.GetComponent<CanvasGroup>();
-
-        RestartButton = GameObject.FindWithTag("Restart").GetComponent<Button>();
+        RestartButton.gameObject.SetActive(false);
         RestartButton.onClick.AddListener(RestartGame);
 
-        GameObject Player = GameObject.FindWithTag("Player");
-        Rigidbody rb = Player.GetComponent<Rigidbody>();
-
+        GameOverText.enabled = false;
 		//score = 0;
 	
 		// UpdateScore ();
 
 	}
-
 	void Update ()
 	{
+        
         	
 	}
 
@@ -58,9 +52,12 @@ public class GameController : MonoBehaviour
 
 	public void GameOver ()
 	{
-        GameOverPanel.alpha = 1;
-        GameOverPanel.interactable = true;
+        //GameOverPanel.alpha = 1;
+        //GameOverPanel.interactable = true;
         rb.isKinematic = true;
+        GameOverText.enabled = true;
+        RestartButton.gameObject.SetActive(true);
+       // RestartText.enabled = true;
 	} 
 
 

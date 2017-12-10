@@ -193,7 +193,6 @@ namespace Lean.Touch
             {
                 life -= 1;
                 SetLifeText();
-                Debug.Log("---------------working");
                 if (life <= 0)
                 {
                   gamecontroller.GameOver();
