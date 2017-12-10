@@ -196,8 +196,7 @@ namespace Lean.Touch
                 Debug.Log("---------------working");
                 if (life <= 0)
                 {
-
-                    gamecontroller.GameOver();
+                  gamecontroller.GameOver();
                 }
                 Blast(other);
             }
@@ -277,9 +276,7 @@ namespace Lean.Touch
 
         void SetCountText(string colorLet)
         {
-            countText.text = "Count: " + count.ToString();
-            Color textCol = colors[colorLet];
-            countText.color = textCol;
+            countText.text = "Score: " + count.ToString();
         }
 
         void SetLifeText()
@@ -303,7 +300,6 @@ namespace Lean.Touch
         // collision that ends the game
 
         //Here is the sparkle effects
-        //TODO: detect collision by invisible plane instead of ParticleCollision
 
         void OnParticleCollision(GameObject other)
         {
@@ -357,12 +353,12 @@ namespace Lean.Touch
             violetSq.SetActive(false);
         }
 
-        void Blast(Collider other)
+        void Blast(Collider collider)
         {
           blast = GetComponentInChildren<ParticleSystem>();
-          blast.transform.position = other.transform.position;
+          blast.transform.position = collider.transform.position;
           blast.Play();
-          other.gameObject.SetActive(false);
+          collider.gameObject.SetActive(false);
         }
 
         protected virtual void Translate(Vector2 scaledDelta)
