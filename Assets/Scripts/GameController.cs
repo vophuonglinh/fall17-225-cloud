@@ -82,4 +82,13 @@ public class GameController : MonoBehaviour
         Application.LoadLevel("menu");
         Background.enabled = false;
     }
+
+    // Pause game when player switches out of app
+    void OnApplicationFocus(bool hasFocus)
+    {
+      if (!hasFocus)
+      {
+        PauseGame();
+      }
+    }
 }

@@ -142,7 +142,8 @@ PlayerSettings:
   resolutionScalingMode: 0
   applicationIdentifier:
     Android: com.ellipele.FlightSim
-  buildNumber: {}
+  buildNumber:
+    Standalone: 1
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
