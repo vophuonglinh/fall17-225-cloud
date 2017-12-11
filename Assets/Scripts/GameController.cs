@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1;
-        Application.LoadLevel(Application.loadedLevel);
+        SceneManager.LoadSceneAsync(1);
         Background.enabled = false;
     }
 
@@ -79,7 +79,7 @@ public class GameController : MonoBehaviour
     public void LoadMenu()
     {
         Time.timeScale = 1;
-        Application.LoadLevel("menu");
+        SceneManager.LoadSceneAsync(0);
         Background.enabled = false;
     }
 

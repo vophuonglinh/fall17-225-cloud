@@ -32,7 +32,6 @@ namespace Lean.Touch
         private const int SPARKLE_POS_OFFSET_X = 10;
 
         private ArrayList collected;
-        private ArrayList notCollected;
         private Dictionary<string, Color> colors;
 
         private GameObject redSq;
@@ -65,7 +64,6 @@ namespace Lean.Touch
 
         void Start()
         {
-            ArrayList red = new ArrayList { "R", Color.red };
             colors = new Dictionary<string, Color>();
             colors.Add("R", Color.red);
             colors.Add("O", new Color(255, 165, 0)); //orange
@@ -85,7 +83,6 @@ namespace Lean.Touch
 
 
             collected = new ArrayList();
-            notCollected = new ArrayList { "R", "O", "Y", "G", "B", "P" };
             rb = GetComponent<Rigidbody>();
             count = 0;
             lastCount = count;

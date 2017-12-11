@@ -4,9 +4,8 @@ using UnityEngine;
 //recycle tiles 20:20
 public class TileScript : MonoBehaviour
 {
-
-    private float delay = 6;
     private float cloudHeight;
+
     void Start()
     {
 
