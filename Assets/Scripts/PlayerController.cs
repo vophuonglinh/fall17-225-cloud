@@ -175,6 +175,7 @@ namespace Lean.Touch
                 LogBoost(boostMaterial.ToString());
                 count += 1;
                 SetCountText(boostMaterial.ToString()[0].ToString());
+                ScoreAnimationScript.Instance.PlayAnimation();
                 Blast(other);
             }
 
