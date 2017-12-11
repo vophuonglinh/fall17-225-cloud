@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
+    public void PlayGame() {
+      SceneManager.LoadSceneAsync(1);
+    }
+
     public void QuitGame() {
         Application.Quit();
     }
