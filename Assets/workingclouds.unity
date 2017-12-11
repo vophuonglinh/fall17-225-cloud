@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657832, g: 0.49641222, b: 0.57481664, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -8051,34 +8051,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2054463773}
---- !u!1 &921281028
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 921281029}
-  m_Layer: 0
-  m_Name: RainbowPanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &921281029
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 921281028}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.7692857, y: 160.75499, z: 42.14286}
-  m_LocalScale: {x: 1.3619168, y: 1.3619168, z: 1.3619168}
-  m_Children: []
-  m_Father: {fileID: 1146354212}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &994655523
 Prefab:
   m_ObjectHideFlags: 0
@@ -11888,7 +11860,6 @@ RectTransform:
   - {fileID: 1490783008}
   - {fileID: 1349964708}
   - {fileID: 1558230062}
-  - {fileID: 921281029}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26718,7 +26689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100
   sparkleEffect: {fileID: 1716990574}
-  rainbowPanel: {fileID: 921281028}
+  rainbowPanel: {fileID: 0}
   gamecontroller: {fileID: 1146354213}
   countText: {fileID: 1446110751}
   highScore: {fileID: 688690367}

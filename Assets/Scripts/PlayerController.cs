@@ -15,7 +15,6 @@ namespace Lean.Touch
         private bool isStarted = false;
         private int inCloudTime = 0;
         public ParticleSystem sparkleEffect;
-        public GameObject rainbowPanel;
 
         //public ParticleSystem blastEffect;
         public GameController gamecontroller;
@@ -75,7 +74,6 @@ namespace Lean.Touch
             colors.Add("B", Color.blue);
             colors.Add("V", new Color(150, 0, 200)); //violet
 
-            rainbowPanel.SetActive(true);
             redSq = GameObject.FindGameObjectWithTag("Red");
             orangeSq = GameObject.FindGameObjectWithTag("Orange");
             yellowSq = GameObject.FindGameObjectWithTag("Yellow");
@@ -85,7 +83,7 @@ namespace Lean.Touch
 
             ClearSquares();
 
-            rainbowPanel.SetActive(false);
+
             collected = new ArrayList();
             notCollected = new ArrayList { "R", "O", "Y", "G", "B", "P" };
             rb = GetComponent<Rigidbody>();
@@ -252,7 +250,6 @@ namespace Lean.Touch
         {
             switch (col) {
                 case "R":
-                    //rainbowPanel.SetActive(true);
                     redSq.SetActive(true);
                     break;
                 case "O":
