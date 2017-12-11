@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-  
+
 
     //public GUIText scoreText;
 
@@ -16,7 +16,9 @@ public class GameController : MonoBehaviour
     public Button PauseButton;
     public Button ContinueButton;
     public Button RestartButton;
+    public Button MenuButton;
     public Text GameOverText;
+    private Image Background;
 
 	//private int score;
 
@@ -30,50 +32,39 @@ public class GameController : MonoBehaviour
         ContinueButton.gameObject.SetActive(false);
         ContinueButton.onClick.AddListener(ContinueGame);
 
+        MenuButton.gameObject.SetActive(false);
+        MenuButton.onClick.AddListener(LoadMenu);
+
+        Background = GetComponent<Image>();
+        Background.enabled = false;
+
         GameOverText.enabled = false;
-		//score = 0;
-	
-		// UpdateScore ();
 
 	}
-	void Update ()
-	{
-        
-        	
-	}
-
-
-	/*
-
-	public void AddScore (int newScoreValue)
-	{
-		score += newScoreValue;
-		UpdateScore ();
-	}
-
-	void UpdateScore ()
-	{
-		scoreText.text = "Score: " + score;
-	}
-	*/
 
 	public void GameOver ()
 	{
         rb.isKinematic = true;
         GameOverText.enabled = true;
         RestartButton.gameObject.SetActive(true);
-	} 
+        MenuButton.gameObject.SetActive(true);
+        PauseButton.enabled = false;
+        Background.enabled = true;
+	}
 
     public void PauseGame(){
         Time.timeScale = 0;
         ContinueButton.gameObject.SetActive(true);
         RestartButton.gameObject.SetActive(true);
+        MenuButton.gameObject.SetActive(true);
+        Background.enabled = true;
     }
 
-    public void RestartGame() 
+    public void RestartGame()
     {
         Time.timeScale = 1;
         Application.LoadLevel(Application.loadedLevel);
+        Background.enabled = false;
     }
 
     public void ContinueGame()
@@ -81,13 +72,14 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1;
         RestartButton.gameObject.SetActive(false);
         ContinueButton.gameObject.SetActive(false);
+        MenuButton.gameObject.SetActive(false);
+        Background.enabled = false;
     }
 
-
+    public void LoadMenu()
+    {
+        Time.timeScale = 1;
+        Application.LoadLevel("menu");
+        Background.enabled = false;
+    }
 }
-
-
-
-
-
-
