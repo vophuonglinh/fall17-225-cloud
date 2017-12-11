@@ -276,6 +276,7 @@ namespace Lean.Touch
         void SetLifeText()
         {
             lifeText.text = "Life: " + life.ToString();
+            LifeTextScript.Instance.PlayAnimation();
         }
 
         void SetTimer()

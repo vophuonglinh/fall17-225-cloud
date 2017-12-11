@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657832, g: 0.49641222, b: 0.57481664, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -4049,6 +4049,8 @@ GameObject:
   - component: {fileID: 501822292}
   - component: {fileID: 501822294}
   - component: {fileID: 501822293}
+  - component: {fileID: 501822296}
+  - component: {fileID: 501822295}
   m_Layer: 5
   m_Name: Life
   m_TagString: Untagged
@@ -4113,6 +4115,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 501822291}
+--- !u!114 &501822295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 501822291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a3410831a480149a1492059dfb8d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &501822296
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 501822291}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1e87ba189ecfbdb4ea19074443f6aaf7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &532672204
 GameObject:
   m_ObjectHideFlags: 0
@@ -26689,7 +26719,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100
   sparkleEffect: {fileID: 1716990574}
-  rainbowPanel: {fileID: 0}
   gamecontroller: {fileID: 1146354213}
   countText: {fileID: 1446110751}
   highScore: {fileID: 688690367}
