@@ -4126,6 +4126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9a3410831a480149a1492059dfb8d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
 --- !u!95 &501822296
 Animator:
   serializedVersion: 3
@@ -7950,8 +7951,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTile: {fileID: 595494551}
   tilePrefabs:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1711727941318448, guid: ae1deebe07957494680614cc0f8fa954, type: 2}
+  - {fileID: 1711727941318448, guid: ae1deebe07957494680614cc0f8fa954, type: 2}
   - {fileID: 1711727941318448, guid: ae1deebe07957494680614cc0f8fa954, type: 2}
   - {fileID: 1711727941318448, guid: ae1deebe07957494680614cc0f8fa954, type: 2}
   - {fileID: 1711727941318448, guid: ae1deebe07957494680614cc0f8fa954, type: 2}

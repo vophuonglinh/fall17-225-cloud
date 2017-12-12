@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/workingclouds.unity
     guid: c774988f72659e04aa86ab18e31caac7
+  - enabled: 1
+    path: Assets/instructions.unity
+    guid: fff6902918bfdaa4aa8467802e7f2529

@@ -9,6 +9,10 @@ public class LevelManager : MonoBehaviour {
       SceneManager.LoadSceneAsync(1);
     }
 
+    public void ReadInstructions() {
+        SceneManager.LoadSceneAsync(2);
+    }
+
     public void QuitGame() {
         Application.Quit();
     }
