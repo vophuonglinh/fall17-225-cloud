@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 using UnityEngine.SceneManagement;
 
 namespace Lean.Touch
@@ -41,7 +42,6 @@ namespace Lean.Touch
         private GameObject blueSq;
         private GameObject violetSq;
 
-
         // variables for player movement
         [Tooltip("Ignore fingers with StartedOverGui?")]
         public bool IgnoreGuiFingers = true;
@@ -64,6 +64,7 @@ namespace Lean.Touch
 
         void Start()
         {
+            instance = this;
             colors = new Dictionary<string, Color>();
             colors.Add("R", Color.red);
             colors.Add("O", new Color(255, 165, 0)); //orange
@@ -235,12 +236,18 @@ namespace Lean.Touch
             }
             if (collected.Count == colors.Count)  //if set is complete
             {
+                RainbowScript.Instance.PlayAnimation();
                 collected.Clear();
+                StartCoroutine(DelayForAnim());
 
-                ClearSquares();
                 count += 30;
                 SetCountText(colLet);
             }
+        }
+
+        IEnumerator DelayForAnim() {
+            yield return new WaitForSeconds(1);
+            ClearSquares();
         }
 
         void UpdatePanel(string col)
@@ -338,7 +345,7 @@ namespace Lean.Touch
             }
         }
 
-        void ClearSquares()
+        public void ClearSquares()
         {
             redSq.SetActive(false);
             orangeSq.SetActive(false);
