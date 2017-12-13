@@ -108,7 +108,6 @@ namespace Lean.Touch
                 //boost the player speed!
                 float boost = 500f / rb.velocity.magnitude;
                 rb.AddForce(rb.velocity.normalized * boost, ForceMode.Impulse);
-                //Debug.Log(rb.velocity.magnitude.ToString());
                 lastCount = count;
             }
             resetTimeOutofCloud(checkOutOfCloud());
@@ -229,7 +228,6 @@ namespace Lean.Touch
             }
             else //if collected contains letter, duplicate color, set ruined and should be cleared
             {
-                Debug.Log("clearing squares and collection");
                 ClearSquares();
                 collected.Clear();
             }
@@ -369,6 +367,11 @@ namespace Lean.Touch
             {
                 // Screen position of the transform
                 var screenPos = Camera.WorldToScreenPoint(transform.position);
+
+                float fingerResponsiveness = 100f, fingerCurve = 1.5f;
+                scaledDelta = scaledDelta.normalized
+                     * (float) Math.Pow(scaledDelta.magnitude / fingerResponsiveness, fingerCurve)
+                     * fingerResponsiveness;
 
                 // Add the deltaPosition
                 screenPos += (Vector3)scaledDelta;
