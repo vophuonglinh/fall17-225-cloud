@@ -64,7 +64,6 @@ namespace Lean.Touch
 
         void Start()
         {
-            instance = this;
             colors = new Dictionary<string, Color>();
             colors.Add("R", Color.red);
             colors.Add("O", new Color(255, 165, 0)); //orange
