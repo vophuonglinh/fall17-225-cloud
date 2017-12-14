@@ -8,7 +8,9 @@ public class TileController : MonoBehaviour
 
     private static TileController instance;
     private const string tagCur = "CurrentTile";
+    //private const string TAG_CUR_LIGHT = "CurrentTileLN";
     private const string tagNotCur = "NotCurrent";
+
     private Stack<GameObject> topTiles = new Stack<GameObject>();
     private const int poolSize = 5;
 
@@ -66,9 +68,7 @@ public class TileController : MonoBehaviour
     public void RecycleTile()
     {
         GameObject temp;
-
         temp = topTiles.Pop();
-
         temp.SetActive(true);
         temp.transform.position = currentTile.transform.GetChild(0).transform.GetChild(1).position;
         temp.gameObject.tag = tagCur;

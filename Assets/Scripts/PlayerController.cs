@@ -348,7 +348,7 @@ namespace Lean.Touch
         void Blast(Collider collider)
         {
           blast = GetComponentInChildren<ParticleSystem>();
-          blast.transform.position = collider.transform.position;
+          blast.transform.position =new Vector3(collider.transform.position.x, collider.transform.position.y, collider.transform.position.z+40);
           blast.Play();
           collider.gameObject.SetActive(false);
         }

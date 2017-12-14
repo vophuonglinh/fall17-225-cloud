@@ -20,6 +20,7 @@ TagManager:
   - Green
   - Blue
   - Violet
+  - CurrentTileLN
   layers:
   - Default
   - TransparentFX
