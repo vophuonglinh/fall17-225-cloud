@@ -175,23 +175,13 @@ namespace Lean.Touch
 
             if (other.gameObject.CompareTag("Obstacle"))
             {
-                life -= 1;
-                SetLifeText();
-                if (life <= 0)
-                {
-                    gamecontroller.GameOver();
-                }
+                DecrementLife();
                 Blast(other);
             }
 
             if (other.gameObject.CompareTag("Lightning"))
             {
-                life -= 1;
-                SetLifeText();
-                if (life <= 0)
-                {
-                  gamecontroller.GameOver();
-                }
+                DecrementLife();
                 Blast(other);
             }
 
@@ -218,6 +208,17 @@ namespace Lean.Touch
             }
         }
 
+        void DecrementLife()
+        {
+            life -= 1;
+            lifeText.text = "Life: " + life.ToString();
+            LifeTextScript.Instance.PlayAnimation();
+            if (life <= 0)
+            {
+                gamecontroller.GameOver();
+            }
+        }
+
         void LogBoost(string colName)
         {
             string colLet = colName[0].ToString();
@@ -230,6 +231,7 @@ namespace Lean.Touch
             {
                 ClearSquares();
                 collected.Clear();
+                DecrementLife();
             }
             if (collected.Count == colors.Count)  //if set is complete
             {
@@ -305,12 +307,7 @@ namespace Lean.Touch
 
             if (other.gameObject.CompareTag("Lightning"))
             {
-                life -= 1;
-                SetLifeText();
-                if (life <= 0)
-                {
-                    gamecontroller.GameOver();
-                }
+                DecrementLife();
             }
         }
 
