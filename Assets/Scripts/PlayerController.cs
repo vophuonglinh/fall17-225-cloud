@@ -158,10 +158,6 @@ namespace Lean.Touch
 
         void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Ground"))
-            {
-                gamecontroller.GameOver();
-            }
 
             if (other.gameObject.CompareTag("Boost"))
             {
@@ -375,7 +371,7 @@ namespace Lean.Touch
 
                 // Convert back to world space
                 Vector3 worldPos = Camera.ScreenToWorldPoint(screenPos);
-                transform.position = new Vector3(Mathf.Clamp(worldPos.x, -60f, 125f), Mathf.Clamp(worldPos.y, 0, 200f), worldPos.z);
+                transform.position = new Vector3(Mathf.Clamp(worldPos.x, -60f, 125f), Mathf.Clamp(worldPos.y, 20, 200f), worldPos.z);
             }
         }
     }
