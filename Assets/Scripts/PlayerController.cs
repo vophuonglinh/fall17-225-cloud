@@ -225,7 +225,8 @@ namespace Lean.Touch
             }
             else //if collected contains letter, duplicate color, set ruined and should be cleared
             {
-                ClearSquares();
+                RainbowScript.Instance.PlaySetRuined();
+                StartCoroutine(DelayForAnim(1));
                 collected.Clear();
                 DecrementLife();
             }
@@ -233,15 +234,15 @@ namespace Lean.Touch
             {
                 RainbowScript.Instance.PlayAnimation();
                 collected.Clear();
-                StartCoroutine(DelayForAnim());
+                StartCoroutine(DelayForAnim(1));
 
                 count += 30;
                 SetCountText(colLet);
             }
         }
 
-        IEnumerator DelayForAnim() {
-            yield return new WaitForSeconds(1);
+        IEnumerator DelayForAnim(int seconds) {
+            yield return new WaitForSeconds(seconds);
             ClearSquares();
         }
 

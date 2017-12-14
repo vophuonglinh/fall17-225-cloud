@@ -24,6 +24,11 @@ public class RainbowScript : MonoBehaviour {
         anim.Play("RainbowAnimation");
     }
 
+    public void PlaySetRuined()
+    {
+        anim.Play("SetRuinedAnimation");
+    }
+
 
     public static RainbowScript Instance
     {
