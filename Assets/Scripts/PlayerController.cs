@@ -17,7 +17,6 @@ namespace Lean.Touch
         private int inCloudTime = 0;
         public ParticleSystem sparkleEffect;
 
-        //public ParticleSystem blastEffect;
         public GameController gamecontroller;
         private int count;
         private int lastCount;
@@ -26,15 +25,16 @@ namespace Lean.Touch
         public Text highScore;
         public Text lifeText;
         public Text Timer;
-        ParticleSystem blast;
-        private int cloudcollisioncount = 0;
+        public ParticleSystem blast;
+        private int cloudCollisionCount = 0;
 
         private const int ALLOWED_IN_CLOUD_TIME = 5;
         private const int SPARKLE_POS_OFFSET_X = 10;
 
         private ArrayList collected;
-        private Dictionary<string, Color> colors;
+        //private Dictionary<string, Color> colors;
 
+        private const int NUM_COLORS = 6;
         private GameObject redSq;
         private GameObject orangeSq;
         private GameObject yellowSq;
@@ -64,13 +64,14 @@ namespace Lean.Touch
 
         void Start()
         {
-            colors = new Dictionary<string, Color>();
-            colors.Add("R", Color.red);
-            colors.Add("O", new Color(255, 165, 0)); //orange
-            colors.Add("Y", Color.yellow);
-            colors.Add("G", Color.green);
-            colors.Add("B", Color.blue);
-            colors.Add("V", new Color(150, 0, 200)); //violet
+            //keep for now, elena might need these when adding color to blasts
+            //colors = new Dictionary<string, Color>();
+            //colors.Add("R", Color.red);
+            //colors.Add("O", new Color(255, 165, 0)); //orange
+            //colors.Add("Y", Color.yellow);
+            //colors.Add("G", Color.green);
+            //colors.Add("B", Color.blue);
+            //colors.Add("V", new Color(150, 0, 200)); //violet
 
             redSq = GameObject.FindGameObjectWithTag("Red");
             orangeSq = GameObject.FindGameObjectWithTag("Orange");
@@ -86,10 +87,10 @@ namespace Lean.Touch
             rb = GetComponent<Rigidbody>();
             count = 0;
             lastCount = count;
-            SetCountText("R");
+            SetCountText();
             GameObject gameControllerObject = GameObject.FindWithTag("GameController");
             gamecontroller = gameControllerObject.GetComponent<GameController>();
-            highScore.text = PlayerPrefs.GetInt("HightScore", 0).ToString();
+            highScore.text = "Best: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
 
 
             //blast = GetComponentInChildren<ParticleSystem>();
@@ -162,9 +163,9 @@ namespace Lean.Touch
             if (other.gameObject.CompareTag("Boost"))
             {
                 Material boostMaterial = other.GetComponent<Renderer>().material;
-                LogBoost(boostMaterial.ToString());
+                LogBoostColor(boostMaterial.ToString());
                 count += 1;
-                SetCountText(boostMaterial.ToString()[0].ToString());
+                SetCountText();
                 ScoreAnimationScript.Instance.PlayAnimation();
                 Blast(other);
             }
@@ -190,7 +191,7 @@ namespace Lean.Touch
             if (other.gameObject.CompareTag("Cloud"))
             {
                 inCloudTime++;
-                cloudcollisioncount++;
+                cloudCollisionCount++;
                 Vector3 sparklePosition = gameObject.transform.position.x < 0 ? new Vector3(gameObject.transform.position.x - SPARKLE_POS_OFFSET_X,
                    gameObject.transform.position.y, gameObject.transform.position.z + 30) : new Vector3(gameObject.transform.position.x + SPARKLE_POS_OFFSET_X,
                    gameObject.transform.position.y, gameObject.transform.position.z + 30);
@@ -215,7 +216,7 @@ namespace Lean.Touch
             }
         }
 
-        void LogBoost(string colName)
+        void LogBoostColor(string colName)
         {
             string colLet = colName[0].ToString();
             if (!collected.Contains(colLet))
@@ -230,14 +231,14 @@ namespace Lean.Touch
                 collected.Clear();
                 DecrementLife();
             }
-            if (collected.Count == colors.Count)  //if set is complete
+            if (collected.Count == NUM_COLORS)  //if set is complete
             {
                 RainbowScript.Instance.PlayAnimation();
                 collected.Clear();
                 StartCoroutine(DelayForAnim(1));
 
                 count += 30;
-                SetCountText(colLet);
+                SetCountText();
             }
         }
 
@@ -271,7 +272,7 @@ namespace Lean.Touch
 
         }
 
-        void SetCountText(string colorLet)
+        void SetCountText()
         {
             countText.text = "Score: " + count.ToString();
         }
@@ -313,14 +314,14 @@ namespace Lean.Touch
         {
             if (other.gameObject.CompareTag("Cloud"))
             {
-                cloudcollisioncount--;
+                cloudCollisionCount--;
             }
 
         }
 
         bool checkOutOfCloud()
         {
-            if ((cloudcollisioncount == 0))
+            if ((cloudCollisionCount == 0))
             { return true; }
             else { return false; }
         }
