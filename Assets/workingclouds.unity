@@ -4144,6 +4144,48 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!1001 &514999139
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4899637360667214, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 682
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899637360667214, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 562
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899637360667214, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899637360667214, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899637360667214, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899637360667214, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899637360667214, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899637360667214, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &532672204
 GameObject:
   m_ObjectHideFlags: 0
@@ -12004,48 +12046,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1146354208}
---- !u!1001 &1167360046
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4899637360667214, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 682
-      objectReference: {fileID: 0}
-    - target: {fileID: 4899637360667214, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 562
-      objectReference: {fileID: 0}
-    - target: {fileID: 4899637360667214, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 4899637360667214, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4899637360667214, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4899637360667214, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4899637360667214, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4899637360667214, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &1172321738
 Prefab:
   m_ObjectHideFlags: 0
@@ -26779,6 +26779,7 @@ MonoBehaviour:
   highScore: {fileID: 688690367}
   lifeText: {fileID: 501822293}
   Timer: {fileID: 1357847341}
+  blast: {fileID: 0}
   IgnoreGuiFingers: 0
   RequiredFingerCount: 1
   RequiredSelectable: {fileID: 0}
