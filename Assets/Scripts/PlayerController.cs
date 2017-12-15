@@ -185,7 +185,7 @@ namespace Lean.Touch
             if (count > PlayerPrefs.GetInt("HighScore", 0))
             {
                 PlayerPrefs.SetInt("HighScore", count);
-                highScore.text = count.ToString();
+                highScore.text = "Best: " + count.ToString();
             }
 
             if (other.gameObject.CompareTag("Cloud"))
