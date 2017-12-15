@@ -16,15 +16,15 @@ public class BoostManager : MonoBehaviour
     public Stack<GameObject> lightnings = new Stack<GameObject>();
     private const int POOL_SIZE_BOOSTS = 8;
     private const int POOL_SIZE_OBSTACLES = 9;
-    private const int POOL_SIZE_LIGHTNINGS = 10;
+    private const int POOL_SIZE_LIGHTNINGS = 5;
     private const int BOOST_NUM = 0;
     private const int OBSTACLE_NUM = 1;
-    private const int LIGHTNING_NUM = 10;
+    private const int LIGHTNING_NUM = 2;
     private const int OBSTACLE_SPAWN_CHANCE = 6;
     private const int BOOST_SPAWN_CHANCE = 2;
     private const int BOOST_SPREADING_SCALE = 7;
     private const int BOOST_GENERATE_DELAY = 1;
-    private const int LIGHTNING_SPAWN_CHANCE = 3;
+    private const int LIGHTNING_SPAWN_CHANCE = 6;
     private const string TAG_FOR_NONCURRENT = "NotCurrent";
     private const string TAG_FOR_CURRENT = "CurrentTile";
     private static BoostManager instance;
@@ -56,7 +56,7 @@ public class BoostManager : MonoBehaviour
         {
             curTiles = GameObject.FindGameObjectsWithTag(TAG_FOR_CURRENT);
             //loop over the array with objects that have the currenttile tag
-            int i = 0;
+            int i = 2;
             foreach (GameObject curTile in curTiles)
             {
                 spawnBoostsOrObstacles(curTile, BOOST_NUM);

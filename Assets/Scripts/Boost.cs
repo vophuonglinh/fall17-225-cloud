@@ -19,7 +19,10 @@ public class Boost : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);        
+        if (gameObject.tag != "Lightning") {
+            transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime); 
+        }
+               
     }
 
 
