@@ -68,7 +68,7 @@ public class BoostManager : MonoBehaviour
                 {
                     spawnBoostsOrObstacles(curTile, OBSTACLE_NUM);
                 }
-                if (i % LIGHTNING_SPAWN_CHANCE == Random.Range(0, 2))
+                if (i % LIGHTNING_SPAWN_CHANCE == Random.Range(0, 3))
                 {
                     spawnBoostsOrObstacles(curTile, LIGHTNING_NUM);
                 }
