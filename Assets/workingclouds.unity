@@ -7950,13 +7950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTile: {fileID: 595494551}
-  tilePrefabs:
-  - {fileID: 1711727941318448, guid: ae1deebe07957494680614cc0f8fa954, type: 2}
-  - {fileID: 1711727941318448, guid: ae1deebe07957494680614cc0f8fa954, type: 2}
-  - {fileID: 1711727941318448, guid: ae1deebe07957494680614cc0f8fa954, type: 2}
-  - {fileID: 1711727941318448, guid: ae1deebe07957494680614cc0f8fa954, type: 2}
-  - {fileID: 1711727941318448, guid: ae1deebe07957494680614cc0f8fa954, type: 2}
-  - {fileID: 1711727941318448, guid: ae1deebe07957494680614cc0f8fa954, type: 2}
+  tilePrefab: {fileID: 1711727941318448, guid: ae1deebe07957494680614cc0f8fa954, type: 2}
 --- !u!4 &794252272
 Transform:
   m_ObjectHideFlags: 0

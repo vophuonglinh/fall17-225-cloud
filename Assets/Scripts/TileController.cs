@@ -4,7 +4,7 @@ using UnityEngine;
 public class TileController : MonoBehaviour
 {
     public GameObject currentTile;
-    public GameObject[] tilePrefabs;
+    public GameObject tilePrefab;
 
     private static TileController instance;
     private const string tagCur = "CurrentTile";
@@ -39,7 +39,7 @@ public class TileController : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            topTiles.Push(Instantiate(tilePrefabs[2]));
+            topTiles.Push(Instantiate(tilePrefab));
             topTiles.Peek().name = "TopTile";
             topTiles.Peek().SetActive(false);
         }
@@ -70,6 +70,7 @@ public class TileController : MonoBehaviour
         GameObject temp;
         temp = topTiles.Pop();
         temp.SetActive(true);
+        //reposition temp tile to the top attatch point of the current tile
         temp.transform.position = currentTile.transform.GetChild(0).transform.GetChild(1).position;
         temp.gameObject.tag = tagCur;
         currentTile = temp;
