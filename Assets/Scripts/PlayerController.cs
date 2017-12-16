@@ -226,7 +226,8 @@ namespace Lean.Touch
             }
             else //if collected contains letter, duplicate color, set ruined and should be cleared
             {
-                RainbowScript.Instance.PlaySetRuined();
+                //RainbowScript.Instance.PlaySetRuined();
+                RainbowScript.Instance.PlayAnimation();
                 StartCoroutine(DelayForAnim(1));
                 collected.Clear();
                 DecrementLife();
