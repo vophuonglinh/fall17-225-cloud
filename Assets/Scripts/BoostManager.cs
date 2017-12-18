@@ -78,13 +78,6 @@ public class BoostManager : MonoBehaviour
     }
 
 
-    // Update is called once per frame
-    void Update()
-    {
-
-
-    }
-
     //generate a stack of boosts
     private void CreatePool(int amount, int objectNum)
     {

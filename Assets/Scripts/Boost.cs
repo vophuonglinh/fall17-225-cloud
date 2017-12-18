@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class Boost : MonoBehaviour
 {
-    //private const float delay = 30f;
-    // public GameObject boost;
     public static Boost instance;
-    // Use this for initialization
     private GameObject player;
 
     void Start()
