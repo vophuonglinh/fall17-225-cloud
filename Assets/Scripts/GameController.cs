@@ -9,8 +9,6 @@ public class GameController : MonoBehaviour
 {
 
 
-    //public GUIText scoreText;
-
     public GameObject Player;
     public Rigidbody rb;
     public Button PauseButton;
@@ -19,8 +17,6 @@ public class GameController : MonoBehaviour
     public Button MenuButton;
     public Text GameOverText;
     private Image Background;
-
-	//private int score;
 
 	void Start ()
 	{
