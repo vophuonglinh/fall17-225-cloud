@@ -14,19 +14,25 @@ public class BoostManager : MonoBehaviour
     public Stack<GameObject> boosts = new Stack<GameObject>();
     public Stack<GameObject> obstacles = new Stack<GameObject>();
     public Stack<GameObject> lightnings = new Stack<GameObject>();
+    //initial stack size for the game objects
     private const int POOL_SIZE_BOOSTS = 8;
     private const int POOL_SIZE_OBSTACLES = 9;
     private const int POOL_SIZE_LIGHTNINGS = 5;
+    //constants for identifying different objects
     private const int BOOST_NUM = 0;
     private const int OBSTACLE_NUM = 1;
     private const int LIGHTNING_NUM = 2;
+
     private const int OBSTACLE_SPAWN_CHANCE = 6;
+    private const int LIGHTNING_SPAWN_CHANCE = 6;
     private const int BOOST_SPAWN_CHANCE = 2;
     private const int BOOST_SPREADING_SCALE = 7;
     private const int BOOST_GENERATE_DELAY = 1;
-    private const int LIGHTNING_SPAWN_CHANCE = 6;
+   
     private const string TAG_FOR_NONCURRENT = "NotCurrent";
     private const string TAG_FOR_CURRENT = "CurrentTile";
+
+    private const int FIXED_LIGHTNING_POSITION = 120;
     private static BoostManager instance;
 
 
@@ -56,6 +62,7 @@ public class BoostManager : MonoBehaviour
         {
             curTiles = GameObject.FindGameObjectsWithTag(TAG_FOR_CURRENT);
             //loop over the array with objects that have the currenttile tag
+            //Starting with two to avoid generating lightnings in the beginning
             int i = 2;
             foreach (GameObject curTile in curTiles)
             {
@@ -78,7 +85,7 @@ public class BoostManager : MonoBehaviour
     }
 
 
-    //generate a stack of boosts
+    //generate an initial stack of objects to start with
     private void CreatePool(int amount, int objectNum)
     {
         for (int i = 0; i < amount; i++)
@@ -144,7 +151,8 @@ public class BoostManager : MonoBehaviour
     public Vector3 randomPositionOverTile(GameObject tile, int scatter, int objectNum)
     {
         float x = tile.transform.GetChild(0).position.x + Random.Range(-scatter, scatter) * scatter;
-        float y = objectNum == LIGHTNING_NUM ? 120 : tile.transform.GetChild(0).position.y + Random.Range(scatter, 4 * scatter) * scatter;
+        //the y position for the lightning should be fixed
+        float y = objectNum == LIGHTNING_NUM ? FIXED_LIGHTNING_POSITION : tile.transform.GetChild(0).position.y + Random.Range(scatter, 4 * scatter) * scatter;
         float z = tile.transform.GetChild(0).position.z + Random.Range(-scatter, scatter) * scatter;
         return new Vector3(x, y, z);
     }
