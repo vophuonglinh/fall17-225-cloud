@@ -157,6 +157,7 @@ namespace Lean.Touch
             Translate(scaledDelta);
         }
 
+        // Detect collision with other game objects
         void OnTriggerEnter(Collider other)
         {
 
@@ -241,6 +242,7 @@ namespace Lean.Touch
             ClearSquares();
         }
 
+        // update the rainbow panel
         void UpdatePanel(string col)
         {
             switch (col) {
@@ -290,10 +292,7 @@ namespace Lean.Touch
             Timer.enabled = false;
         }
 
-        // collision that ends the game
-
-        //Here is the sparkle effects
-
+        // Detect collision with particle system of lightning.
         void OnParticleCollision(GameObject other)
         {
 
@@ -331,6 +330,8 @@ namespace Lean.Touch
             }
         }
 
+
+        // clear squares on the rainbow panel
         public void ClearSquares()
         {
             redSq.SetActive(false);
@@ -341,6 +342,7 @@ namespace Lean.Touch
             violetSq.SetActive(false);
         }
 
+        // blast effect
         void Blast(Collider collider)
         {
           blast = GetComponentInChildren<ParticleSystem>();
@@ -349,6 +351,7 @@ namespace Lean.Touch
           collider.gameObject.SetActive(false);
         }
 
+        // for mobile touch
         protected virtual void Translate(Vector2 scaledDelta)
         {
             // If camera is null, try and get the main camera, return true if a camera was found

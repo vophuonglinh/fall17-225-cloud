@@ -22,7 +22,6 @@ public class LifeTextScript : MonoBehaviour {
     public void PlayAnimation()
     {
         anim.Play("LifeAnimation");
-        Debug.Log("playing life text animation");
     }
 
     public static LifeTextScript Instance
