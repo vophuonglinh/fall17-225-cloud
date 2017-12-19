@@ -8,32 +8,27 @@ using UnityEngine.SceneManagement;
 namespace Lean.Touch
 
 {
+
     public class PlayerController : MonoBehaviour
     {
 
+        // basic game and player variables
         private Rigidbody rb;
+        public GameController gameController;
         public float speed;
         private bool isStarted = false;
-        private int inCloudTime = 0;
-        public ParticleSystem sparkleEffect;
 
-        public GameController gamecontroller;
-        private int count;
-        private int lastCount;
-        private int life = 3;
-        public Text countText;
-        public Text highScore;
-        public Text lifeText;
-        public Text Timer;
-        public ParticleSystem blast;
-        private int cloudCollisionCount = 0;
-
+        // cloud collision variables
         private const int ALLOWED_IN_CLOUD_TIME = 5;
         private const int SPARKLE_POS_OFFSET_X = 10;
+        private int inCloudTime = 0;
+        private int cloudCollisionCount = 0;
+        public Text timer;
+        public ParticleSystem blast;
+        public ParticleSystem sparkleEffect;
 
+        // rainbow square indicators
         private ArrayList collected;
-        //private Dictionary<string, Color> colors;
-
         private const int NUM_COLORS = 6;
         private GameObject redSq;
         private GameObject orangeSq;
@@ -42,16 +37,21 @@ namespace Lean.Touch
         private GameObject blueSq;
         private GameObject violetSq;
 
-        // variables for player movement
+        // score & life variables
+        private int count;
+        private int lastCount;
+        private int life = 3;
+        public Text countText;
+        public Text highScore;
+        public Text lifeText;
+
+        // variables for player movement (required by Lean Touch)
         [Tooltip("Ignore fingers with StartedOverGui?")]
         public bool IgnoreGuiFingers = true;
-
         [Tooltip("Ignore fingers if the finger count doesn't match? (0 = any)")]
         public int RequiredFingerCount;
-
         [Tooltip("Does translation require an object to be selected?")]
         public LeanSelectable RequiredSelectable;
-
         [Tooltip("The camera the translation will be calculated using (default = MainCamera)")]
         public Camera Camera;
 
@@ -65,32 +65,34 @@ namespace Lean.Touch
         void Start()
         {
 
-            redSq = GameObject.FindGameObjectWithTag("Red");
-            orangeSq = GameObject.FindGameObjectWithTag("Orange");
-            yellowSq = GameObject.FindGameObjectWithTag("Yellow");
-            greenSq = GameObject.FindGameObjectWithTag("Green");
-            blueSq = GameObject.FindGameObjectWithTag("Blue");
-            violetSq = GameObject.FindGameObjectWithTag("Violet");
+          // Set up player and game controllers
+          rb = GetComponent<Rigidbody>();
+          GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+          gameController = gameControllerObject.GetComponent<GameController>();
 
-            ClearSquares();
+          // Set up rainbow indicator set
+          redSq = GameObject.FindGameObjectWithTag("Red");
+          orangeSq = GameObject.FindGameObjectWithTag("Orange");
+          yellowSq = GameObject.FindGameObjectWithTag("Yellow");
+          greenSq = GameObject.FindGameObjectWithTag("Green");
+          blueSq = GameObject.FindGameObjectWithTag("Blue");
+          violetSq = GameObject.FindGameObjectWithTag("Violet");
+          ClearSquares();
+          collected = new ArrayList();
 
+          // Set up on-screen text
+          count = 0;
+          lastCount = count;
+          SetCountText();
+          highScore.text = "Best: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
+          timer.enabled = false;
 
-            collected = new ArrayList();
-            rb = GetComponent<Rigidbody>();
-            count = 0;
-            lastCount = count;
-            SetCountText();
-            GameObject gameControllerObject = GameObject.FindWithTag("GameController");
-            gamecontroller = gameControllerObject.GetComponent<GameController>();
-            highScore.text = "Best: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
-
-            Timer.enabled = false;
-            if (RequiredSelectable == null)
-            {
-                RequiredSelectable = GetComponent<LeanSelectable>();
-            }
+          // Check if touch movement requires a selectable object (Lean Touch condition)
+          if (RequiredSelectable == null)
+          {
+              RequiredSelectable = GetComponent<LeanSelectable>();
+          }
         }
-
 
         void Update()
         {
@@ -103,6 +105,7 @@ namespace Lean.Touch
             }
             resetTimeOutofCloud(checkOutOfCloud());
 
+            // Check if game started and implement touch & keyboard input accordingly
             if (!isStarted)
             {
                 if (Input.anyKey || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -131,6 +134,7 @@ namespace Lean.Touch
                 }
             }
 
+            // Touch input
             // If we require a selectable and it isn't selected, cancel translation
             if (RequiredSelectable != null && RequiredSelectable.IsSelected == false)
             {
@@ -150,7 +154,6 @@ namespace Lean.Touch
         // Detect collision with other game objects
         void OnTriggerEnter(Collider other)
         {
-
             if (other.gameObject.CompareTag("Boost"))
             {
                 Material boostMaterial = other.GetComponent<Renderer>().material;
@@ -185,21 +188,58 @@ namespace Lean.Touch
                 sparkleEffect.Play();
                 if (inCloudTime >= ALLOWED_IN_CLOUD_TIME)
                 {
-                    gamecontroller.GameOver();
+                    gameController.GameOver();
                 }
             }
         }
 
-        void DecrementLife()
+        // clear squares on the rainbow panel
+        public void ClearSquares()
         {
-            life -= 1;
-            lifeText.text = "Life: " + life.ToString();
-            LifeTextScript.Instance.PlayAnimation();
-            if (life <= 0)
+            redSq.SetActive(false);
+            orangeSq.SetActive(false);
+            yellowSq.SetActive(false);
+            greenSq.SetActive(false);
+            blueSq.SetActive(false);
+            violetSq.SetActive(false);
+        }
+
+        // blast effect
+        void Blast(Collider collider)
+        {
+          blast = GetComponentInChildren<ParticleSystem>();
+          blast.transform.position =new Vector3(collider.transform.position.x, collider.transform.position.y, collider.transform.position.z+40);
+          blast.Play();
+          collider.gameObject.SetActive(false);
+        }
+
+        void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.CompareTag("Cloud"))
             {
-                gamecontroller.GameOver();
+                cloudCollisionCount--;
+            }
+
+        }
+
+        bool checkOutOfCloud()
+        {
+            if ((cloudCollisionCount == 0))
+            { return true; }
+            else { return false; }
+        }
+
+        void resetTimeOutofCloud(bool outCloud)
+        {
+            if (outCloud)
+            {
+                if (timer.enabled == true)
+                {
+                    HideTimer();
+                }
             }
         }
+
 
         void LogBoostColor(string colName)
         {
@@ -269,79 +309,31 @@ namespace Lean.Touch
             LifeTextScript.Instance.PlayAnimation();
         }
 
+        void DecrementLife()
+        {
+            life -= 1;
+            lifeText.text = "Life: " + life.ToString();
+            LifeTextScript.Instance.PlayAnimation();
+            if (life <= 0)
+            {
+                gameController.GameOver();
+            }
+        }
+
         void SetTimer()
         {
-            Timer.enabled = true;
-            Timer.text = (ALLOWED_IN_CLOUD_TIME - inCloudTime).ToString() + " s left!";
+            timer.enabled = true;
+            timer.text = (ALLOWED_IN_CLOUD_TIME - inCloudTime).ToString() + " s left!";
         }
 
         void HideTimer()
         {
 
             inCloudTime = 0;
-            Timer.enabled = false;
+            timer.enabled = false;
         }
 
-        // Detect collision with particle system of lightning.
-        void OnParticleCollision(GameObject other)
-        {
-
-            if (other.gameObject.CompareTag("Lightning"))
-            {
-                DecrementLife();
-            }
-        }
-
-
-        void OnTriggerExit(Collider other)
-        {
-            if (other.gameObject.CompareTag("Cloud"))
-            {
-                cloudCollisionCount--;
-            }
-
-        }
-
-        bool checkOutOfCloud()
-        {
-            if ((cloudCollisionCount == 0))
-            { return true; }
-            else { return false; }
-        }
-
-        void resetTimeOutofCloud(bool outCloud)
-        {
-            if (outCloud)
-            {
-                if (Timer.enabled == true)
-                {
-                    HideTimer();
-                }
-            }
-        }
-
-
-        // clear squares on the rainbow panel
-        public void ClearSquares()
-        {
-            redSq.SetActive(false);
-            orangeSq.SetActive(false);
-            yellowSq.SetActive(false);
-            greenSq.SetActive(false);
-            blueSq.SetActive(false);
-            violetSq.SetActive(false);
-        }
-
-        // blast effect
-        void Blast(Collider collider)
-        {
-          blast = GetComponentInChildren<ParticleSystem>();
-          blast.transform.position =new Vector3(collider.transform.position.x, collider.transform.position.y, collider.transform.position.z+40);
-          blast.Play();
-          collider.gameObject.SetActive(false);
-        }
-
-        // for mobile touch
+        // Move the player
         protected virtual void Translate(Vector2 scaledDelta)
         {
             // If camera is null, try and get the main camera, return true if a camera was found

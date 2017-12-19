@@ -151,7 +151,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 570, y: 118.91159}
+  m_AnchoredPosition: {x: 580, y: 118.91159}
   m_SizeDelta: {x: 1.4, y: 1.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &135719005
@@ -11810,7 +11810,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 510, y: 118.91159}
+  m_AnchoredPosition: {x: 520, y: 118.91159}
   m_SizeDelta: {x: 1.4, y: 1.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1134644125
@@ -15634,7 +15634,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 630, y: 118.91159}
+  m_AnchoredPosition: {x: 640, y: 118.91159}
   m_SizeDelta: {x: 1.4, y: 1.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1349964709
@@ -15791,7 +15791,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 540, y: 118.91159}
+  m_AnchoredPosition: {x: 550, y: 118.91159}
   m_SizeDelta: {x: 1.4, y: 1.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1368286378
@@ -16054,7 +16054,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 600, y: 118.91159}
+  m_AnchoredPosition: {x: 610, y: 118.91159}
   m_SizeDelta: {x: 1.4, y: 1.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1490783009
@@ -16311,7 +16311,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 660, y: 118.91159}
+  m_AnchoredPosition: {x: 670, y: 118.91159}
   m_SizeDelta: {x: 1.4, y: 1.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1558230063
@@ -26696,7 +26696,7 @@ Transform:
   m_GameObject: {fileID: 2054463773}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 50, y: 50, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 1625759224}
   m_Father: {fileID: 0}
@@ -26728,14 +26728,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c38571f76ad6bc44b19be32dd797b72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 0}
   speed: 100
+  timer: {fileID: 1357847341}
+  blast: {fileID: 1625759226}
   sparkleEffect: {fileID: 1716990574}
-  gamecontroller: {fileID: 1146354213}
   countText: {fileID: 1446110751}
   highScore: {fileID: 688690367}
   lifeText: {fileID: 501822293}
-  Timer: {fileID: 1357847341}
-  blast: {fileID: 0}
   IgnoreGuiFingers: 0
   RequiredFingerCount: 1
   RequiredSelectable: {fileID: 0}
