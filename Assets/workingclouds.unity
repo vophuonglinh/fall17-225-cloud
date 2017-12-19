@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 194823433}
   - component: {fileID: 194823432}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: Event System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,7 +261,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &224172191
 GameObject:
@@ -412,7 +412,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1955079546750544, guid: 391b3ab39baa07d4f923662b4eb4e249, type: 2}
       propertyPath: m_Name
-      value: YellowBoost
+      value: Yellow
       objectReference: {fileID: 0}
     - target: {fileID: 23431990571825474, guid: 391b3ab39baa07d4f923662b4eb4e249,
         type: 2}
@@ -3910,7 +3910,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1955079546750544, guid: 391b3ab39baa07d4f923662b4eb4e249, type: 2}
       propertyPath: m_Name
-      value: GreenBoost
+      value: Green
       objectReference: {fileID: 0}
     - target: {fileID: 23431990571825474, guid: 391b3ab39baa07d4f923662b4eb4e249,
         type: 2}
@@ -3940,7 +3940,7 @@ GameObject:
   - component: {fileID: 468315294}
   - component: {fileID: 468315293}
   m_Layer: 5
-  m_Name: 'ContinueButton '
+  m_Name: Continue Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4183,6 +4183,109 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 1002250939564866, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65544380124785340, guid: afa30ce9b3d023b4984d3f9bb0500965,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 65544380124785340, guid: afa30ce9b3d023b4984d3f9bb0500965,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 65544380124785340, guid: afa30ce9b3d023b4984d3f9bb0500965,
+        type: 2}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65544380124785340, guid: afa30ce9b3d023b4984d3f9bb0500965,
+        type: 2}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65544380124785340, guid: afa30ce9b3d023b4984d3f9bb0500965,
+        type: 2}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114410179488638152, guid: afa30ce9b3d023b4984d3f9bb0500965,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198299171555984570, guid: afa30ce9b3d023b4984d3f9bb0500965,
+        type: 2}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198299171555984570, guid: afa30ce9b3d023b4984d3f9bb0500965,
+        type: 2}
+      propertyPath: randomSeed
+      value: 364334371
+      objectReference: {fileID: 0}
+    - target: {fileID: 198299171555984570, guid: afa30ce9b3d023b4984d3f9bb0500965,
+        type: 2}
+      propertyPath: InitialModule.startRotation.minScalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198299171555984570, guid: afa30ce9b3d023b4984d3f9bb0500965,
+        type: 2}
+      propertyPath: InitialModule.startRotation.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198299171555984570, guid: afa30ce9b3d023b4984d3f9bb0500965,
+        type: 2}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198299171555984570, guid: afa30ce9b3d023b4984d3f9bb0500965,
+        type: 2}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198299171555984570, guid: afa30ce9b3d023b4984d3f9bb0500965,
+        type: 2}
+      propertyPath: InitialModule.startRotation.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198299171555984570, guid: afa30ce9b3d023b4984d3f9bb0500965,
+        type: 2}
+      propertyPath: InitialModule.rotation3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198299171555984570, guid: afa30ce9b3d023b4984d3f9bb0500965,
+        type: 2}
+      propertyPath: InitialModule.startSize.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198299171555984570, guid: afa30ce9b3d023b4984d3f9bb0500965,
+        type: 2}
+      propertyPath: InitialModule.maxNumParticles
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198299171555984570, guid: afa30ce9b3d023b4984d3f9bb0500965,
+        type: 2}
+      propertyPath: autoRandomSeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899637360667214, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 198299171555984570, guid: afa30ce9b3d023b4984d3f9bb0500965,
+        type: 2}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198299171555984570, guid: afa30ce9b3d023b4984d3f9bb0500965,
+        type: 2}
+      propertyPath: simulationSpeed
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: afa30ce9b3d023b4984d3f9bb0500965, type: 2}
   m_IsPrefabParent: 0
@@ -4199,7 +4302,7 @@ GameObject:
   - component: {fileID: 532672206}
   - component: {fileID: 532672208}
   m_Layer: 0
-  m_Name: CloudGroupRight
+  m_Name: Right Cloud
   m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4332,7 +4435,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -530358076
+  randomSeed: -1271975514
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7524,7 +7627,7 @@ GameObject:
   - component: {fileID: 595494552}
   - component: {fileID: 595494554}
   m_Layer: 0
-  m_Name: CurrentTile1
+  m_Name: CurrentTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7576,7 +7679,7 @@ RectTransform:
   - {fileID: 532672205}
   - {fileID: 999828825}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7650,7 +7753,7 @@ Transform:
   - {fileID: 1560086034}
   - {fileID: 1392284315}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &674852297
 GameObject:
@@ -7663,7 +7766,7 @@ GameObject:
   - component: {fileID: 674852300}
   - component: {fileID: 674852299}
   m_Layer: 5
-  m_Name: GameOverText
+  m_Name: Game Over Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7845,7 +7948,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1955079546750544, guid: 391b3ab39baa07d4f923662b4eb4e249, type: 2}
       propertyPath: m_Name
-      value: VioletBoost
+      value: Violet
       objectReference: {fileID: 0}
     - target: {fileID: 23431990571825474, guid: 391b3ab39baa07d4f923662b4eb4e249,
         type: 2}
@@ -7974,7 +8077,7 @@ GameObject:
   - component: {fileID: 794252272}
   - component: {fileID: 794252271}
   m_Layer: 0
-  m_Name: TileController
+  m_Name: Tile Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8004,7 +8107,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &819397567 stripped
 GameObject:
@@ -8242,7 +8345,7 @@ GameObject:
   - component: {fileID: 999828826}
   - component: {fileID: 999828828}
   m_Layer: 0
-  m_Name: CloudGroupTop
+  m_Name: Top Cloud
   m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8375,7 +8478,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -2065921195
+  randomSeed: 2036405145
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11566,7 +11669,7 @@ GameObject:
   - component: {fileID: 1089527818}
   - component: {fileID: 1089527817}
   m_Layer: 5
-  m_Name: 'PauseButton '
+  m_Name: Pause Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11674,99 +11777,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4231397997671444, guid: 391b3ab39baa07d4f923662b4eb4e249,
     type: 2}
   m_PrefabInternal: {fileID: 388163185}
---- !u!1 &1122039104
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1122039108}
-  - component: {fileID: 1122039107}
-  - component: {fileID: 1122039106}
-  - component: {fileID: 1122039105}
-  m_Layer: 5
-  m_Name: StartMenu
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1122039105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1122039104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &1122039106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1122039104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
---- !u!223 &1122039107
-Canvas:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1122039104}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
---- !u!224 &1122039108
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1122039104}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1134644123
 GameObject:
   m_ObjectHideFlags: 0
@@ -11860,7 +11870,7 @@ GameObject:
   - component: {fileID: 1136030029}
   - component: {fileID: 1136030028}
   m_Layer: 0
-  m_Name: BoostManager
+  m_Name: Boost Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11902,7 +11912,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1146354208
 GameObject:
@@ -11919,7 +11929,7 @@ GameObject:
   - component: {fileID: 1146354215}
   - component: {fileID: 1146354214}
   m_Layer: 5
-  m_Name: GameController
+  m_Name: Game Controller
   m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12003,7 +12013,7 @@ RectTransform:
   - {fileID: 1522881855}
   - {fileID: 961917465}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12106,7 +12116,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1955079546750544, guid: 391b3ab39baa07d4f923662b4eb4e249, type: 2}
       propertyPath: m_Name
-      value: BlueBoost
+      value: Blue
       objectReference: {fileID: 0}
     - target: {fileID: 4231397997671444, guid: 391b3ab39baa07d4f923662b4eb4e249, type: 2}
       propertyPath: m_LocalScale.y
@@ -15492,7 +15502,7 @@ GameObject:
   - component: {fileID: 1321747805}
   - component: {fileID: 1321747803}
   m_Layer: 5
-  m_Name: RestartButton
+  m_Name: Restart Button
   m_TagString: Restart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16106,7 +16116,7 @@ GameObject:
   - component: {fileID: 1522881857}
   - component: {fileID: 1522881856}
   m_Layer: 5
-  m_Name: MenuButton
+  m_Name: Menu Button
   m_TagString: Restart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16250,7 +16260,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1955079546750544, guid: 391b3ab39baa07d4f923662b4eb4e249, type: 2}
       propertyPath: m_Name
-      value: RedBoost
+      value: Red
       objectReference: {fileID: 0}
     - target: {fileID: 23431990571825474, guid: 391b3ab39baa07d4f923662b4eb4e249,
         type: 2}
@@ -16579,7 +16589,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -136473087
+  randomSeed: -496041769
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -19910,7 +19920,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 2080612342
+  randomSeed: 241732144
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -23124,7 +23134,7 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1717105925
 GameObject:
@@ -23136,7 +23146,7 @@ GameObject:
   - component: {fileID: 1717105927}
   - component: {fileID: 1717105926}
   m_Layer: 0
-  m_Name: LeanTouch
+  m_Name: Lean Touch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23177,7 +23187,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1784592682
 Prefab:
@@ -23224,7 +23234,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1955079546750544, guid: 391b3ab39baa07d4f923662b4eb4e249, type: 2}
       propertyPath: m_Name
-      value: OrangeBoost
+      value: Orange
       objectReference: {fileID: 0}
     - target: {fileID: 23431990571825474, guid: 391b3ab39baa07d4f923662b4eb4e249,
         type: 2}
@@ -23295,7 +23305,7 @@ GameObject:
   - component: {fileID: 2050684973}
   - component: {fileID: 2050684975}
   m_Layer: 0
-  m_Name: CloudGroupLeft
+  m_Name: Left Cloud
   m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23428,7 +23438,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -586254108
+  randomSeed: -1467498765
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -26621,7 +26631,7 @@ GameObject:
   - component: {fileID: 2054463778}
   - component: {fileID: 2054463779}
   m_Layer: 0
-  m_Name: PlayerSphere
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26690,7 +26700,7 @@ Transform:
   m_Children:
   - {fileID: 1625759224}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2054463778
 Rigidbody:
