@@ -64,14 +64,6 @@ namespace Lean.Touch
 
         void Start()
         {
-            //keep for now, elena might need these when adding color to blasts
-            //colors = new Dictionary<string, Color>();
-            //colors.Add("R", Color.red);
-            //colors.Add("O", new Color(255, 165, 0)); //orange
-            //colors.Add("Y", Color.yellow);
-            //colors.Add("G", Color.green);
-            //colors.Add("B", Color.blue);
-            //colors.Add("V", new Color(150, 0, 200)); //violet
 
             redSq = GameObject.FindGameObjectWithTag("Red");
             orangeSq = GameObject.FindGameObjectWithTag("Orange");
@@ -92,8 +84,6 @@ namespace Lean.Touch
             gamecontroller = gameControllerObject.GetComponent<GameController>();
             highScore.text = "Best: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
 
-
-            //blast = GetComponentInChildren<ParticleSystem>();
             Timer.enabled = false;
             if (RequiredSelectable == null)
             {
