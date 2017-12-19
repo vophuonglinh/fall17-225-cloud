@@ -4,18 +4,6 @@ using UnityEngine;
 //recycle tiles 20:20
 public class TileScript : MonoBehaviour
 {
-    private float cloudHeight;
-
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     void OnTriggerExit(Collider other)
     {

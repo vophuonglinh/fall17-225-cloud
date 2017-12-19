@@ -7,14 +7,9 @@ public class CameraController : MonoBehaviour
 
     public GameObject player;
 
-    // Use this for initialization
-    void Start()
-    {    }
-
-
     void LateUpdate()
     {
-        transform.position = player.transform.position;// + offset;
+        transform.position = player.transform.position;
         Vector3 velocity = player.GetComponent<Rigidbody>().velocity;
         Quaternion cameraRotation = transform.rotation;
         if (velocity != Vector3.zero)

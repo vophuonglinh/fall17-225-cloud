@@ -8,7 +8,6 @@ public class TileController : MonoBehaviour
 
     private static TileController instance;
     private const string tagCur = "CurrentTile";
-    //private const string TAG_CUR_LIGHT = "CurrentTileLN";
     private const string tagNotCur = "NotCurrent";
 
     private Stack<GameObject> topTiles = new Stack<GameObject>();
@@ -51,12 +50,6 @@ public class TileController : MonoBehaviour
     {
         get { return topTiles; }
         set { topTiles = value; }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void SpawnTile()

@@ -17,11 +17,20 @@ public class Boost : MonoBehaviour
     void Update()
     {
         if (gameObject.tag != "Lightning") {
-            transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime); 
+            transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
         }
-               
     }
 
+    private void LateUpdate()
+    {
+        //check if boost should be recycled
+        float playerPosZ = player.transform.position.z;
+        float boostPosZ = transform.position.z;
+        if ((playerPosZ - boostPosZ) > 50.0)
+        {
+            processUselessObjects();
+        }
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -48,25 +57,10 @@ public class Boost : MonoBehaviour
         }
         else {
             BoostManager.Instance.lightnings.Push(gameObject);
-        }        
-    }
-
-    void FixedUpdate()
-    {
-
-    }
-
-    private void LateUpdate()
-    {
-        //check if boost should be recycled
-        float playerPosZ = player.transform.position.z;
-        float boostPosZ = transform.position.z;
-        if ((playerPosZ - boostPosZ) > 50.0)
-        {
-            processUselessObjects();
         }
-
     }
+
+
 
 
 }

@@ -14,10 +14,12 @@ public class BoostManager : MonoBehaviour
     public Stack<GameObject> boosts = new Stack<GameObject>();
     public Stack<GameObject> obstacles = new Stack<GameObject>();
     public Stack<GameObject> lightnings = new Stack<GameObject>();
+
     //initial stack size for the game objects
     private const int POOL_SIZE_BOOSTS = 8;
     private const int POOL_SIZE_OBSTACLES = 9;
     private const int POOL_SIZE_LIGHTNINGS = 5;
+
     //constants for identifying different objects
     private const int BOOST_NUM = 0;
     private const int OBSTACLE_NUM = 1;
@@ -28,13 +30,12 @@ public class BoostManager : MonoBehaviour
     private const int BOOST_SPAWN_CHANCE = 2;
     private const int BOOST_SPREADING_SCALE = 7;
     private const int BOOST_GENERATE_DELAY = 1;
-   
+
     private const string TAG_FOR_NONCURRENT = "NotCurrent";
     private const string TAG_FOR_CURRENT = "CurrentTile";
 
     private const int FIXED_LIGHTNING_POSITION = 120;
     private static BoostManager instance;
-
 
     public static BoostManager Instance
     {
@@ -47,6 +48,7 @@ public class BoostManager : MonoBehaviour
             return instance;
         }
     }
+
     // Use this for initialization
     void Start()
     {
@@ -61,7 +63,7 @@ public class BoostManager : MonoBehaviour
         while (true)
         {
             curTiles = GameObject.FindGameObjectsWithTag(TAG_FOR_CURRENT);
-            //loop over the array with objects that have the currenttile tag
+            //loop over the array with objects that have the CurrentTile tag
             //Starting with two to avoid generating lightnings in the beginning
             int i = 2;
             foreach (GameObject curTile in curTiles)
@@ -156,5 +158,4 @@ public class BoostManager : MonoBehaviour
         float z = tile.transform.GetChild(0).position.z + Random.Range(-scatter, scatter) * scatter;
         return new Vector3(x, y, z);
     }
-
 }
